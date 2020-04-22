@@ -9,7 +9,7 @@
             "-Wall"
         ],
         "include_dirs": [
-            "./core"
+            "./cython"
         ],
         "language": "c++",
         "name": "atpy.src.cython.elements",
@@ -925,7 +925,7 @@ struct __pyx_t_4atpy_3src_3cpp_9cppmarker_CppMarker : public __pyx_t_4atpy_3src_
   /* "cpp/cppmarker.pxd":2
  * from .cppelement cimport CppElement
  * cdef cppclass CppMarker(CppElement):             # <<<<<<<<<<<<<<
- *     __init__():
+ *     __init__()nogil:
  *         this.elem_type = 0
  */
   void __pyx_f___init__CppMarker(void);
@@ -943,7 +943,7 @@ struct __pyx_t_4atpy_3src_3cpp_8cppdrift_CppDrift : public __pyx_t_4atpy_3src_3c
  * from .cppelement cimport CppElement
  * from libc.math cimport pi,atan
  * cdef cppclass CppDrift(CppElement):             # <<<<<<<<<<<<<<
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 1
  */
   void __pyx_f___init__CppDrift(double *);
@@ -963,7 +963,7 @@ struct __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole : public __pyx_t_4atpy_3src_
  * from .cppelement cimport CppElement
  * from libc.math cimport sin,cos,sinh,cosh,tan,atan,exp,sqrt,pi
  * cdef cppclass CppDipole(CppElement):             # <<<<<<<<<<<<<<
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 2
  */
   void __pyx_f___init__CppDipole(double *);
@@ -983,7 +983,7 @@ struct __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole : public __pyx_t_4a
  * from .cppelement cimport CppElement
  * from libc.math cimport pi,cos,sin,cosh,sinh,tan,atan,sqrt,exp
  * cdef cppclass CppQuadrupole(CppElement):             # <<<<<<<<<<<<<<
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 3
  */
   void __pyx_f___init__CppQuadrupole(double *);
@@ -4403,151 +4403,80 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_8elements_8Octupole_4__setstate_cyt
 /* "cpp/cppelement.pxd":15
  *     double T[6][6]
  * 
- *     __init__():             # <<<<<<<<<<<<<<
+ *     __init__()nogil:             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
 
 void __pyx_t_4atpy_3src_3cpp_10cppelement_CppElement::__pyx_f___init__CppElement(void) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("<init>", 0);
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppelement.pxd":18
  *         pass
  * 
- *     inline void init_matrixM():             # <<<<<<<<<<<<<<
- *         this.M = [[1., 0., 0., 0., 0., 0.],
- *                   [0., 1., 0., 0., 0., 0.],
+ *     inline void init_matrixM()nogil:             # <<<<<<<<<<<<<<
+ *         cdef int i,j
+ *         for i in range(6):
  */
 
 void __pyx_t_4atpy_3src_3cpp_10cppelement_CppElement::init_matrixM(void) {
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1[6];
-  double __pyx_t_2[6];
-  double __pyx_t_3[6];
-  double __pyx_t_4[6];
-  double __pyx_t_5[6];
-  double __pyx_t_6[6];
-  double __pyx_t_7[6][6];
-  __Pyx_RefNannySetupContext("init_matrixM", 0);
-
-  /* "cpp/cppelement.pxd":19
- * 
- *     inline void init_matrixM():
- *         this.M = [[1., 0., 0., 0., 0., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 1., 0., 0., 0., 0.],
- *                   [0., 0., 1., 0., 0., 0.],
- */
-  __pyx_t_1[0] = 1.;
-  __pyx_t_1[1] = 0.;
-  __pyx_t_1[2] = 0.;
-  __pyx_t_1[3] = 0.;
-  __pyx_t_1[4] = 0.;
-  __pyx_t_1[5] = 0.;
+  int __pyx_v_i;
+  int __pyx_v_j;
+  int __pyx_t_1;
+  int __pyx_t_2;
+  double __pyx_t_3;
 
   /* "cpp/cppelement.pxd":20
- *     inline void init_matrixM():
- *         this.M = [[1., 0., 0., 0., 0., 0.],
- *                   [0., 1., 0., 0., 0., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 0., 1., 0., 0., 0.],
- *                   [0., 0., 0., 1., 0., 0.],
- */
-  __pyx_t_2[0] = 0.;
-  __pyx_t_2[1] = 1.;
-  __pyx_t_2[2] = 0.;
-  __pyx_t_2[3] = 0.;
-  __pyx_t_2[4] = 0.;
-  __pyx_t_2[5] = 0.;
-
-  /* "cpp/cppelement.pxd":21
- *         this.M = [[1., 0., 0., 0., 0., 0.],
- *                   [0., 1., 0., 0., 0., 0.],
- *                   [0., 0., 1., 0., 0., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 0., 0., 1., 0., 0.],
- *                   [0., 0., 0., 0., 1., 0.],
- */
-  __pyx_t_3[0] = 0.;
-  __pyx_t_3[1] = 0.;
-  __pyx_t_3[2] = 1.;
-  __pyx_t_3[3] = 0.;
-  __pyx_t_3[4] = 0.;
-  __pyx_t_3[5] = 0.;
-
-  /* "cpp/cppelement.pxd":22
- *                   [0., 1., 0., 0., 0., 0.],
- *                   [0., 0., 1., 0., 0., 0.],
- *                   [0., 0., 0., 1., 0., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 0., 0., 0., 1., 0.],
- *                   [0., 0., 0., 0., 0., 1.]]
- */
-  __pyx_t_4[0] = 0.;
-  __pyx_t_4[1] = 0.;
-  __pyx_t_4[2] = 0.;
-  __pyx_t_4[3] = 1.;
-  __pyx_t_4[4] = 0.;
-  __pyx_t_4[5] = 0.;
-
-  /* "cpp/cppelement.pxd":23
- *                   [0., 0., 1., 0., 0., 0.],
- *                   [0., 0., 0., 1., 0., 0.],
- *                   [0., 0., 0., 0., 1., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 0., 0., 0., 0., 1.]]
+ *     inline void init_matrixM()nogil:
+ *         cdef int i,j
+ *         for i in range(6):             # <<<<<<<<<<<<<<
+ *             for j in range(6):
  * 
  */
-  __pyx_t_5[0] = 0.;
-  __pyx_t_5[1] = 0.;
-  __pyx_t_5[2] = 0.;
-  __pyx_t_5[3] = 0.;
-  __pyx_t_5[4] = 1.;
-  __pyx_t_5[5] = 0.;
+  for (__pyx_t_1 = 0; __pyx_t_1 < 6; __pyx_t_1+=1) {
+    __pyx_v_i = __pyx_t_1;
 
-  /* "cpp/cppelement.pxd":24
- *                   [0., 0., 0., 1., 0., 0.],
- *                   [0., 0., 0., 0., 1., 0.],
- *                   [0., 0., 0., 0., 0., 1.]]             # <<<<<<<<<<<<<<
+    /* "cpp/cppelement.pxd":21
+ *         cdef int i,j
+ *         for i in range(6):
+ *             for j in range(6):             # <<<<<<<<<<<<<<
  * 
- *     inline void update_matrixM()nogil:
+ *                     this.M[i][j] = 1.0 if i==j else 0.0
  */
-  __pyx_t_6[0] = 0.;
-  __pyx_t_6[1] = 0.;
-  __pyx_t_6[2] = 0.;
-  __pyx_t_6[3] = 0.;
-  __pyx_t_6[4] = 0.;
-  __pyx_t_6[5] = 1.;
+    for (__pyx_t_2 = 0; __pyx_t_2 < 6; __pyx_t_2+=1) {
+      __pyx_v_j = __pyx_t_2;
 
-  /* "cpp/cppelement.pxd":19
+      /* "cpp/cppelement.pxd":23
+ *             for j in range(6):
  * 
- *     inline void init_matrixM():
- *         this.M = [[1., 0., 0., 0., 0., 0.],             # <<<<<<<<<<<<<<
- *                   [0., 1., 0., 0., 0., 0.],
- *                   [0., 0., 1., 0., 0., 0.],
+ *                     this.M[i][j] = 1.0 if i==j else 0.0             # <<<<<<<<<<<<<<
+ * 
+ * 
  */
-  memcpy(&(__pyx_t_7[0]), __pyx_t_1, sizeof(__pyx_t_7[0]));
-  memcpy(&(__pyx_t_7[1]), __pyx_t_2, sizeof(__pyx_t_7[0]));
-  memcpy(&(__pyx_t_7[2]), __pyx_t_3, sizeof(__pyx_t_7[0]));
-  memcpy(&(__pyx_t_7[3]), __pyx_t_4, sizeof(__pyx_t_7[0]));
-  memcpy(&(__pyx_t_7[4]), __pyx_t_5, sizeof(__pyx_t_7[0]));
-  memcpy(&(__pyx_t_7[5]), __pyx_t_6, sizeof(__pyx_t_7[0]));
-  memcpy(&(this->M[0]), __pyx_t_7, sizeof(this->M[0]) * (6));
+      if (((__pyx_v_i == __pyx_v_j) != 0)) {
+        __pyx_t_3 = 1.0;
+      } else {
+        __pyx_t_3 = 0.0;
+      }
+      ((this->M[__pyx_v_i])[__pyx_v_j]) = __pyx_t_3;
+    }
+  }
 
   /* "cpp/cppelement.pxd":18
  *         pass
  * 
- *     inline void init_matrixM():             # <<<<<<<<<<<<<<
- *         this.M = [[1., 0., 0., 0., 0., 0.],
- *                   [0., 1., 0., 0., 0., 0.],
+ *     inline void init_matrixM()nogil:             # <<<<<<<<<<<<<<
+ *         cdef int i,j
+ *         for i in range(6):
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppelement.pxd":26
- *                   [0., 0., 0., 0., 0., 1.]]
+ * 
  * 
  *     inline void update_matrixM()nogil:             # <<<<<<<<<<<<<<
  *         pass
@@ -4828,18 +4757,16 @@ void __pyx_t_4atpy_3src_3cpp_10cppelement_CppElement::update(CYTHON_UNUSED doubl
 /* "cpp/cppmarker.pxd":3
  * from .cppelement cimport CppElement
  * cdef cppclass CppMarker(CppElement):
- *     __init__():             # <<<<<<<<<<<<<<
+ *     __init__()nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 0
  *         this.l = 0.
  */
 
 void __pyx_t_4atpy_3src_3cpp_9cppmarker_CppMarker::__pyx_f___init__CppMarker(void) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("<init>", 0);
 
   /* "cpp/cppmarker.pxd":4
  * cdef cppclass CppMarker(CppElement):
- *     __init__():
+ *     __init__()nogil:
  *         this.elem_type = 0             # <<<<<<<<<<<<<<
  *         this.l = 0.
  *         this.init_matrixM()
@@ -4847,7 +4774,7 @@ void __pyx_t_4atpy_3src_3cpp_9cppmarker_CppMarker::__pyx_f___init__CppMarker(voi
   this->elem_type = 0;
 
   /* "cpp/cppmarker.pxd":5
- *     __init__():
+ *     __init__()nogil:
  *         this.elem_type = 0
  *         this.l = 0.             # <<<<<<<<<<<<<<
  *         this.init_matrixM()
@@ -4876,13 +4803,12 @@ void __pyx_t_4atpy_3src_3cpp_9cppmarker_CppMarker::__pyx_f___init__CppMarker(voi
   /* "cpp/cppmarker.pxd":3
  * from .cppelement cimport CppElement
  * cdef cppclass CppMarker(CppElement):
- *     __init__():             # <<<<<<<<<<<<<<
+ *     __init__()nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 0
  *         this.l = 0.
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppmarker.pxd":10
@@ -4924,18 +4850,16 @@ void __pyx_t_4atpy_3src_3cpp_9cppmarker_CppMarker::get_phase(double *__pyx_v_par
 /* "cpp/cppdrift.pxd":4
  * from libc.math cimport pi,atan
  * cdef cppclass CppDrift(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 1
  *         this.l = parms[0]
  */
 
 void __pyx_t_4atpy_3src_3cpp_8cppdrift_CppDrift::__pyx_f___init__CppDrift(double *__pyx_v_parms) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("<init>", 0);
 
   /* "cpp/cppdrift.pxd":5
  * cdef cppclass CppDrift(CppElement):
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 1             # <<<<<<<<<<<<<<
  *         this.l = parms[0]
  *         this.init_matrixM()
@@ -4943,7 +4867,7 @@ void __pyx_t_4atpy_3src_3cpp_8cppdrift_CppDrift::__pyx_f___init__CppDrift(double
   this->elem_type = 1;
 
   /* "cpp/cppdrift.pxd":6
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 1
  *         this.l = parms[0]             # <<<<<<<<<<<<<<
  *         this.init_matrixM()
@@ -4981,13 +4905,12 @@ void __pyx_t_4atpy_3src_3cpp_8cppdrift_CppDrift::__pyx_f___init__CppDrift(double
   /* "cpp/cppdrift.pxd":4
  * from libc.math cimport pi,atan
  * cdef cppclass CppDrift(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 1
  *         this.l = parms[0]
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppdrift.pxd":11
@@ -5180,18 +5103,16 @@ void __pyx_t_4atpy_3src_3cpp_8cppdrift_CppDrift::update(double *__pyx_v_parms) {
 /* "cpp/cppdipole.pxd":4
  * from libc.math cimport sin,cos,sinh,cosh,tan,atan,exp,sqrt,pi
  * cdef cppclass CppDipole(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 2
  *         this.l = parms[0]
  */
 
 void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::__pyx_f___init__CppDipole(double *__pyx_v_parms) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("<init>", 0);
 
   /* "cpp/cppdipole.pxd":5
  * cdef cppclass CppDipole(CppElement):
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 2             # <<<<<<<<<<<<<<
  *         this.l = parms[0]
  *         this.angle = parms[1]
@@ -5199,7 +5120,7 @@ void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::__pyx_f___init__CppDipole(dou
   this->elem_type = 2;
 
   /* "cpp/cppdipole.pxd":6
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 2
  *         this.l = parms[0]             # <<<<<<<<<<<<<<
  *         this.angle = parms[1]
@@ -5246,13 +5167,12 @@ void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::__pyx_f___init__CppDipole(dou
   /* "cpp/cppdipole.pxd":4
  * from libc.math cimport sin,cos,sinh,cosh,tan,atan,exp,sqrt,pi
  * cdef cppclass CppDipole(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 2
  *         this.l = parms[0]
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppdipole.pxd":13
@@ -5322,44 +5242,94 @@ void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::update_matrixM(void) {
  *         this.M[0][1] = rho*sin(angle)
  *         this.M[0][5] = rho*(1-cos(angle))             # <<<<<<<<<<<<<<
  * 
- *         this.M[1][5] = 2*tan(angle/2)
+ *         this.M[1][5] = 2*tan(angle/2.0)
  */
   ((this->M[0])[5]) = (__pyx_v_rho * (1.0 - cos(__pyx_v_angle)));
 
   /* "cpp/cppdipole.pxd":21
  *         this.M[0][5] = rho*(1-cos(angle))
  * 
- *         this.M[1][5] = 2*tan(angle/2)             # <<<<<<<<<<<<<<
+ *         this.M[1][5] = 2*tan(angle/2.0)             # <<<<<<<<<<<<<<
  * 
- *         this.M[2][2] = 1-angle*tan(angle/2)
+ *         this.M[2][2] = 1-angle*tan(angle/2.0)
  */
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 21, __pyx_L1_error)
+  }
   ((this->M[1])[5]) = (2.0 * tan((__pyx_v_angle / 2.0)));
 
   /* "cpp/cppdipole.pxd":23
- *         this.M[1][5] = 2*tan(angle/2)
+ *         this.M[1][5] = 2*tan(angle/2.0)
  * 
- *         this.M[2][2] = 1-angle*tan(angle/2)             # <<<<<<<<<<<<<<
+ *         this.M[2][2] = 1-angle*tan(angle/2.0)             # <<<<<<<<<<<<<<
  *         this.M[2][3] = 1
  * 
  */
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 23, __pyx_L1_error)
+  }
   ((this->M[2])[2]) = (1.0 - (__pyx_v_angle * tan((__pyx_v_angle / 2.0))));
 
   /* "cpp/cppdipole.pxd":24
  * 
- *         this.M[2][2] = 1-angle*tan(angle/2)
+ *         this.M[2][2] = 1-angle*tan(angle/2.0)
  *         this.M[2][3] = 1             # <<<<<<<<<<<<<<
  * 
- *         this.M[3][2] = -2*tan(angle/2)*(1-angle/2*tan(angle/2))/rho
+ *         this.M[3][2] = -2*tan(angle/2.0)*(1-angle/2.0*tan(angle/2.0))/rho
  */
   ((this->M[2])[3]) = 1.0;
 
   /* "cpp/cppdipole.pxd":26
  *         this.M[2][3] = 1
  * 
- *         this.M[3][2] = -2*tan(angle/2)*(1-angle/2*tan(angle/2))/rho             # <<<<<<<<<<<<<<
- *         this.M[3][3] = 1-angle*tan(angle/2)
+ *         this.M[3][2] = -2*tan(angle/2.0)*(1-angle/2.0*tan(angle/2.0))/rho             # <<<<<<<<<<<<<<
+ *         this.M[3][3] = 1-angle*tan(angle/2.0)
  * 
  */
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 26, __pyx_L1_error)
+  }
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 26, __pyx_L1_error)
+  }
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 26, __pyx_L1_error)
+  }
   __pyx_t_1 = ((-2.0 * tan((__pyx_v_angle / 2.0))) * (1.0 - ((__pyx_v_angle / 2.0) * tan((__pyx_v_angle / 2.0)))));
   if (unlikely(__pyx_v_rho == 0)) {
     #ifdef WITH_THREAD
@@ -5375,11 +5345,21 @@ void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::update_matrixM(void) {
 
   /* "cpp/cppdipole.pxd":27
  * 
- *         this.M[3][2] = -2*tan(angle/2)*(1-angle/2*tan(angle/2))/rho
- *         this.M[3][3] = 1-angle*tan(angle/2)             # <<<<<<<<<<<<<<
+ *         this.M[3][2] = -2*tan(angle/2.0)*(1-angle/2.0*tan(angle/2.0))/rho
+ *         this.M[3][3] = 1-angle*tan(angle/2.0)             # <<<<<<<<<<<<<<
  * 
  * 
  */
+  if (unlikely(2.0 == 0)) {
+    #ifdef WITH_THREAD
+    PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+    #endif
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    #ifdef WITH_THREAD
+    __Pyx_PyGILState_Release(__pyx_gilstate_save);
+    #endif
+    __PYX_ERR(3, 27, __pyx_L1_error)
+  }
   ((this->M[3])[3]) = (1.0 - (__pyx_v_angle * tan((__pyx_v_angle / 2.0))));
 
   /* "cpp/cppdipole.pxd":13
@@ -5556,18 +5536,16 @@ void __pyx_t_4atpy_3src_3cpp_9cppdipole_CppDipole::update(double *__pyx_v_parms)
 /* "cpp/cppquadrupole.pxd":4
  * from libc.math cimport pi,cos,sin,cosh,sinh,tan,atan,sqrt,exp
  * cdef cppclass CppQuadrupole(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 3
  *         this.l = parms[0]
  */
 
 void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::__pyx_f___init__CppQuadrupole(double *__pyx_v_parms) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("<init>", 0);
 
   /* "cpp/cppquadrupole.pxd":5
  * cdef cppclass CppQuadrupole(CppElement):
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 3             # <<<<<<<<<<<<<<
  *         this.l = parms[0]
  *         this.k1 = parms[2]
@@ -5575,7 +5553,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::__pyx_f___init__CppQ
   this->elem_type = 3;
 
   /* "cpp/cppquadrupole.pxd":6
- *     __init__(double* parms):
+ *     __init__(double* parms)nogil:
  *         this.elem_type = 3
  *         this.l = parms[0]             # <<<<<<<<<<<<<<
  *         this.k1 = parms[2]
@@ -5622,13 +5600,12 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::__pyx_f___init__CppQ
   /* "cpp/cppquadrupole.pxd":4
  * from libc.math cimport pi,cos,sin,cosh,sinh,tan,atan,sqrt,exp
  * cdef cppclass CppQuadrupole(CppElement):
- *     __init__(double* parms):             # <<<<<<<<<<<<<<
+ *     __init__(double* parms)nogil:             # <<<<<<<<<<<<<<
  *         this.elem_type = 3
  *         this.l = parms[0]
  */
 
   /* function exit code */
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "cpp/cppquadrupole.pxd":13
@@ -5748,8 +5725,8 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  *             i = 0
  * 
  *         if i == 0:             # <<<<<<<<<<<<<<
+ *             this.init_matrixM()
  *             this.M[0][1] = l
- *             this.M[2][3] = l
  */
   switch (__pyx_v_i) {
     case 0:
@@ -5757,14 +5734,23 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
     /* "cpp/cppquadrupole.pxd":26
  * 
  *         if i == 0:
+ *             this.init_matrixM()             # <<<<<<<<<<<<<<
+ *             this.M[0][1] = l
+ *             this.M[2][3] = l
+ */
+    this->init_matrixM();
+
+    /* "cpp/cppquadrupole.pxd":27
+ *         if i == 0:
+ *             this.init_matrixM()
  *             this.M[0][1] = l             # <<<<<<<<<<<<<<
  *             this.M[2][3] = l
  *             this.M[4][5] = l
  */
     ((this->M[0])[1]) = __pyx_v_l;
 
-    /* "cpp/cppquadrupole.pxd":27
- *         if i == 0:
+    /* "cpp/cppquadrupole.pxd":28
+ *             this.init_matrixM()
  *             this.M[0][1] = l
  *             this.M[2][3] = l             # <<<<<<<<<<<<<<
  *             this.M[4][5] = l
@@ -5772,7 +5758,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[2])[3]) = __pyx_v_l;
 
-    /* "cpp/cppquadrupole.pxd":28
+    /* "cpp/cppquadrupole.pxd":29
  *             this.M[0][1] = l
  *             this.M[2][3] = l
  *             this.M[4][5] = l             # <<<<<<<<<<<<<<
@@ -5785,13 +5771,13 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  *             i = 0
  * 
  *         if i == 0:             # <<<<<<<<<<<<<<
+ *             this.init_matrixM()
  *             this.M[0][1] = l
- *             this.M[2][3] = l
  */
     break;
     case 1:
 
-    /* "cpp/cppquadrupole.pxd":29
+    /* "cpp/cppquadrupole.pxd":30
  *             this.M[2][3] = l
  *             this.M[4][5] = l
  *         elif i==1 or i==-1:             # <<<<<<<<<<<<<<
@@ -5800,7 +5786,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     case -1L:
 
-    /* "cpp/cppquadrupole.pxd":30
+    /* "cpp/cppquadrupole.pxd":31
  *             this.M[4][5] = l
  *         elif i==1 or i==-1:
  *             this.M[1-i][1-i] = cos(k1*l)             # <<<<<<<<<<<<<<
@@ -5809,7 +5795,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(1 - __pyx_v_i)])[(1 - __pyx_v_i)]) = cos((__pyx_v_k1 * __pyx_v_l));
 
-    /* "cpp/cppquadrupole.pxd":31
+    /* "cpp/cppquadrupole.pxd":32
  *         elif i==1 or i==-1:
  *             this.M[1-i][1-i] = cos(k1*l)
  *             this.M[1-i][2-i] = sin(k1*l)/k1             # <<<<<<<<<<<<<<
@@ -5825,11 +5811,11 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 31, __pyx_L1_error)
+      __PYX_ERR(4, 32, __pyx_L1_error)
     }
     ((this->M[(1 - __pyx_v_i)])[(2 - __pyx_v_i)]) = (__pyx_t_1 / __pyx_v_k1);
 
-    /* "cpp/cppquadrupole.pxd":32
+    /* "cpp/cppquadrupole.pxd":33
  *             this.M[1-i][1-i] = cos(k1*l)
  *             this.M[1-i][2-i] = sin(k1*l)/k1
  *             this.M[2-i][1-i] = -k1*sin(k1*l)             # <<<<<<<<<<<<<<
@@ -5838,7 +5824,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(2 - __pyx_v_i)])[(1 - __pyx_v_i)]) = ((-__pyx_v_k1) * sin((__pyx_v_k1 * __pyx_v_l)));
 
-    /* "cpp/cppquadrupole.pxd":33
+    /* "cpp/cppquadrupole.pxd":34
  *             this.M[1-i][2-i] = sin(k1*l)/k1
  *             this.M[2-i][1-i] = -k1*sin(k1*l)
  *             this.M[2-i][2-i] = cos(k1*l)             # <<<<<<<<<<<<<<
@@ -5847,7 +5833,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(2 - __pyx_v_i)])[(2 - __pyx_v_i)]) = cos((__pyx_v_k1 * __pyx_v_l));
 
-    /* "cpp/cppquadrupole.pxd":35
+    /* "cpp/cppquadrupole.pxd":36
  *             this.M[2-i][2-i] = cos(k1*l)
  * 
  *             this.M[1+i][1+i] = cosh(k1*l)             # <<<<<<<<<<<<<<
@@ -5856,7 +5842,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(1 + __pyx_v_i)])[(1 + __pyx_v_i)]) = cosh((__pyx_v_k1 * __pyx_v_l));
 
-    /* "cpp/cppquadrupole.pxd":36
+    /* "cpp/cppquadrupole.pxd":37
  * 
  *             this.M[1+i][1+i] = cosh(k1*l)
  *             this.M[1+i][2+i] = sinh(k1*l)/k1             # <<<<<<<<<<<<<<
@@ -5872,11 +5858,11 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 36, __pyx_L1_error)
+      __PYX_ERR(4, 37, __pyx_L1_error)
     }
     ((this->M[(1 + __pyx_v_i)])[(2 + __pyx_v_i)]) = (__pyx_t_1 / __pyx_v_k1);
 
-    /* "cpp/cppquadrupole.pxd":37
+    /* "cpp/cppquadrupole.pxd":38
  *             this.M[1+i][1+i] = cosh(k1*l)
  *             this.M[1+i][2+i] = sinh(k1*l)/k1
  *             this.M[2+i][1+i] = k1*sinh(k1*l)             # <<<<<<<<<<<<<<
@@ -5885,7 +5871,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(2 + __pyx_v_i)])[(1 + __pyx_v_i)]) = (__pyx_v_k1 * sinh((__pyx_v_k1 * __pyx_v_l)));
 
-    /* "cpp/cppquadrupole.pxd":38
+    /* "cpp/cppquadrupole.pxd":39
  *             this.M[1+i][2+i] = sinh(k1*l)/k1
  *             this.M[2+i][1+i] = k1*sinh(k1*l)
  *             this.M[2+i][2+i] = cosh(k1*l)             # <<<<<<<<<<<<<<
@@ -5894,7 +5880,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
  */
     ((this->M[(2 + __pyx_v_i)])[(2 + __pyx_v_i)]) = cosh((__pyx_v_k1 * __pyx_v_l));
 
-    /* "cpp/cppquadrupole.pxd":29
+    /* "cpp/cppquadrupole.pxd":30
  *             this.M[2][3] = l
  *             this.M[4][5] = l
  *         elif i==1 or i==-1:             # <<<<<<<<<<<<<<
@@ -5920,7 +5906,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update_matrixM(void)
   __pyx_L0:;
 }
 
-/* "cpp/cppquadrupole.pxd":42
+/* "cpp/cppquadrupole.pxd":43
  * 
  * 
  *     inline void get_phase(double* parms0, double* parms)nogil:             # <<<<<<<<<<<<<<
@@ -5935,7 +5921,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
   int __pyx_t_2;
   double __pyx_t_3;
 
-  /* "cpp/cppquadrupole.pxd":43
+  /* "cpp/cppquadrupole.pxd":44
  * 
  *     inline void get_phase(double* parms0, double* parms)nogil:
  *         l = this.l             # <<<<<<<<<<<<<<
@@ -5945,7 +5931,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
   __pyx_t_1 = this->l;
   __pyx_v_l = __pyx_t_1;
 
-  /* "cpp/cppquadrupole.pxd":58
+  /* "cpp/cppquadrupole.pxd":59
  * #             parms[9] = parms0[9] + (atan(parms0[5]*l - parms0[4]) + atan(parms0[4]))/(2*pi)
  * 
  *         if this.k1 > 0:             # <<<<<<<<<<<<<<
@@ -5955,7 +5941,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
   __pyx_t_2 = ((this->k1 > 0.0) != 0);
   if (__pyx_t_2) {
 
-    /* "cpp/cppquadrupole.pxd":59
+    /* "cpp/cppquadrupole.pxd":60
  * 
  *         if this.k1 > 0:
  *             k1 = sqrt(this.k1)             # <<<<<<<<<<<<<<
@@ -5964,7 +5950,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
  */
     __pyx_v_k1 = sqrt(this->k1);
 
-    /* "cpp/cppquadrupole.pxd":60
+    /* "cpp/cppquadrupole.pxd":61
  *         if this.k1 > 0:
  *             k1 = sqrt(this.k1)
  *             parms[9] = parms0[9] + (atan(parms0[2]*tan(k1*l)/k1 - parms0[1]) + atan(parms0[1]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -5980,7 +5966,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 60, __pyx_L1_error)
+      __PYX_ERR(4, 61, __pyx_L1_error)
     }
     __pyx_t_3 = (atan(((__pyx_t_1 / __pyx_v_k1) - (__pyx_v_parms0[1]))) + atan((__pyx_v_parms0[1])));
     __pyx_t_1 = (2.0 * M_PI);
@@ -5992,11 +5978,11 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 60, __pyx_L1_error)
+      __PYX_ERR(4, 61, __pyx_L1_error)
     }
     (__pyx_v_parms[9]) = ((__pyx_v_parms0[9]) + (__pyx_t_3 / __pyx_t_1));
 
-    /* "cpp/cppquadrupole.pxd":62
+    /* "cpp/cppquadrupole.pxd":63
  *             parms[9] = parms0[9] + (atan(parms0[2]*tan(k1*l)/k1 - parms0[1]) + atan(parms0[1]))/(2*pi)
  * 
  *             parms[10] = parms0[10] + (atan((k1*parms0[3]*cosh(k1*l) + parms0[5]/k1*sinh(k1*l) - parms0[4]*exp(k1*l))*exp(k1*l))             # <<<<<<<<<<<<<<
@@ -6011,10 +5997,10 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 62, __pyx_L1_error)
+      __PYX_ERR(4, 63, __pyx_L1_error)
     }
 
-    /* "cpp/cppquadrupole.pxd":63
+    /* "cpp/cppquadrupole.pxd":64
  * 
  *             parms[10] = parms0[10] + (atan((k1*parms0[3]*cosh(k1*l) + parms0[5]/k1*sinh(k1*l) - parms0[4]*exp(k1*l))*exp(k1*l))
  *                                     -atan(k1*parms0[3] - parms0[4]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -6031,10 +6017,10 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 63, __pyx_L1_error)
+      __PYX_ERR(4, 64, __pyx_L1_error)
     }
 
-    /* "cpp/cppquadrupole.pxd":62
+    /* "cpp/cppquadrupole.pxd":63
  *             parms[9] = parms0[9] + (atan(parms0[2]*tan(k1*l)/k1 - parms0[1]) + atan(parms0[1]))/(2*pi)
  * 
  *             parms[10] = parms0[10] + (atan((k1*parms0[3]*cosh(k1*l) + parms0[5]/k1*sinh(k1*l) - parms0[4]*exp(k1*l))*exp(k1*l))             # <<<<<<<<<<<<<<
@@ -6043,7 +6029,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
  */
     (__pyx_v_parms[10]) = ((__pyx_v_parms0[10]) + (__pyx_t_1 / __pyx_t_3));
 
-    /* "cpp/cppquadrupole.pxd":58
+    /* "cpp/cppquadrupole.pxd":59
  * #             parms[9] = parms0[9] + (atan(parms0[5]*l - parms0[4]) + atan(parms0[4]))/(2*pi)
  * 
  *         if this.k1 > 0:             # <<<<<<<<<<<<<<
@@ -6053,7 +6039,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
     goto __pyx_L3;
   }
 
-  /* "cpp/cppquadrupole.pxd":64
+  /* "cpp/cppquadrupole.pxd":65
  *             parms[10] = parms0[10] + (atan((k1*parms0[3]*cosh(k1*l) + parms0[5]/k1*sinh(k1*l) - parms0[4]*exp(k1*l))*exp(k1*l))
  *                                     -atan(k1*parms0[3] - parms0[4]))/(2*pi)
  *         elif this.k1 < 0:             # <<<<<<<<<<<<<<
@@ -6063,7 +6049,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
   __pyx_t_2 = ((this->k1 < 0.0) != 0);
   if (__pyx_t_2) {
 
-    /* "cpp/cppquadrupole.pxd":65
+    /* "cpp/cppquadrupole.pxd":66
  *                                     -atan(k1*parms0[3] - parms0[4]))/(2*pi)
  *         elif this.k1 < 0:
  *             k1 = sqrt(-this.k1)             # <<<<<<<<<<<<<<
@@ -6072,7 +6058,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
  */
     __pyx_v_k1 = sqrt((-this->k1));
 
-    /* "cpp/cppquadrupole.pxd":66
+    /* "cpp/cppquadrupole.pxd":67
  *         elif this.k1 < 0:
  *             k1 = sqrt(-this.k1)
  *             parms[9] = parms0[9] + (atan(( (k1*parms0[0]-2*parms0[1])*cosh(k1*l) + parms0[2]/k1*sinh(k1*l))*exp(k1*l)+parms0[1])             # <<<<<<<<<<<<<<
@@ -6087,10 +6073,10 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 66, __pyx_L1_error)
+      __PYX_ERR(4, 67, __pyx_L1_error)
     }
 
-    /* "cpp/cppquadrupole.pxd":67
+    /* "cpp/cppquadrupole.pxd":68
  *             k1 = sqrt(-this.k1)
  *             parms[9] = parms0[9] + (atan(( (k1*parms0[0]-2*parms0[1])*cosh(k1*l) + parms0[2]/k1*sinh(k1*l))*exp(k1*l)+parms0[1])
  *                                     - atan(k1*parms0[0] - parms0[1]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -6107,10 +6093,10 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 67, __pyx_L1_error)
+      __PYX_ERR(4, 68, __pyx_L1_error)
     }
 
-    /* "cpp/cppquadrupole.pxd":66
+    /* "cpp/cppquadrupole.pxd":67
  *         elif this.k1 < 0:
  *             k1 = sqrt(-this.k1)
  *             parms[9] = parms0[9] + (atan(( (k1*parms0[0]-2*parms0[1])*cosh(k1*l) + parms0[2]/k1*sinh(k1*l))*exp(k1*l)+parms0[1])             # <<<<<<<<<<<<<<
@@ -6119,7 +6105,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
  */
     (__pyx_v_parms[9]) = ((__pyx_v_parms0[9]) + (__pyx_t_3 / __pyx_t_1));
 
-    /* "cpp/cppquadrupole.pxd":68
+    /* "cpp/cppquadrupole.pxd":69
  *             parms[9] = parms0[9] + (atan(( (k1*parms0[0]-2*parms0[1])*cosh(k1*l) + parms0[2]/k1*sinh(k1*l))*exp(k1*l)+parms0[1])
  *                                     - atan(k1*parms0[0] - parms0[1]))/(2*pi)
  *             parms[10] = parms0[10] + (atan(parms0[5]*tan(k1*l)/k1 - parms0[4]) + atan(parms0[4]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -6135,7 +6121,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 68, __pyx_L1_error)
+      __PYX_ERR(4, 69, __pyx_L1_error)
     }
     __pyx_t_3 = (atan(((__pyx_t_1 / __pyx_v_k1) - (__pyx_v_parms0[4]))) + atan((__pyx_v_parms0[4])));
     __pyx_t_1 = (2.0 * M_PI);
@@ -6147,11 +6133,11 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 68, __pyx_L1_error)
+      __PYX_ERR(4, 69, __pyx_L1_error)
     }
     (__pyx_v_parms[10]) = ((__pyx_v_parms0[10]) + (__pyx_t_3 / __pyx_t_1));
 
-    /* "cpp/cppquadrupole.pxd":64
+    /* "cpp/cppquadrupole.pxd":65
  *             parms[10] = parms0[10] + (atan((k1*parms0[3]*cosh(k1*l) + parms0[5]/k1*sinh(k1*l) - parms0[4]*exp(k1*l))*exp(k1*l))
  *                                     -atan(k1*parms0[3] - parms0[4]))/(2*pi)
  *         elif this.k1 < 0:             # <<<<<<<<<<<<<<
@@ -6161,7 +6147,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
     goto __pyx_L3;
   }
 
-  /* "cpp/cppquadrupole.pxd":70
+  /* "cpp/cppquadrupole.pxd":71
  *             parms[10] = parms0[10] + (atan(parms0[5]*tan(k1*l)/k1 - parms0[4]) + atan(parms0[4]))/(2*pi)
  *         else:
  *             parms[9] = parms0[9] + (atan(parms0[2]*l - parms0[1]) + atan(parms0[1]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -6179,11 +6165,11 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 70, __pyx_L1_error)
+      __PYX_ERR(4, 71, __pyx_L1_error)
     }
     (__pyx_v_parms[9]) = ((__pyx_v_parms0[9]) + (__pyx_t_1 / __pyx_t_3));
 
-    /* "cpp/cppquadrupole.pxd":71
+    /* "cpp/cppquadrupole.pxd":72
  *         else:
  *             parms[9] = parms0[9] + (atan(parms0[2]*l - parms0[1]) + atan(parms0[1]))/(2*pi)
  *             parms[10] = parms0[10] + (atan(parms0[5]*l - parms0[4]) + atan(parms0[4]))/(2*pi)             # <<<<<<<<<<<<<<
@@ -6200,13 +6186,13 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
       #ifdef WITH_THREAD
       __Pyx_PyGILState_Release(__pyx_gilstate_save);
       #endif
-      __PYX_ERR(4, 71, __pyx_L1_error)
+      __PYX_ERR(4, 72, __pyx_L1_error)
     }
     (__pyx_v_parms[10]) = ((__pyx_v_parms0[10]) + (__pyx_t_3 / __pyx_t_1));
   }
   __pyx_L3:;
 
-  /* "cpp/cppquadrupole.pxd":42
+  /* "cpp/cppquadrupole.pxd":43
  * 
  * 
  *     inline void get_phase(double* parms0, double* parms)nogil:             # <<<<<<<<<<<<<<
@@ -6221,7 +6207,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
   __pyx_L0:;
 }
 
-/* "cpp/cppquadrupole.pxd":74
+/* "cpp/cppquadrupole.pxd":75
  * 
  * 
  *     inline void update(double* parms)nogil:             # <<<<<<<<<<<<<<
@@ -6231,7 +6217,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::get_phase(double *__
 
 void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update(double *__pyx_v_parms) {
 
-  /* "cpp/cppquadrupole.pxd":75
+  /* "cpp/cppquadrupole.pxd":76
  * 
  *     inline void update(double* parms)nogil:
  *         this.l = parms[0]             # <<<<<<<<<<<<<<
@@ -6240,7 +6226,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update(double *__pyx
  */
   this->l = (__pyx_v_parms[0]);
 
-  /* "cpp/cppquadrupole.pxd":76
+  /* "cpp/cppquadrupole.pxd":77
  *     inline void update(double* parms)nogil:
  *         this.l = parms[0]
  *         this.k1= parms[2]             # <<<<<<<<<<<<<<
@@ -6249,7 +6235,7 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update(double *__pyx
  */
   this->k1 = (__pyx_v_parms[2]);
 
-  /* "cpp/cppquadrupole.pxd":77
+  /* "cpp/cppquadrupole.pxd":78
  *         this.l = parms[0]
  *         this.k1= parms[2]
  *         this.update_matrixM()             # <<<<<<<<<<<<<<
@@ -6257,14 +6243,14 @@ void __pyx_t_4atpy_3src_3cpp_13cppquadrupole_CppQuadrupole::update(double *__pyx
  */
   this->update_matrixM();
 
-  /* "cpp/cppquadrupole.pxd":78
+  /* "cpp/cppquadrupole.pxd":79
  *         this.k1= parms[2]
  *         this.update_matrixM()
  *         this.update_matrixT()             # <<<<<<<<<<<<<<
  */
   this->update_matrixT();
 
-  /* "cpp/cppquadrupole.pxd":74
+  /* "cpp/cppquadrupole.pxd":75
  * 
  * 
  *     inline void update(double* parms)nogil:             # <<<<<<<<<<<<<<
@@ -7691,7 +7677,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpp/cppquadrupole.pxd":74
+  /* "cpp/cppquadrupole.pxd":75
  * 
  * 
  *     inline void update(double* parms)nogil:             # <<<<<<<<<<<<<<

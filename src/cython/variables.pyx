@@ -19,6 +19,7 @@ cdef class Variables:
         
         self.index.resize(3)
         self.bounds.resize(2)
+        self.indexset = cppset[int]()
         for arg in args:
             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
             place = arg.pop('place')
@@ -50,9 +51,10 @@ cdef class Variables:
                 self.bounds[0].push_back(lower)
                 self.bounds[1].push_back(upper)
                 
+                self.indexset.insert(i)
                 self.index[0].push_back(index) # 0/1 mean parms/twiss
-                self.index[1].push_back(i) # place
-                self.index[2].push_back(index4twiss) # specific parms/twiss
+                self.index[1].push_back(index4twiss) # specific parms/twiss
+                self.index[2].push_back(i) # place
         
     
     

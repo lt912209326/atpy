@@ -39,7 +39,7 @@ cdef class Constraints:
     
     cdef void get_constraints(self, tuple args, dict kargs):
         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
-        cdef double lower, upper, tol=10e-8
+        cdef double lower, upper, tol=1e-4
             
         for key,value in kargs.items():
             if type(value) is not tuple:

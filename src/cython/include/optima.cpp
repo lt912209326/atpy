@@ -12,12 +12,12 @@
             "./cython"
         ],
         "language": "c++",
-        "name": "atpy.src.cython.constraints",
+        "name": "atpy.src.cython.optima",
         "sources": [
-            "src/cython/constraints.pyx"
+            "src/cython/optima.pyx"
         ]
     },
-    "module_name": "atpy.src.cython.constraints"
+    "module_name": "atpy.src.cython.optima"
 }
 END: Cython Metadata */
 
@@ -625,8 +625,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__atpy__src__cython__constraints
-#define __PYX_HAVE_API__atpy__src__cython__constraints
+#define __PYX_HAVE__atpy__src__cython__optima
+#define __PYX_HAVE_API__atpy__src__cython__optima
 /* Early includes */
 #include "ios"
 #include "new"
@@ -841,42 +841,41 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "src\\cython\\constraints.pyx",
+  "src\\cython\\optima.pyx",
   "stringsource",
 };
 
 /*--- Type declarations ---*/
-struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints;
+struct __pyx_obj_4atpy_3src_6cython_6optima_Optima;
 
-/* "atpy/src/cython/constraints.pxd":3
+/* "atpy/src/cython/optima.pxd":3
  * from libcpp.vector cimport vector
  * 
- * cdef class Constraints:             # <<<<<<<<<<<<<<
+ * cdef class Optima:             # <<<<<<<<<<<<<<
  *     cdef:
  *         vector[vector[int]] index
  */
-struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints {
+struct __pyx_obj_4atpy_3src_6cython_6optima_Optima {
   PyObject_HEAD
-  struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints *__pyx_vtab;
+  struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima *__pyx_vtab;
   std::vector<std::vector<int> >  index;
-  std::vector<std::vector<double> >  bounds;
-  PyObject *cst_parameters;
-  PyObject *twiss2index;
+  PyObject *opt_parameters;
+  PyObject *parameters2index;
 };
 
 
 
-/* "atpy/src/cython/constraints.pyx":2
+/* "atpy/src/cython/optima.pyx":2
  * 
- * cdef class Constraints:             # <<<<<<<<<<<<<<
+ * cdef class Optima:             # <<<<<<<<<<<<<<
  *     '''
- *     This class is to set constraints for a lattice
+ *     This class is to set optima for a lattice
  */
 
-struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints {
-  void (*get_constraints)(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *, PyObject *, PyObject *);
+struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima {
+  void (*get_optima)(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *, PyObject *, PyObject *);
 };
-static struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints *__pyx_vtabptr_4atpy_3src_6cython_11constraints_Constraints;
+static struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima *__pyx_vtabptr_4atpy_3src_6cython_6optima_Optima;
 
 /* --- Runtime support code (head) --- */
 /* Refnanny.proto */
@@ -1096,6 +1095,9 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize
 static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
+
+/* PyIntCompare.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
 
 /* DictGetItem.proto */
 #if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
@@ -1385,28 +1387,29 @@ static int __Pyx_check_binary_version(void);
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constraints(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kargs); /* proto*/
+static void __pyx_f_4atpy_3src_6cython_6optima_6Optima_get_optima(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kargs); /* proto*/
 
 /* Module declarations from 'libcpp.vector' */
 
-/* Module declarations from 'atpy.src.cython.constraints' */
-static PyTypeObject *__pyx_ptype_4atpy_3src_6cython_11constraints_Constraints = 0;
-static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints__set_state(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *, PyObject *); /*proto*/
-static PyObject *__pyx_convert_vector_to_py_double(const std::vector<double>  &); /*proto*/
-static PyObject *__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(const std::vector<std::vector<double> >  &); /*proto*/
-static std::vector<double>  __pyx_convert_vector_from_py_double(PyObject *); /*proto*/
-static std::vector<std::vector<double> >  __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(PyObject *); /*proto*/
+/* Module declarations from 'atpy.src.cython.optima' */
+static PyTypeObject *__pyx_ptype_4atpy_3src_6cython_6optima_Optima = 0;
+static PyObject *__pyx_f_4atpy_3src_6cython_6optima___pyx_unpickle_Optima__set_state(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *, PyObject *); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_int(const std::vector<int>  &); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(const std::vector<std::vector<int> >  &); /*proto*/
 static std::vector<int>  __pyx_convert_vector_from_py_int(PyObject *); /*proto*/
 static std::vector<std::vector<int> >  __pyx_convert_vector_from_py_std_3a__3a_vector_3c_int_3e___(PyObject *); /*proto*/
-#define __Pyx_MODULE_NAME "atpy.src.cython.constraints"
-extern int __pyx_module_is_main_atpy__src__cython__constraints;
-int __pyx_module_is_main_atpy__src__cython__constraints = 0;
+#define __Pyx_MODULE_NAME "atpy.src.cython.optima"
+extern int __pyx_module_is_main_atpy__src__cython__optima;
+int __pyx_module_is_main_atpy__src__cython__optima = 0;
 
-/* Implementation of 'atpy.src.cython.constraints' */
+/* Implementation of 'atpy.src.cython.optima' */
 static PyObject *__pyx_builtin_all;
 static PyObject *__pyx_builtin_range;
+static const char __pyx_k_l[] = "l";
+static const char __pyx_k_e1[] = "e1";
+static const char __pyx_k_e2[] = "e2";
+static const char __pyx_k_k1[] = "k1";
+static const char __pyx_k_k2[] = "k2";
 static const char __pyx_k_all[] = "all";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_pop[] = "pop";
@@ -1418,12 +1421,14 @@ static const char __pyx_k_nu_x[] = "nu_x";
 static const char __pyx_k_nu_y[] = "nu_y";
 static const char __pyx_k_nu_z[] = "nu_z";
 static const char __pyx_k_test[] = "__test__";
+static const char __pyx_k_angle[] = "angle";
 static const char __pyx_k_eta_x[] = "eta_x";
 static const char __pyx_k_eta_y[] = "eta_y";
 static const char __pyx_k_eta_z[] = "eta_z";
 static const char __pyx_k_items[] = "items";
 static const char __pyx_k_place[] = "place";
 static const char __pyx_k_range[] = "range";
+static const char __pyx_k_Optima[] = "Optima";
 static const char __pyx_k_beta_x[] = "beta_x";
 static const char __pyx_k_beta_y[] = "beta_y";
 static const char __pyx_k_beta_z[] = "beta_z";
@@ -1431,6 +1436,7 @@ static const char __pyx_k_etap_x[] = "etap_x";
 static const char __pyx_k_etap_y[] = "etap_y";
 static const char __pyx_k_etap_z[] = "etap_z";
 static const char __pyx_k_import[] = "__import__";
+static const char __pyx_k_optima[] = "optima";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_update[] = "update";
@@ -1447,44 +1453,44 @@ static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
-static const char __pyx_k_Constraints[] = "Constraints";
 static const char __pyx_k_PickleError[] = "PickleError";
-static const char __pyx_k_constraints[] = "constraints";
 static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "stringsource";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_pyx_unpickle_Constraints[] = "__pyx_unpickle_Constraints";
-static const char __pyx_k_atpy_src_cython_constraints[] = "atpy.src.cython.constraints";
-static const char __pyx_k_Wrong_parameter_as_constraint[] = "Wrong parameter as constraint!";
-static const char __pyx_k_Constraint_lower_is_not_smaller[] = "Constraint lower is not smaller than upper!";
+static const char __pyx_k_pyx_unpickle_Optima[] = "__pyx_unpickle_Optima";
+static const char __pyx_k_atpy_src_cython_optima[] = "atpy.src.cython.optima";
+static const char __pyx_k_Wrong_parameter_as_optima[] = "Wrong parameter as optima!";
+static const char __pyx_k_Minormax_can_only_be_value_1_or[] = "Minormax can only be value 1 or -1";
 static const char __pyx_k_Place_parameter_must_be_integer[] = "Place parameter must be integer > 0, you might need variables for this element!";
-static const char __pyx_k_Incompatible_checksums_s_vs_0xc6[] = "Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))";
+static const char __pyx_k_Wrong_args_was_input_for_optima[] = "Wrong args was input for optima, please check the check the init doc!";
+static const char __pyx_k_Incompatible_checksums_s_vs_0x52[] = "Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))";
 static const char __pyx_k_The_second_number_is_smaller_tha[] = "The second number is smaller than the first for the place tuple!";
-static const char __pyx_k_Wrong_args_was_input_for_constra[] = "Wrong args was input for constraints, please check the check the init doc!";
-static const char __pyx_k_Wrong_args_was_input_please_chec[] = "Wrong args was input, please check the check the init doc!";
-static PyObject *__pyx_kp_u_Constraint_lower_is_not_smaller;
-static PyObject *__pyx_n_s_Constraints;
-static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0xc6;
+static const char __pyx_k_Wrong_args_was_input_please_chec[] = "Wrong args was input, please check the init doc!";
+static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0x52;
+static PyObject *__pyx_kp_u_Minormax_can_only_be_value_1_or;
+static PyObject *__pyx_n_s_Optima;
 static PyObject *__pyx_n_s_PickleError;
 static PyObject *__pyx_kp_u_Place_parameter_must_be_integer;
 static PyObject *__pyx_kp_u_The_second_number_is_smaller_tha;
-static PyObject *__pyx_kp_u_Wrong_args_was_input_for_constra;
+static PyObject *__pyx_kp_u_Wrong_args_was_input_for_optima;
 static PyObject *__pyx_kp_u_Wrong_args_was_input_please_chec;
-static PyObject *__pyx_kp_u_Wrong_parameter_as_constraint;
+static PyObject *__pyx_kp_u_Wrong_parameter_as_optima;
 static PyObject *__pyx_n_s_all;
 static PyObject *__pyx_n_u_alpha_x;
 static PyObject *__pyx_n_u_alpha_y;
 static PyObject *__pyx_n_u_alpha_z;
-static PyObject *__pyx_n_s_atpy_src_cython_constraints;
+static PyObject *__pyx_n_u_angle;
+static PyObject *__pyx_n_s_atpy_src_cython_optima;
 static PyObject *__pyx_n_u_beta_x;
 static PyObject *__pyx_n_u_beta_y;
 static PyObject *__pyx_n_u_beta_z;
 static PyObject *__pyx_n_s_cline_in_traceback;
-static PyObject *__pyx_n_u_constraints;
 static PyObject *__pyx_n_s_dict;
+static PyObject *__pyx_n_u_e1;
+static PyObject *__pyx_n_u_e2;
 static PyObject *__pyx_n_u_eta_x;
 static PyObject *__pyx_n_u_eta_y;
 static PyObject *__pyx_n_u_eta_z;
@@ -1497,13 +1503,17 @@ static PyObject *__pyx_n_u_gamma_z;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_items;
+static PyObject *__pyx_n_u_k1;
+static PyObject *__pyx_n_u_k2;
 static PyObject *__pyx_n_s_keys;
+static PyObject *__pyx_n_u_l;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new;
 static PyObject *__pyx_n_u_nu_x;
 static PyObject *__pyx_n_u_nu_y;
 static PyObject *__pyx_n_u_nu_z;
+static PyObject *__pyx_n_u_optima;
 static PyObject *__pyx_n_s_pickle;
 static PyObject *__pyx_n_u_place;
 static PyObject *__pyx_n_s_pop;
@@ -1512,7 +1522,7 @@ static PyObject *__pyx_n_s_pyx_checksum;
 static PyObject *__pyx_n_s_pyx_result;
 static PyObject *__pyx_n_s_pyx_state;
 static PyObject *__pyx_n_s_pyx_type;
-static PyObject *__pyx_n_s_pyx_unpickle_Constraints;
+static PyObject *__pyx_n_s_pyx_unpickle_Optima;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_reduce;
@@ -1523,14 +1533,13 @@ static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_update;
-static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6bounds___get__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index___get__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self); /* proto */
-static void __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_2__dealloc__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__reduce_cython__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6__setstate_cython__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_4atpy_3src_6cython_11constraints_Constraints(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static int __pyx_pf_4atpy_3src_6cython_6optima_6Optima___init__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_5index___get__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self); /* proto */
+static void __pyx_pf_4atpy_3src_6cython_6optima_6Optima_2__dealloc__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_4__reduce_cython__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_6__setstate_cython__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima___pyx_unpickle_Optima(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_tp_new_4atpy_3src_6cython_6optima_Optima(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
@@ -1549,12 +1558,13 @@ static PyObject *__pyx_int_14;
 static PyObject *__pyx_int_15;
 static PyObject *__pyx_int_16;
 static PyObject *__pyx_int_17;
-static PyObject *__pyx_int_208011653;
+static PyObject *__pyx_int_86536868;
+static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
 
-/* "atpy/src/cython/constraints.pyx":7
+/* "atpy/src/cython/optima.pyx":7
  *     '''
  * 
  *     def __init__(self,*args):             # <<<<<<<<<<<<<<
@@ -1563,12 +1573,12 @@ static PyObject *__pyx_codeobj__2;
  */
 
 /* Python wrapper */
-static int __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4atpy_3src_6cython_11constraints_11Constraints___init__[] = "\n        def __init__(self,*args):\n        args:( {'place':(0,15),'constraints':{'alpha_x':(1,4) [,'beta_x':(0.5,1)]} },\n               {},\n               {})\n        'place': n or (n1,n2)\n        'constraints': {'alpha_x':1 or (1,4) [,'beta_x':1 or (0.5,1)]}\n        ";
+static int __pyx_pw_4atpy_3src_6cython_6optima_6Optima_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4atpy_3src_6cython_6optima_6Optima___init__[] = "\n        def __init__(self,*args):\n        args:( {'place':(0,15),'optima':{'alpha_x':1 [,'beta_x':-1]} },\n               {},\n               {})\n        'place': n or (n1,n2)\n        'optima': {'alpha_x':1 or -1 [,'beta_x':1 or -1]} (1/-1:min/max)\n        ";
 #if CYTHON_COMPILING_IN_CPYTHON
-struct wrapperbase __pyx_wrapperbase_4atpy_3src_6cython_11constraints_11Constraints___init__;
+struct wrapperbase __pyx_wrapperbase_4atpy_3src_6cython_6optima_6Optima___init__;
 #endif
-static int __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_4atpy_3src_6cython_6optima_6Optima_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_args = 0;
   int __pyx_r;
   __Pyx_RefNannyDeclarations
@@ -1576,7 +1586,7 @@ static int __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_1__init__(PyO
   if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__init__", 0))) return -1;
   __Pyx_INCREF(__pyx_args);
   __pyx_v_args = __pyx_args;
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self), __pyx_v_args);
+  __pyx_r = __pyx_pf_4atpy_3src_6cython_6optima_6Optima___init__(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self), __pyx_v_args);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_args);
@@ -1584,10 +1594,10 @@ static int __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_1__init__(PyO
   return __pyx_r;
 }
 
-static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v_args) {
+static int __pyx_pf_4atpy_3src_6cython_6optima_6Optima___init__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v_args) {
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_place = NULL;
-  PyObject *__pyx_v_constraints = NULL;
+  PyObject *__pyx_v_optima = NULL;
   PyObject *__pyx_7genexpr__pyx_v_key = NULL;
   int __pyx_r;
   __Pyx_RefNannyDeclarations
@@ -1604,132 +1614,142 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
   int __pyx_t_11;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "atpy/src/cython/constraints.pyx":16
- *         'constraints': {'alpha_x':1 or (1,4) [,'beta_x':1 or (0.5,1)]}
+  /* "atpy/src/cython/optima.pyx":16
+ *         'optima': {'alpha_x':1 or -1 [,'beta_x':1 or -1]} (1/-1:min/max)
  *         '''
- *         self.cst_parameters = ['beta_x','alpha_x','beta_y','alpha_y','beta_z','alpha_z','eta_x',             # <<<<<<<<<<<<<<
- *                                     'etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
- * 
+ *         self.parameters2index = {'l':0, 'angle':1, 'k1':2, 'k2':3, 'e1':4, 'e2':5,             # <<<<<<<<<<<<<<
+ *                             'beta_x':0,'alpha_x':1,'gamma_x':2,'beta_y':3,'alpha_y':4,'gamma_y':5,'beta_z':6,'alpha_z':7,'gamma_z':8,
+ *                             'nu_x':9,'nu_y':10,'nu_z':11,'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
  */
-  __pyx_t_1 = PyList_New(15); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(24); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_l, __pyx_int_0) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_angle, __pyx_int_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_k1, __pyx_int_2) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_k2, __pyx_int_3) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_e1, __pyx_int_4) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_e2, __pyx_int_5) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_x, __pyx_int_0) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_x, __pyx_int_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_x, __pyx_int_2) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_y, __pyx_int_3) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_y, __pyx_int_4) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_y, __pyx_int_5) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_z, __pyx_int_6) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_z, __pyx_int_7) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_z, __pyx_int_8) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_x, __pyx_int_9) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_y, __pyx_int_10) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_z, __pyx_int_11) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_x, __pyx_int_12) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_x, __pyx_int_13) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_y, __pyx_int_14) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_y, __pyx_int_15) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_z, __pyx_int_16) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_z, __pyx_int_17) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_1);
+  __Pyx_GOTREF(__pyx_v_self->parameters2index);
+  __Pyx_DECREF(__pyx_v_self->parameters2index);
+  __pyx_v_self->parameters2index = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "atpy/src/cython/optima.pyx":20
+ *                             'nu_x':9,'nu_y':10,'nu_z':11,'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
+ * 
+ *         self.opt_parameters = ['l','angle','k1','k2','e1','e2','beta_x','alpha_x','beta_y','alpha_y','beta_z','alpha_z',             # <<<<<<<<<<<<<<
+ *                                     'eta_x','etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
+ *         self.index.resize(5)
+ */
+  __pyx_t_1 = PyList_New(21); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_n_u_l);
+  __Pyx_GIVEREF(__pyx_n_u_l);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_l);
+  __Pyx_INCREF(__pyx_n_u_angle);
+  __Pyx_GIVEREF(__pyx_n_u_angle);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_angle);
+  __Pyx_INCREF(__pyx_n_u_k1);
+  __Pyx_GIVEREF(__pyx_n_u_k1);
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_k1);
+  __Pyx_INCREF(__pyx_n_u_k2);
+  __Pyx_GIVEREF(__pyx_n_u_k2);
+  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_u_k2);
+  __Pyx_INCREF(__pyx_n_u_e1);
+  __Pyx_GIVEREF(__pyx_n_u_e1);
+  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_n_u_e1);
+  __Pyx_INCREF(__pyx_n_u_e2);
+  __Pyx_GIVEREF(__pyx_n_u_e2);
+  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_n_u_e2);
   __Pyx_INCREF(__pyx_n_u_beta_x);
   __Pyx_GIVEREF(__pyx_n_u_beta_x);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_beta_x);
+  PyList_SET_ITEM(__pyx_t_1, 6, __pyx_n_u_beta_x);
   __Pyx_INCREF(__pyx_n_u_alpha_x);
   __Pyx_GIVEREF(__pyx_n_u_alpha_x);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_alpha_x);
+  PyList_SET_ITEM(__pyx_t_1, 7, __pyx_n_u_alpha_x);
   __Pyx_INCREF(__pyx_n_u_beta_y);
   __Pyx_GIVEREF(__pyx_n_u_beta_y);
-  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_beta_y);
+  PyList_SET_ITEM(__pyx_t_1, 8, __pyx_n_u_beta_y);
   __Pyx_INCREF(__pyx_n_u_alpha_y);
   __Pyx_GIVEREF(__pyx_n_u_alpha_y);
-  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_u_alpha_y);
+  PyList_SET_ITEM(__pyx_t_1, 9, __pyx_n_u_alpha_y);
   __Pyx_INCREF(__pyx_n_u_beta_z);
   __Pyx_GIVEREF(__pyx_n_u_beta_z);
-  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_n_u_beta_z);
+  PyList_SET_ITEM(__pyx_t_1, 10, __pyx_n_u_beta_z);
   __Pyx_INCREF(__pyx_n_u_alpha_z);
   __Pyx_GIVEREF(__pyx_n_u_alpha_z);
-  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_n_u_alpha_z);
+  PyList_SET_ITEM(__pyx_t_1, 11, __pyx_n_u_alpha_z);
   __Pyx_INCREF(__pyx_n_u_eta_x);
   __Pyx_GIVEREF(__pyx_n_u_eta_x);
-  PyList_SET_ITEM(__pyx_t_1, 6, __pyx_n_u_eta_x);
+  PyList_SET_ITEM(__pyx_t_1, 12, __pyx_n_u_eta_x);
   __Pyx_INCREF(__pyx_n_u_etap_x);
   __Pyx_GIVEREF(__pyx_n_u_etap_x);
-  PyList_SET_ITEM(__pyx_t_1, 7, __pyx_n_u_etap_x);
+  PyList_SET_ITEM(__pyx_t_1, 13, __pyx_n_u_etap_x);
   __Pyx_INCREF(__pyx_n_u_eta_y);
   __Pyx_GIVEREF(__pyx_n_u_eta_y);
-  PyList_SET_ITEM(__pyx_t_1, 8, __pyx_n_u_eta_y);
+  PyList_SET_ITEM(__pyx_t_1, 14, __pyx_n_u_eta_y);
   __Pyx_INCREF(__pyx_n_u_etap_y);
   __Pyx_GIVEREF(__pyx_n_u_etap_y);
-  PyList_SET_ITEM(__pyx_t_1, 9, __pyx_n_u_etap_y);
+  PyList_SET_ITEM(__pyx_t_1, 15, __pyx_n_u_etap_y);
   __Pyx_INCREF(__pyx_n_u_eta_z);
   __Pyx_GIVEREF(__pyx_n_u_eta_z);
-  PyList_SET_ITEM(__pyx_t_1, 10, __pyx_n_u_eta_z);
+  PyList_SET_ITEM(__pyx_t_1, 16, __pyx_n_u_eta_z);
   __Pyx_INCREF(__pyx_n_u_etap_z);
   __Pyx_GIVEREF(__pyx_n_u_etap_z);
-  PyList_SET_ITEM(__pyx_t_1, 11, __pyx_n_u_etap_z);
+  PyList_SET_ITEM(__pyx_t_1, 17, __pyx_n_u_etap_z);
   __Pyx_INCREF(__pyx_n_u_nu_x);
   __Pyx_GIVEREF(__pyx_n_u_nu_x);
-  PyList_SET_ITEM(__pyx_t_1, 12, __pyx_n_u_nu_x);
+  PyList_SET_ITEM(__pyx_t_1, 18, __pyx_n_u_nu_x);
   __Pyx_INCREF(__pyx_n_u_nu_y);
   __Pyx_GIVEREF(__pyx_n_u_nu_y);
-  PyList_SET_ITEM(__pyx_t_1, 13, __pyx_n_u_nu_y);
+  PyList_SET_ITEM(__pyx_t_1, 19, __pyx_n_u_nu_y);
   __Pyx_INCREF(__pyx_n_u_nu_z);
   __Pyx_GIVEREF(__pyx_n_u_nu_z);
-  PyList_SET_ITEM(__pyx_t_1, 14, __pyx_n_u_nu_z);
+  PyList_SET_ITEM(__pyx_t_1, 20, __pyx_n_u_nu_z);
   __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v_self->cst_parameters);
-  __Pyx_DECREF(__pyx_v_self->cst_parameters);
-  __pyx_v_self->cst_parameters = ((PyObject*)__pyx_t_1);
+  __Pyx_GOTREF(__pyx_v_self->opt_parameters);
+  __Pyx_DECREF(__pyx_v_self->opt_parameters);
+  __pyx_v_self->opt_parameters = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":19
- *                                     'etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
+  /* "atpy/src/cython/optima.pyx":22
+ *         self.opt_parameters = ['l','angle','k1','k2','e1','e2','beta_x','alpha_x','beta_y','alpha_y','beta_z','alpha_z',
+ *                                     'eta_x','etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
+ *         self.index.resize(5)             # <<<<<<<<<<<<<<
  * 
- *         self.twiss2index = {'beta_x':0,'alpha_x':1,'gamma_x':2,'beta_y':3,'alpha_y':4,'gamma_y':5,             # <<<<<<<<<<<<<<
- *                                 'beta_z':6,'alpha_z':7,'gamma_z':8,'nu_x':9,'nu_y':10,'nu_z':11,
- *                                 'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
- */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_x, __pyx_int_0) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_x, __pyx_int_1) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_x, __pyx_int_2) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_y, __pyx_int_3) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_y, __pyx_int_4) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_y, __pyx_int_5) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_beta_z, __pyx_int_6) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_alpha_z, __pyx_int_7) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_gamma_z, __pyx_int_8) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_x, __pyx_int_9) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_y, __pyx_int_10) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_nu_z, __pyx_int_11) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_x, __pyx_int_12) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_x, __pyx_int_13) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_y, __pyx_int_14) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_y, __pyx_int_15) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_eta_z, __pyx_int_16) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_etap_z, __pyx_int_17) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v_self->twiss2index);
-  __Pyx_DECREF(__pyx_v_self->twiss2index);
-  __pyx_v_self->twiss2index = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "atpy/src/cython/constraints.pyx":22
- *                                 'beta_z':6,'alpha_z':7,'gamma_z':8,'nu_x':9,'nu_y':10,'nu_z':11,
- *                                 'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
- *         self.index.resize(4)             # <<<<<<<<<<<<<<
- *         self.bounds.resize(2)
  *         for arg in args:
  */
   try {
-    __pyx_v_self->index.resize(4);
+    __pyx_v_self->index.resize(5);
   } catch(...) {
     __Pyx_CppExn2PyErr();
     __PYX_ERR(0, 22, __pyx_L1_error)
   }
 
-  /* "atpy/src/cython/constraints.pyx":23
- *                                 'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
- *         self.index.resize(4)
- *         self.bounds.resize(2)             # <<<<<<<<<<<<<<
- *         for arg in args:
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
- */
-  try {
-    __pyx_v_self->bounds.resize(2);
-  } catch(...) {
-    __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 23, __pyx_L1_error)
-  }
-
-  /* "atpy/src/cython/constraints.pyx":24
- *         self.index.resize(4)
- *         self.bounds.resize(2)
+  /* "atpy/src/cython/optima.pyx":24
+ *         self.index.resize(5)
+ * 
  *         for arg in args:             # <<<<<<<<<<<<<<
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
+ *             assert type(arg) is dict, 'Wrong args was input, please check the init doc!'
  *             place = arg.pop('place')
  */
   __pyx_t_1 = __pyx_v_args; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
@@ -1744,12 +1764,12 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
     __Pyx_XDECREF_SET(__pyx_v_arg, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":25
- *         self.bounds.resize(2)
+    /* "atpy/src/cython/optima.pyx":25
+ * 
  *         for arg in args:
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'             # <<<<<<<<<<<<<<
+ *             assert type(arg) is dict, 'Wrong args was input, please check the init doc!'             # <<<<<<<<<<<<<<
  *             place = arg.pop('place')
- *             constraints = arg.pop('constraints')
+ *             optima = arg.pop('optima')
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
     if (unlikely(!Py_OptimizeFlag)) {
@@ -1761,12 +1781,12 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
     }
     #endif
 
-    /* "atpy/src/cython/constraints.pyx":26
+    /* "atpy/src/cython/optima.pyx":26
  *         for arg in args:
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
+ *             assert type(arg) is dict, 'Wrong args was input, please check the init doc!'
  *             place = arg.pop('place')             # <<<<<<<<<<<<<<
- *             constraints = arg.pop('constraints')
- *             assert type(constraints) is dict, 'Wrong args was input for constraints, please check the check the init doc!'
+ *             optima = arg.pop('optima')
+ *             assert type(optima) is dict, 'Wrong args was input for optima, please check the check the init doc!'
  */
     __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_pop); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -1788,11 +1808,11 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
     __Pyx_XDECREF_SET(__pyx_v_place, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":27
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
+    /* "atpy/src/cython/optima.pyx":27
+ *             assert type(arg) is dict, 'Wrong args was input, please check the init doc!'
  *             place = arg.pop('place')
- *             constraints = arg.pop('constraints')             # <<<<<<<<<<<<<<
- *             assert type(constraints) is dict, 'Wrong args was input for constraints, please check the check the init doc!'
+ *             optima = arg.pop('optima')             # <<<<<<<<<<<<<<
+ *             assert type(optima) is dict, 'Wrong args was input for optima, please check the check the init doc!'
  * 
  */
     __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_pop); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
@@ -1807,35 +1827,35 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
         __Pyx_DECREF_SET(__pyx_t_5, function);
       }
     }
-    __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_n_u_constraints) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_n_u_constraints);
+    __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_n_u_optima) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_n_u_optima);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_XDECREF_SET(__pyx_v_constraints, __pyx_t_3);
+    __Pyx_XDECREF_SET(__pyx_v_optima, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":28
+    /* "atpy/src/cython/optima.pyx":28
  *             place = arg.pop('place')
- *             constraints = arg.pop('constraints')
- *             assert type(constraints) is dict, 'Wrong args was input for constraints, please check the check the init doc!'             # <<<<<<<<<<<<<<
+ *             optima = arg.pop('optima')
+ *             assert type(optima) is dict, 'Wrong args was input for optima, please check the check the init doc!'             # <<<<<<<<<<<<<<
  * 
- *             assert all([key in self.cst_parameters  for key in constraints.keys()]), 'Wrong parameter as constraint!'
+ *             assert all([key in self.opt_parameters  for key in optima.keys()]), 'Wrong parameter as optima!'
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
     if (unlikely(!Py_OptimizeFlag)) {
-      __pyx_t_4 = (((PyObject *)Py_TYPE(__pyx_v_constraints)) == ((PyObject *)(&PyDict_Type)));
+      __pyx_t_4 = (((PyObject *)Py_TYPE(__pyx_v_optima)) == ((PyObject *)(&PyDict_Type)));
       if (unlikely(!(__pyx_t_4 != 0))) {
-        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Wrong_args_was_input_for_constra);
+        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Wrong_args_was_input_for_optima);
         __PYX_ERR(0, 28, __pyx_L1_error)
       }
     }
     #endif
 
-    /* "atpy/src/cython/constraints.pyx":30
- *             assert type(constraints) is dict, 'Wrong args was input for constraints, please check the check the init doc!'
+    /* "atpy/src/cython/optima.pyx":30
+ *             assert type(optima) is dict, 'Wrong args was input for optima, please check the check the init doc!'
  * 
- *             assert all([key in self.cst_parameters  for key in constraints.keys()]), 'Wrong parameter as constraint!'             # <<<<<<<<<<<<<<
+ *             assert all([key in self.opt_parameters  for key in optima.keys()]), 'Wrong parameter as optima!'             # <<<<<<<<<<<<<<
  *             if type(place) is tuple:
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
  */
@@ -1845,11 +1865,11 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
         __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_7 = 0;
-        if (unlikely(__pyx_v_constraints == Py_None)) {
+        if (unlikely(__pyx_v_optima == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
           __PYX_ERR(0, 30, __pyx_L7_error)
         }
-        __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_constraints, 0, __pyx_n_s_keys, (&__pyx_t_8), (&__pyx_t_9)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L7_error)
+        __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_optima, 0, __pyx_n_s_keys, (&__pyx_t_8), (&__pyx_t_9)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_5);
         __pyx_t_5 = __pyx_t_6;
@@ -1861,7 +1881,7 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_key, __pyx_t_6);
           __pyx_t_6 = 0;
-          __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_7genexpr__pyx_v_key, __pyx_v_self->cst_parameters, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 30, __pyx_L7_error)
+          __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_7genexpr__pyx_v_key, __pyx_v_self->opt_parameters, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 30, __pyx_L7_error)
           __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 30, __pyx_L7_error)
@@ -1881,28 +1901,28 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
       __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 30, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (unlikely(!__pyx_t_4)) {
-        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Wrong_parameter_as_constraint);
+        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Wrong_parameter_as_optima);
         __PYX_ERR(0, 30, __pyx_L1_error)
       }
     }
     #endif
 
-    /* "atpy/src/cython/constraints.pyx":31
+    /* "atpy/src/cython/optima.pyx":31
  * 
- *             assert all([key in self.cst_parameters  for key in constraints.keys()]), 'Wrong parameter as constraint!'
+ *             assert all([key in self.opt_parameters  for key in optima.keys()]), 'Wrong parameter as optima!'
  *             if type(place) is tuple:             # <<<<<<<<<<<<<<
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
- *                 self.get_constraints(place, constraints)
+ *                 self.get_optima(place, optima)
  */
     __pyx_t_4 = (((PyObject *)Py_TYPE(__pyx_v_place)) == ((PyObject *)(&PyTuple_Type)));
     __pyx_t_11 = (__pyx_t_4 != 0);
     if (__pyx_t_11) {
 
-      /* "atpy/src/cython/constraints.pyx":32
- *             assert all([key in self.cst_parameters  for key in constraints.keys()]), 'Wrong parameter as constraint!'
+      /* "atpy/src/cython/optima.pyx":32
+ *             assert all([key in self.opt_parameters  for key in optima.keys()]), 'Wrong parameter as optima!'
  *             if type(place) is tuple:
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'             # <<<<<<<<<<<<<<
- *                 self.get_constraints(place, constraints)
+ *                 self.get_optima(place, optima)
  *             elif type(place) is int:
  */
       #ifndef CYTHON_WITHOUT_ASSERTIONS
@@ -1927,43 +1947,43 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
       }
       #endif
 
-      /* "atpy/src/cython/constraints.pyx":33
+      /* "atpy/src/cython/optima.pyx":33
  *             if type(place) is tuple:
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
- *                 self.get_constraints(place, constraints)             # <<<<<<<<<<<<<<
+ *                 self.get_optima(place, optima)             # <<<<<<<<<<<<<<
  *             elif type(place) is int:
  *                 assert place > 0, 'Place parameter must be integer > 0, you might need variables for this element!'
  */
       if (!(likely(PyTuple_CheckExact(__pyx_v_place))||((__pyx_v_place) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_place)->tp_name), 0))) __PYX_ERR(0, 33, __pyx_L1_error)
-      if (!(likely(PyDict_CheckExact(__pyx_v_constraints))||((__pyx_v_constraints) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_constraints)->tp_name), 0))) __PYX_ERR(0, 33, __pyx_L1_error)
-      ((struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self->__pyx_vtab)->get_constraints(__pyx_v_self, ((PyObject*)__pyx_v_place), ((PyObject*)__pyx_v_constraints));
+      if (!(likely(PyDict_CheckExact(__pyx_v_optima))||((__pyx_v_optima) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_optima)->tp_name), 0))) __PYX_ERR(0, 33, __pyx_L1_error)
+      ((struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self->__pyx_vtab)->get_optima(__pyx_v_self, ((PyObject*)__pyx_v_place), ((PyObject*)__pyx_v_optima));
 
-      /* "atpy/src/cython/constraints.pyx":31
+      /* "atpy/src/cython/optima.pyx":31
  * 
- *             assert all([key in self.cst_parameters  for key in constraints.keys()]), 'Wrong parameter as constraint!'
+ *             assert all([key in self.opt_parameters  for key in optima.keys()]), 'Wrong parameter as optima!'
  *             if type(place) is tuple:             # <<<<<<<<<<<<<<
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
- *                 self.get_constraints(place, constraints)
+ *                 self.get_optima(place, optima)
  */
       goto __pyx_L11;
     }
 
-    /* "atpy/src/cython/constraints.pyx":34
+    /* "atpy/src/cython/optima.pyx":34
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
- *                 self.get_constraints(place, constraints)
+ *                 self.get_optima(place, optima)
  *             elif type(place) is int:             # <<<<<<<<<<<<<<
  *                 assert place > 0, 'Place parameter must be integer > 0, you might need variables for this element!'
- *                 self.get_constraints((place, place), constraints)
+ *                 self.get_optima((place, place), optima)
  */
     __pyx_t_11 = (((PyObject *)Py_TYPE(__pyx_v_place)) == ((PyObject *)(&PyInt_Type)));
     __pyx_t_4 = (__pyx_t_11 != 0);
     if (__pyx_t_4) {
 
-      /* "atpy/src/cython/constraints.pyx":35
- *                 self.get_constraints(place, constraints)
+      /* "atpy/src/cython/optima.pyx":35
+ *                 self.get_optima(place, optima)
  *             elif type(place) is int:
  *                 assert place > 0, 'Place parameter must be integer > 0, you might need variables for this element!'             # <<<<<<<<<<<<<<
- *                 self.get_constraints((place, place), constraints)
+ *                 self.get_optima((place, place), optima)
  * 
  */
       #ifndef CYTHON_WITHOUT_ASSERTIONS
@@ -1978,10 +1998,10 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
       }
       #endif
 
-      /* "atpy/src/cython/constraints.pyx":36
+      /* "atpy/src/cython/optima.pyx":36
  *             elif type(place) is int:
  *                 assert place > 0, 'Place parameter must be integer > 0, you might need variables for this element!'
- *                 self.get_constraints((place, place), constraints)             # <<<<<<<<<<<<<<
+ *                 self.get_optima((place, place), optima)             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -1993,31 +2013,31 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
       __Pyx_INCREF(__pyx_v_place);
       __Pyx_GIVEREF(__pyx_v_place);
       PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_place);
-      if (!(likely(PyDict_CheckExact(__pyx_v_constraints))||((__pyx_v_constraints) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_constraints)->tp_name), 0))) __PYX_ERR(0, 36, __pyx_L1_error)
-      ((struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self->__pyx_vtab)->get_constraints(__pyx_v_self, ((PyObject*)__pyx_t_3), ((PyObject*)__pyx_v_constraints));
+      if (!(likely(PyDict_CheckExact(__pyx_v_optima))||((__pyx_v_optima) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_optima)->tp_name), 0))) __PYX_ERR(0, 36, __pyx_L1_error)
+      ((struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self->__pyx_vtab)->get_optima(__pyx_v_self, ((PyObject*)__pyx_t_3), ((PyObject*)__pyx_v_optima));
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "atpy/src/cython/constraints.pyx":34
+      /* "atpy/src/cython/optima.pyx":34
  *                 assert 0<=place[0]<place[1], 'The second number is smaller than the first for the place tuple!'
- *                 self.get_constraints(place, constraints)
+ *                 self.get_optima(place, optima)
  *             elif type(place) is int:             # <<<<<<<<<<<<<<
  *                 assert place > 0, 'Place parameter must be integer > 0, you might need variables for this element!'
- *                 self.get_constraints((place, place), constraints)
+ *                 self.get_optima((place, place), optima)
  */
     }
     __pyx_L11:;
 
-    /* "atpy/src/cython/constraints.pyx":24
- *         self.index.resize(4)
- *         self.bounds.resize(2)
+    /* "atpy/src/cython/optima.pyx":24
+ *         self.index.resize(5)
+ * 
  *         for arg in args:             # <<<<<<<<<<<<<<
- *             assert type(arg) is dict, 'Wrong args was input, please check the check the init doc!'
+ *             assert type(arg) is dict, 'Wrong args was input, please check the init doc!'
  *             place = arg.pop('place')
  */
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":7
+  /* "atpy/src/cython/optima.pyx":7
  *     '''
  * 
  *     def __init__(self,*args):             # <<<<<<<<<<<<<<
@@ -2033,36 +2053,34 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.Constraints.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.Optima.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_arg);
   __Pyx_XDECREF(__pyx_v_place);
-  __Pyx_XDECREF(__pyx_v_constraints);
+  __Pyx_XDECREF(__pyx_v_optima);
   __Pyx_XDECREF(__pyx_7genexpr__pyx_v_key);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "atpy/src/cython/constraints.pyx":40
+/* "atpy/src/cython/optima.pyx":40
  * 
  * 
- *     cdef void get_constraints(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
- *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=1e-4
+ *     cdef void get_optima(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
+ *         cdef int i, j, start = args[0], end = args[1], place1, place2, index4parameters,minormax
+ *         cdef double lower, upper, tol=10e-8
  */
 
-static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constraints(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kargs) {
+static void __pyx_f_4atpy_3src_6cython_6optima_6Optima_get_optima(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kargs) {
   int __pyx_v_i;
-  CYTHON_UNUSED int __pyx_v_k;
   int __pyx_v_start;
   int __pyx_v_end;
   int __pyx_v_place1;
   int __pyx_v_place2;
-  int __pyx_v_index4twiss;
-  double __pyx_v_lower;
-  double __pyx_v_upper;
-  double __pyx_v_tol;
+  int __pyx_v_index4parameters;
+  int __pyx_v_minormax;
+  CYTHON_UNUSED double __pyx_v_tol;
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
   long __pyx_v_index;
@@ -2076,24 +2094,19 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
   int __pyx_t_7;
   int __pyx_t_8;
   int __pyx_t_9;
-  double __pyx_t_10;
-  double __pyx_t_11;
-  PyObject *__pyx_t_12 = NULL;
-  PyObject *(*__pyx_t_13)(PyObject *);
-  long __pyx_t_14;
-  int __pyx_t_15;
-  long __pyx_t_16;
-  int __pyx_t_17;
-  __Pyx_RefNannySetupContext("get_constraints", 0);
+  long __pyx_t_10;
+  long __pyx_t_11;
+  int __pyx_t_12;
+  int __pyx_t_13;
+  __Pyx_RefNannySetupContext("get_optima", 0);
 
-  /* "atpy/src/cython/constraints.pyx":41
+  /* "atpy/src/cython/optima.pyx":41
  * 
- *     cdef void get_constraints(self, tuple args, dict kargs):
- *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss             # <<<<<<<<<<<<<<
- *         cdef double lower, upper, tol=1e-4
+ *     cdef void get_optima(self, tuple args, dict kargs):
+ *         cdef int i, j, start = args[0], end = args[1], place1, place2, index4parameters,minormax             # <<<<<<<<<<<<<<
+ *         cdef double lower, upper, tol=10e-8
  * 
  */
-  __pyx_v_k = 0;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 41, __pyx_L1_error)
@@ -2113,21 +2126,21 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_end = __pyx_t_2;
 
-  /* "atpy/src/cython/constraints.pyx":42
- *     cdef void get_constraints(self, tuple args, dict kargs):
- *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=1e-4             # <<<<<<<<<<<<<<
+  /* "atpy/src/cython/optima.pyx":42
+ *     cdef void get_optima(self, tuple args, dict kargs):
+ *         cdef int i, j, start = args[0], end = args[1], place1, place2, index4parameters,minormax
+ *         cdef double lower, upper, tol=10e-8             # <<<<<<<<<<<<<<
  * 
  *         for key,value in kargs.items():
  */
-  __pyx_v_tol = 1e-4;
+  __pyx_v_tol = 10e-8;
 
-  /* "atpy/src/cython/constraints.pyx":44
- *         cdef double lower, upper, tol=1e-4
+  /* "atpy/src/cython/optima.pyx":44
+ *         cdef double lower, upper, tol=10e-8
  * 
  *         for key,value in kargs.items():             # <<<<<<<<<<<<<<
- *             if type(value) is not tuple:
- *                 lower, upper = value - tol, value + tol
+ *             assert value==-1 or value== 1,'Minormax can only be value 1 or -1'
+ *             minormax = value
  */
   __pyx_t_3 = 0;
   if (unlikely(__pyx_v_kargs == Py_None)) {
@@ -2150,428 +2163,317 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":45
+    /* "atpy/src/cython/optima.pyx":45
  * 
  *         for key,value in kargs.items():
- *             if type(value) is not tuple:             # <<<<<<<<<<<<<<
- *                 lower, upper = value - tol, value + tol
- *             else:
- */
-    __pyx_t_8 = (((PyObject *)Py_TYPE(__pyx_v_value)) != ((PyObject *)(&PyTuple_Type)));
-    __pyx_t_9 = (__pyx_t_8 != 0);
-    if (__pyx_t_9) {
-
-      /* "atpy/src/cython/constraints.pyx":46
- *         for key,value in kargs.items():
- *             if type(value) is not tuple:
- *                 lower, upper = value - tol, value + tol             # <<<<<<<<<<<<<<
- *             else:
- *                 lower,upper = value
- */
-      __pyx_t_6 = PyFloat_FromDouble(__pyx_v_tol); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_5 = PyNumber_Subtract(__pyx_v_value, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tol); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PyNumber_Add(__pyx_v_value, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_v_lower = __pyx_t_10;
-      __pyx_v_upper = __pyx_t_11;
-
-      /* "atpy/src/cython/constraints.pyx":45
- * 
- *         for key,value in kargs.items():
- *             if type(value) is not tuple:             # <<<<<<<<<<<<<<
- *                 lower, upper = value - tol, value + tol
- *             else:
- */
-      goto __pyx_L5;
-    }
-
-    /* "atpy/src/cython/constraints.pyx":48
- *                 lower, upper = value - tol, value + tol
- *             else:
- *                 lower,upper = value             # <<<<<<<<<<<<<<
- *             assert lower < upper, 'Constraint lower is not smaller than upper!'
- *             index4twiss = self.twiss2index[key]
- */
-    /*else*/ {
-      if ((likely(PyTuple_CheckExact(__pyx_v_value))) || (PyList_CheckExact(__pyx_v_value))) {
-        PyObject* sequence = __pyx_v_value;
-        Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-        if (unlikely(size != 2)) {
-          if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-          else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 48, __pyx_L1_error)
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        if (likely(PyTuple_CheckExact(sequence))) {
-          __pyx_t_6 = PyTuple_GET_ITEM(sequence, 0); 
-          __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1); 
-        } else {
-          __pyx_t_6 = PyList_GET_ITEM(sequence, 0); 
-          __pyx_t_5 = PyList_GET_ITEM(sequence, 1); 
-        }
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(__pyx_t_5);
-        #else
-        __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        #endif
-      } else {
-        Py_ssize_t index = -1;
-        __pyx_t_12 = PyObject_GetIter(__pyx_v_value); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 48, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_13 = Py_TYPE(__pyx_t_12)->tp_iternext;
-        index = 0; __pyx_t_6 = __pyx_t_13(__pyx_t_12); if (unlikely(!__pyx_t_6)) goto __pyx_L6_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_6);
-        index = 1; __pyx_t_5 = __pyx_t_13(__pyx_t_12); if (unlikely(!__pyx_t_5)) goto __pyx_L6_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_13(__pyx_t_12), 2) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
-        __pyx_t_13 = NULL;
-        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        goto __pyx_L7_unpacking_done;
-        __pyx_L6_unpacking_failed:;
-        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_13 = NULL;
-        if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 48, __pyx_L1_error)
-        __pyx_L7_unpacking_done:;
-      }
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_v_lower = __pyx_t_11;
-      __pyx_v_upper = __pyx_t_10;
-    }
-    __pyx_L5:;
-
-    /* "atpy/src/cython/constraints.pyx":49
- *             else:
- *                 lower,upper = value
- *             assert lower < upper, 'Constraint lower is not smaller than upper!'             # <<<<<<<<<<<<<<
- *             index4twiss = self.twiss2index[key]
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
+ *             assert value==-1 or value== 1,'Minormax can only be value 1 or -1'             # <<<<<<<<<<<<<<
+ *             minormax = value
+ *             index4parameters = self.parameters2index[key]
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
     if (unlikely(!Py_OptimizeFlag)) {
-      if (unlikely(!((__pyx_v_lower < __pyx_v_upper) != 0))) {
-        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Constraint_lower_is_not_smaller);
-        __PYX_ERR(0, 49, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_EqObjC(__pyx_v_value, __pyx_int_neg_1, -1L, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (!__pyx_t_9) {
+      } else {
+        __pyx_t_8 = __pyx_t_9;
+        goto __pyx_L5_bool_binop_done;
+      }
+      __pyx_t_6 = __Pyx_PyInt_EqObjC(__pyx_v_value, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_8 = __pyx_t_9;
+      __pyx_L5_bool_binop_done:;
+      if (unlikely(!__pyx_t_8)) {
+        PyErr_SetObject(PyExc_AssertionError, __pyx_kp_u_Minormax_can_only_be_value_1_or);
+        __PYX_ERR(0, 45, __pyx_L1_error)
       }
     }
     #endif
 
-    /* "atpy/src/cython/constraints.pyx":50
- *                 lower,upper = value
- *             assert lower < upper, 'Constraint lower is not smaller than upper!'
- *             index4twiss = self.twiss2index[key]             # <<<<<<<<<<<<<<
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
+    /* "atpy/src/cython/optima.pyx":46
+ *         for key,value in kargs.items():
+ *             assert value==-1 or value== 1,'Minormax can only be value 1 or -1'
+ *             minormax = value             # <<<<<<<<<<<<<<
+ *             index4parameters = self.parameters2index[key]
+ *             index = 0 if key in self.opt_parameters[18:] else 1
+ */
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
+    __pyx_v_minormax = __pyx_t_7;
+
+    /* "atpy/src/cython/optima.pyx":47
+ *             assert value==-1 or value== 1,'Minormax can only be value 1 or -1'
+ *             minormax = value
+ *             index4parameters = self.parameters2index[key]             # <<<<<<<<<<<<<<
+ *             index = 0 if key in self.opt_parameters[18:] else 1
+ *             place2= 0 if key in self.opt_parameters[:6] else 1
+ */
+    if (unlikely(__pyx_v_self->parameters2index == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 47, __pyx_L1_error)
+    }
+    __pyx_t_6 = __Pyx_PyDict_GetItem(__pyx_v_self->parameters2index, __pyx_v_key); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_v_index4parameters = __pyx_t_7;
+
+    /* "atpy/src/cython/optima.pyx":48
+ *             minormax = value
+ *             index4parameters = self.parameters2index[key]
+ *             index = 0 if key in self.opt_parameters[18:] else 1             # <<<<<<<<<<<<<<
+ *             place2= 0 if key in self.opt_parameters[:6] else 1
  *             for i in range(start,end+1):
  */
-    if (unlikely(__pyx_v_self->twiss2index == Py_None)) {
+    if (unlikely(__pyx_v_self->opt_parameters == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 50, __pyx_L1_error)
+      __PYX_ERR(0, 48, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_self->twiss2index, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_v_index4twiss = __pyx_t_7;
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_self->opt_parameters, 18, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if ((__pyx_t_8 != 0)) {
+      __pyx_t_10 = 0;
+    } else {
+      __pyx_t_10 = 1;
+    }
+    __pyx_v_index = __pyx_t_10;
 
-    /* "atpy/src/cython/constraints.pyx":51
- *             assert lower < upper, 'Constraint lower is not smaller than upper!'
- *             index4twiss = self.twiss2index[key]
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1             # <<<<<<<<<<<<<<
+    /* "atpy/src/cython/optima.pyx":49
+ *             index4parameters = self.parameters2index[key]
+ *             index = 0 if key in self.opt_parameters[18:] else 1
+ *             place2= 0 if key in self.opt_parameters[:6] else 1             # <<<<<<<<<<<<<<
  *             for i in range(start,end+1):
- *                 if key in self.cst_parameters[12:]:
+ *                 if key in self.opt_parameters[18:]:
  */
-    if (unlikely(__pyx_v_self->cst_parameters == Py_None)) {
+    if (unlikely(__pyx_v_self->opt_parameters == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 51, __pyx_L1_error)
+      __PYX_ERR(0, 49, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_PyList_GetSlice(__pyx_v_self->cst_parameters, 12, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 51, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_15 = (__pyx_t_8 != 0);
-    if (!__pyx_t_15) {
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_self->opt_parameters, 0, 6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if ((__pyx_t_8 != 0)) {
+      __pyx_t_7 = 0;
     } else {
-      __pyx_t_9 = __pyx_t_15;
-      goto __pyx_L8_bool_binop_done;
+      __pyx_t_7 = 1;
     }
-    __pyx_t_15 = ((__pyx_v_start != __pyx_v_end) != 0);
-    if (__pyx_t_15) {
-    } else {
-      __pyx_t_9 = __pyx_t_15;
-      goto __pyx_L8_bool_binop_done;
-    }
-    __pyx_t_15 = (((PyObject *)Py_TYPE(__pyx_v_value)) != ((PyObject *)(&PyTuple_Type)));
-    __pyx_t_8 = (__pyx_t_15 != 0);
-    __pyx_t_9 = __pyx_t_8;
-    __pyx_L8_bool_binop_done:;
-    if (__pyx_t_9) {
-      __pyx_t_14 = 0;
-    } else {
-      __pyx_t_14 = 1;
-    }
-    __pyx_v_index = __pyx_t_14;
+    __pyx_v_place2 = __pyx_t_7;
 
-    /* "atpy/src/cython/constraints.pyx":52
- *             index4twiss = self.twiss2index[key]
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
+    /* "atpy/src/cython/optima.pyx":50
+ *             index = 0 if key in self.opt_parameters[18:] else 1
+ *             place2= 0 if key in self.opt_parameters[:6] else 1
  *             for i in range(start,end+1):             # <<<<<<<<<<<<<<
- *                 if key in self.cst_parameters[12:]:
- *                     place1 = 0 if start == end else start
+ *                 if key in self.opt_parameters[18:]:
+ *                     place1,place2 = 0 if start == end else start, end
  */
-    __pyx_t_14 = (__pyx_v_end + 1);
-    __pyx_t_16 = __pyx_t_14;
-    for (__pyx_t_7 = __pyx_v_start; __pyx_t_7 < __pyx_t_16; __pyx_t_7+=1) {
+    __pyx_t_10 = (__pyx_v_end + 1);
+    __pyx_t_11 = __pyx_t_10;
+    for (__pyx_t_7 = __pyx_v_start; __pyx_t_7 < __pyx_t_11; __pyx_t_7+=1) {
       __pyx_v_i = __pyx_t_7;
 
-      /* "atpy/src/cython/constraints.pyx":53
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
+      /* "atpy/src/cython/optima.pyx":51
+ *             place2= 0 if key in self.opt_parameters[:6] else 1
  *             for i in range(start,end+1):
- *                 if key in self.cst_parameters[12:]:             # <<<<<<<<<<<<<<
- *                     place1 = 0 if start == end else start
- *                 elif key in self.cst_parameters[:12]:
+ *                 if key in self.opt_parameters[18:]:             # <<<<<<<<<<<<<<
+ *                     place1,place2 = 0 if start == end else start, end
+ *                 elif key in self.opt_parameters[:18]:
  */
-      if (unlikely(__pyx_v_self->cst_parameters == Py_None)) {
+      if (unlikely(__pyx_v_self->opt_parameters == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 53, __pyx_L1_error)
+        __PYX_ERR(0, 51, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyList_GetSlice(__pyx_v_self->cst_parameters, 12, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 53, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_8 = (__pyx_t_9 != 0);
-      if (__pyx_t_8) {
-
-        /* "atpy/src/cython/constraints.pyx":54
- *             for i in range(start,end+1):
- *                 if key in self.cst_parameters[12:]:
- *                     place1 = 0 if start == end else start             # <<<<<<<<<<<<<<
- *                 elif key in self.cst_parameters[:12]:
- *                     place1 = i
- */
-        if (((__pyx_v_start == __pyx_v_end) != 0)) {
-          __pyx_t_17 = 0;
-        } else {
-          __pyx_t_17 = __pyx_v_start;
-        }
-        __pyx_v_place1 = __pyx_t_17;
-
-        /* "atpy/src/cython/constraints.pyx":53
- *             index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
- *             for i in range(start,end+1):
- *                 if key in self.cst_parameters[12:]:             # <<<<<<<<<<<<<<
- *                     place1 = 0 if start == end else start
- *                 elif key in self.cst_parameters[:12]:
- */
-        goto __pyx_L13;
-      }
-
-      /* "atpy/src/cython/constraints.pyx":55
- *                 if key in self.cst_parameters[12:]:
- *                     place1 = 0 if start == end else start
- *                 elif key in self.cst_parameters[:12]:             # <<<<<<<<<<<<<<
- *                     place1 = i
- *                 place2 = end
- */
-      if (unlikely(__pyx_v_self->cst_parameters == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 55, __pyx_L1_error)
-      }
-      __pyx_t_5 = __Pyx_PyList_GetSlice(__pyx_v_self->cst_parameters, 0, 12); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_self->opt_parameters, 18, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 51, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 51, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_9 = (__pyx_t_8 != 0);
       if (__pyx_t_9) {
 
-        /* "atpy/src/cython/constraints.pyx":56
- *                     place1 = 0 if start == end else start
- *                 elif key in self.cst_parameters[:12]:
+        /* "atpy/src/cython/optima.pyx":52
+ *             for i in range(start,end+1):
+ *                 if key in self.opt_parameters[18:]:
+ *                     place1,place2 = 0 if start == end else start, end             # <<<<<<<<<<<<<<
+ *                 elif key in self.opt_parameters[:18]:
+ *                     place1 = i
+ */
+        if (((__pyx_v_start == __pyx_v_end) != 0)) {
+          __pyx_t_12 = 0;
+        } else {
+          __pyx_t_12 = __pyx_v_start;
+        }
+        __pyx_t_13 = __pyx_v_end;
+        __pyx_v_place1 = __pyx_t_12;
+        __pyx_v_place2 = __pyx_t_13;
+
+        /* "atpy/src/cython/optima.pyx":51
+ *             place2= 0 if key in self.opt_parameters[:6] else 1
+ *             for i in range(start,end+1):
+ *                 if key in self.opt_parameters[18:]:             # <<<<<<<<<<<<<<
+ *                     place1,place2 = 0 if start == end else start, end
+ *                 elif key in self.opt_parameters[:18]:
+ */
+        goto __pyx_L9;
+      }
+
+      /* "atpy/src/cython/optima.pyx":53
+ *                 if key in self.opt_parameters[18:]:
+ *                     place1,place2 = 0 if start == end else start, end
+ *                 elif key in self.opt_parameters[:18]:             # <<<<<<<<<<<<<<
+ *                     place1 = i
+ *                 self.index[0].push_back(index) # 0/1 mean difference/value
+ */
+      if (unlikely(__pyx_v_self->opt_parameters == Py_None)) {
+        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+        __PYX_ERR(0, 53, __pyx_L1_error)
+      }
+      __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_self->opt_parameters, 0, 18); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 53, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_8 = (__pyx_t_9 != 0);
+      if (__pyx_t_8) {
+
+        /* "atpy/src/cython/optima.pyx":54
+ *                     place1,place2 = 0 if start == end else start, end
+ *                 elif key in self.opt_parameters[:18]:
  *                     place1 = i             # <<<<<<<<<<<<<<
- *                 place2 = end
- *                 self.bounds[0].push_back(lower)
+ *                 self.index[0].push_back(index) # 0/1 mean difference/value
+ *                 self.index[1].push_back(index4parameters) # specific parms/twiss
  */
         __pyx_v_place1 = __pyx_v_i;
 
-        /* "atpy/src/cython/constraints.pyx":55
- *                 if key in self.cst_parameters[12:]:
- *                     place1 = 0 if start == end else start
- *                 elif key in self.cst_parameters[:12]:             # <<<<<<<<<<<<<<
+        /* "atpy/src/cython/optima.pyx":53
+ *                 if key in self.opt_parameters[18:]:
+ *                     place1,place2 = 0 if start == end else start, end
+ *                 elif key in self.opt_parameters[:18]:             # <<<<<<<<<<<<<<
  *                     place1 = i
- *                 place2 = end
- */
-      }
-      __pyx_L13:;
-
-      /* "atpy/src/cython/constraints.pyx":57
- *                 elif key in self.cst_parameters[:12]:
- *                     place1 = i
- *                 place2 = end             # <<<<<<<<<<<<<<
- *                 self.bounds[0].push_back(lower)
- *                 self.bounds[1].push_back(upper)
- */
-      __pyx_v_place2 = __pyx_v_end;
-
-      /* "atpy/src/cython/constraints.pyx":58
- *                     place1 = i
- *                 place2 = end
- *                 self.bounds[0].push_back(lower)             # <<<<<<<<<<<<<<
- *                 self.bounds[1].push_back(upper)
  *                 self.index[0].push_back(index) # 0/1 mean difference/value
  */
-      try {
-        (__pyx_v_self->bounds[0]).push_back(__pyx_v_lower);
-      } catch(...) {
-        __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 58, __pyx_L1_error)
       }
+      __pyx_L9:;
 
-      /* "atpy/src/cython/constraints.pyx":59
- *                 place2 = end
- *                 self.bounds[0].push_back(lower)
- *                 self.bounds[1].push_back(upper)             # <<<<<<<<<<<<<<
- *                 self.index[0].push_back(index) # 0/1 mean difference/value
- *                 self.index[1].push_back(index4twiss) # specific parms/twiss
- */
-      try {
-        (__pyx_v_self->bounds[1]).push_back(__pyx_v_upper);
-      } catch(...) {
-        __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 59, __pyx_L1_error)
-      }
-
-      /* "atpy/src/cython/constraints.pyx":60
- *                 self.bounds[0].push_back(lower)
- *                 self.bounds[1].push_back(upper)
+      /* "atpy/src/cython/optima.pyx":55
+ *                 elif key in self.opt_parameters[:18]:
+ *                     place1 = i
  *                 self.index[0].push_back(index) # 0/1 mean difference/value             # <<<<<<<<<<<<<<
- *                 self.index[1].push_back(index4twiss) # specific parms/twiss
+ *                 self.index[1].push_back(index4parameters) # specific parms/twiss
  *                 self.index[2].push_back(place1) # place1
  */
       try {
         (__pyx_v_self->index[0]).push_back(__pyx_v_index);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 60, __pyx_L1_error)
+        __PYX_ERR(0, 55, __pyx_L1_error)
       }
 
-      /* "atpy/src/cython/constraints.pyx":61
- *                 self.bounds[1].push_back(upper)
+      /* "atpy/src/cython/optima.pyx":56
+ *                     place1 = i
  *                 self.index[0].push_back(index) # 0/1 mean difference/value
- *                 self.index[1].push_back(index4twiss) # specific parms/twiss             # <<<<<<<<<<<<<<
+ *                 self.index[1].push_back(index4parameters) # specific parms/twiss             # <<<<<<<<<<<<<<
  *                 self.index[2].push_back(place1) # place1
- *                 self.index[3].push_back(place2) # place2
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss
  */
       try {
-        (__pyx_v_self->index[1]).push_back(__pyx_v_index4twiss);
+        (__pyx_v_self->index[1]).push_back(__pyx_v_index4parameters);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 61, __pyx_L1_error)
+        __PYX_ERR(0, 56, __pyx_L1_error)
       }
 
-      /* "atpy/src/cython/constraints.pyx":62
+      /* "atpy/src/cython/optima.pyx":57
  *                 self.index[0].push_back(index) # 0/1 mean difference/value
- *                 self.index[1].push_back(index4twiss) # specific parms/twiss
+ *                 self.index[1].push_back(index4parameters) # specific parms/twiss
  *                 self.index[2].push_back(place1) # place1             # <<<<<<<<<<<<<<
- *                 self.index[3].push_back(place2) # place2
- *                 if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss
  */
       try {
         (__pyx_v_self->index[2]).push_back(__pyx_v_place1);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 62, __pyx_L1_error)
+        __PYX_ERR(0, 57, __pyx_L1_error)
       }
 
-      /* "atpy/src/cython/constraints.pyx":63
- *                 self.index[1].push_back(index4twiss) # specific parms/twiss
+      /* "atpy/src/cython/optima.pyx":58
+ *                 self.index[1].push_back(index4parameters) # specific parms/twiss
  *                 self.index[2].push_back(place1) # place1
- *                 self.index[3].push_back(place2) # place2             # <<<<<<<<<<<<<<
- *                 if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:
- *                     break #beta_x2-beta_x1 or nu_y2 - nu_y1 don't need loop
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss             # <<<<<<<<<<<<<<
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss
+ *                 if key in self.opt_parameters[18:]:
  */
       try {
         (__pyx_v_self->index[3]).push_back(__pyx_v_place2);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 63, __pyx_L1_error)
+        __PYX_ERR(0, 58, __pyx_L1_error)
       }
 
-      /* "atpy/src/cython/constraints.pyx":64
+      /* "atpy/src/cython/optima.pyx":59
  *                 self.index[2].push_back(place1) # place1
- *                 self.index[3].push_back(place2) # place2
- *                 if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:             # <<<<<<<<<<<<<<
- *                     break #beta_x2-beta_x1 or nu_y2 - nu_y1 don't need loop
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss             # <<<<<<<<<<<<<<
+ *                 if key in self.opt_parameters[18:]:
+ *                     break #nu_y2 - nu_y1 don't need loop
+ */
+      try {
+        (__pyx_v_self->index[4]).push_back(__pyx_v_minormax);
+      } catch(...) {
+        __Pyx_CppExn2PyErr();
+        __PYX_ERR(0, 59, __pyx_L1_error)
+      }
+
+      /* "atpy/src/cython/optima.pyx":60
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss
+ *                 if key in self.opt_parameters[18:]:             # <<<<<<<<<<<<<<
+ *                     break #nu_y2 - nu_y1 don't need loop
  * 
  */
-      if (unlikely(__pyx_v_self->cst_parameters == Py_None)) {
+      if (unlikely(__pyx_v_self->opt_parameters == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 64, __pyx_L1_error)
+        __PYX_ERR(0, 60, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyList_GetSlice(__pyx_v_self->cst_parameters, 12, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 64, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_15 = (__pyx_t_8 != 0);
-      if (!__pyx_t_15) {
-      } else {
-        __pyx_t_9 = __pyx_t_15;
-        goto __pyx_L15_bool_binop_done;
-      }
-      __pyx_t_15 = ((__pyx_v_start != __pyx_v_end) != 0);
-      if (__pyx_t_15) {
-      } else {
-        __pyx_t_9 = __pyx_t_15;
-        goto __pyx_L15_bool_binop_done;
-      }
-      __pyx_t_15 = (((PyObject *)Py_TYPE(__pyx_v_value)) != ((PyObject *)(&PyTuple_Type)));
-      __pyx_t_8 = (__pyx_t_15 != 0);
-      __pyx_t_9 = __pyx_t_8;
-      __pyx_L15_bool_binop_done:;
+      __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_self->opt_parameters, 18, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 60, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_9 = (__pyx_t_8 != 0);
       if (__pyx_t_9) {
 
-        /* "atpy/src/cython/constraints.pyx":65
- *                 self.index[3].push_back(place2) # place2
- *                 if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:
- *                     break #beta_x2-beta_x1 or nu_y2 - nu_y1 don't need loop             # <<<<<<<<<<<<<<
+        /* "atpy/src/cython/optima.pyx":61
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss
+ *                 if key in self.opt_parameters[18:]:
+ *                     break #nu_y2 - nu_y1 don't need loop             # <<<<<<<<<<<<<<
  * 
  * 
  */
-        goto __pyx_L12_break;
+        goto __pyx_L8_break;
 
-        /* "atpy/src/cython/constraints.pyx":64
- *                 self.index[2].push_back(place1) # place1
- *                 self.index[3].push_back(place2) # place2
- *                 if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:             # <<<<<<<<<<<<<<
- *                     break #beta_x2-beta_x1 or nu_y2 - nu_y1 don't need loop
+        /* "atpy/src/cython/optima.pyx":60
+ *                 self.index[3].push_back(place2) # place2 for nu or 0/1 for parms/twiss
+ *                 self.index[4].push_back(minormax) # place2 for nu or 0/1 for parms/twiss
+ *                 if key in self.opt_parameters[18:]:             # <<<<<<<<<<<<<<
+ *                     break #nu_y2 - nu_y1 don't need loop
  * 
  */
       }
     }
-    __pyx_L12_break:;
+    __pyx_L8_break:;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":40
+  /* "atpy/src/cython/optima.pyx":40
  * 
  * 
- *     cdef void get_constraints(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
- *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=1e-4
+ *     cdef void get_optima(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
+ *         cdef int i, j, start = args[0], end = args[1], place1, place2, index4parameters,minormax
+ *         cdef double lower, upper, tol=10e-8
  */
 
   /* function exit code */
@@ -2580,186 +2482,35 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_WriteUnraisable("atpy.src.cython.constraints.Constraints.get_constraints", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("atpy.src.cython.optima.Optima.get_optima", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_key);
   __Pyx_XDECREF(__pyx_v_value);
   __Pyx_RefNannyFinishContext();
 }
 
-/* "atpy/src/cython/constraints.pyx":70
- * 
- *     @property
- *     def bounds(self):             # <<<<<<<<<<<<<<
- *         cdef int i, num_vars = self.bounds[0].size()
- *         cdef list bnds, lower=[], upper=[]
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_6bounds_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_6bounds_1__get__(PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6bounds___get__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6bounds___get__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self) {
-  int __pyx_v_i;
-  int __pyx_v_num_vars;
-  PyObject *__pyx_v_bnds = 0;
-  PyObject *__pyx_v_lower = 0;
-  PyObject *__pyx_v_upper = 0;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_t_2;
-  int __pyx_t_3;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  __Pyx_RefNannySetupContext("__get__", 0);
-
-  /* "atpy/src/cython/constraints.pyx":71
- *     @property
- *     def bounds(self):
- *         cdef int i, num_vars = self.bounds[0].size()             # <<<<<<<<<<<<<<
- *         cdef list bnds, lower=[], upper=[]
- *         for i in range(num_vars):
- */
-  __pyx_v_num_vars = (__pyx_v_self->bounds[0]).size();
-
-  /* "atpy/src/cython/constraints.pyx":72
- *     def bounds(self):
- *         cdef int i, num_vars = self.bounds[0].size()
- *         cdef list bnds, lower=[], upper=[]             # <<<<<<<<<<<<<<
- *         for i in range(num_vars):
- *             lower.append(self.bounds[0][i])
- */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_lower = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_upper = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "atpy/src/cython/constraints.pyx":73
- *         cdef int i, num_vars = self.bounds[0].size()
- *         cdef list bnds, lower=[], upper=[]
- *         for i in range(num_vars):             # <<<<<<<<<<<<<<
- *             lower.append(self.bounds[0][i])
- *             upper.append(self.bounds[1][i])
- */
-  __pyx_t_2 = __pyx_v_num_vars;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-
-    /* "atpy/src/cython/constraints.pyx":74
- *         cdef list bnds, lower=[], upper=[]
- *         for i in range(num_vars):
- *             lower.append(self.bounds[0][i])             # <<<<<<<<<<<<<<
- *             upper.append(self.bounds[1][i])
- *         bnds = [lower,upper]
- */
-    __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->bounds[0])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_lower, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "atpy/src/cython/constraints.pyx":75
- *         for i in range(num_vars):
- *             lower.append(self.bounds[0][i])
- *             upper.append(self.bounds[1][i])             # <<<<<<<<<<<<<<
- *         bnds = [lower,upper]
- *         return bnds
- */
-    __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->bounds[1])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_upper, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 75, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "atpy/src/cython/constraints.pyx":76
- *             lower.append(self.bounds[0][i])
- *             upper.append(self.bounds[1][i])
- *         bnds = [lower,upper]             # <<<<<<<<<<<<<<
- *         return bnds
- * 
- */
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_v_lower);
-  __Pyx_GIVEREF(__pyx_v_lower);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_v_lower);
-  __Pyx_INCREF(__pyx_v_upper);
-  __Pyx_GIVEREF(__pyx_v_upper);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_v_upper);
-  __pyx_v_bnds = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "atpy/src/cython/constraints.pyx":77
- *             upper.append(self.bounds[1][i])
- *         bnds = [lower,upper]
- *         return bnds             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_bnds);
-  __pyx_r = __pyx_v_bnds;
-  goto __pyx_L0;
-
-  /* "atpy/src/cython/constraints.pyx":70
- * 
- *     @property
- *     def bounds(self):             # <<<<<<<<<<<<<<
- *         cdef int i, num_vars = self.bounds[0].size()
- *         cdef list bnds, lower=[], upper=[]
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.Constraints.bounds.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_bnds);
-  __Pyx_XDECREF(__pyx_v_lower);
-  __Pyx_XDECREF(__pyx_v_upper);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "atpy/src/cython/constraints.pyx":81
+/* "atpy/src/cython/optima.pyx":66
  * 
  *     @property
  *     def index(self):             # <<<<<<<<<<<<<<
  *         cdef int i, num_vars = self.index[0].size()
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5index_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5index_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_5index_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_5index_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index___get__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4atpy_3src_6cython_6optima_6Optima_5index___get__(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index___get__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self) {
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_5index___get__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self) {
   int __pyx_v_i;
   int __pyx_v_num_vars;
   PyObject *__pyx_v_index = 0;
@@ -2767,6 +2518,7 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   PyObject *__pyx_v_indx2 = 0;
   PyObject *__pyx_v_indx3 = 0;
   PyObject *__pyx_v_indx4 = 0;
+  PyObject *__pyx_v_indx5 = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2776,42 +2528,46 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "atpy/src/cython/constraints.pyx":82
+  /* "atpy/src/cython/optima.pyx":67
  *     @property
  *     def index(self):
  *         cdef int i, num_vars = self.index[0].size()             # <<<<<<<<<<<<<<
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]
  *         for i in range(num_vars):
  */
   __pyx_v_num_vars = (__pyx_v_self->index[0]).size();
 
-  /* "atpy/src/cython/constraints.pyx":83
+  /* "atpy/src/cython/optima.pyx":68
  *     def index(self):
  *         cdef int i, num_vars = self.index[0].size()
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]             # <<<<<<<<<<<<<<
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]             # <<<<<<<<<<<<<<
  *         for i in range(num_vars):
  *             indx1.append(self.index[0][i])
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_indx1 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_indx2 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_indx3 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_indx4 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_indx5 = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":84
+  /* "atpy/src/cython/optima.pyx":69
  *         cdef int i, num_vars = self.index[0].size()
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]
  *         for i in range(num_vars):             # <<<<<<<<<<<<<<
  *             indx1.append(self.index[0][i])
  *             indx2.append(self.index[1][i])
@@ -2821,63 +2577,75 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "atpy/src/cython/constraints.pyx":85
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]
+    /* "atpy/src/cython/optima.pyx":70
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]
  *         for i in range(num_vars):
  *             indx1.append(self.index[0][i])             # <<<<<<<<<<<<<<
  *             indx2.append(self.index[1][i])
  *             indx3.append(self.index[2][i])
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[0])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[0])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx1, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx1, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":86
+    /* "atpy/src/cython/optima.pyx":71
  *         for i in range(num_vars):
  *             indx1.append(self.index[0][i])
  *             indx2.append(self.index[1][i])             # <<<<<<<<<<<<<<
  *             indx3.append(self.index[2][i])
  *             indx4.append(self.index[3][i])
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[1])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[1])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx2, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 86, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx2, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":87
+    /* "atpy/src/cython/optima.pyx":72
  *             indx1.append(self.index[0][i])
  *             indx2.append(self.index[1][i])
  *             indx3.append(self.index[2][i])             # <<<<<<<<<<<<<<
  *             indx4.append(self.index[3][i])
- *         index = [indx1,indx2,indx3,indx4]
+ *             indx5.append(self.index[4][i])
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[2])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[2])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx3, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 87, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx3, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "atpy/src/cython/constraints.pyx":88
+    /* "atpy/src/cython/optima.pyx":73
  *             indx2.append(self.index[1][i])
  *             indx3.append(self.index[2][i])
  *             indx4.append(self.index[3][i])             # <<<<<<<<<<<<<<
- *         index = [indx1,indx2,indx3,indx4]
+ *             indx5.append(self.index[4][i])
+ *         index = [indx1,indx2,indx3,indx4,indx5]
+ */
+    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[3])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx4, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 73, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "atpy/src/cython/optima.pyx":74
+ *             indx3.append(self.index[2][i])
+ *             indx4.append(self.index[3][i])
+ *             indx5.append(self.index[4][i])             # <<<<<<<<<<<<<<
+ *         index = [indx1,indx2,indx3,indx4,indx5]
  *         return index
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[3])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(((__pyx_v_self->index[4])[__pyx_v_i])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx4, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_indx5, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "atpy/src/cython/constraints.pyx":89
- *             indx3.append(self.index[2][i])
+  /* "atpy/src/cython/optima.pyx":75
  *             indx4.append(self.index[3][i])
- *         index = [indx1,indx2,indx3,indx4]             # <<<<<<<<<<<<<<
+ *             indx5.append(self.index[4][i])
+ *         index = [indx1,indx2,indx3,indx4,indx5]             # <<<<<<<<<<<<<<
  *         return index
  * 
  */
-  __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_indx1);
   __Pyx_GIVEREF(__pyx_v_indx1);
@@ -2891,12 +2659,15 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   __Pyx_INCREF(__pyx_v_indx4);
   __Pyx_GIVEREF(__pyx_v_indx4);
   PyList_SET_ITEM(__pyx_t_1, 3, __pyx_v_indx4);
+  __Pyx_INCREF(__pyx_v_indx5);
+  __Pyx_GIVEREF(__pyx_v_indx5);
+  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_v_indx5);
   __pyx_v_index = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":90
- *             indx4.append(self.index[3][i])
- *         index = [indx1,indx2,indx3,indx4]
+  /* "atpy/src/cython/optima.pyx":76
+ *             indx5.append(self.index[4][i])
+ *         index = [indx1,indx2,indx3,indx4,indx5]
  *         return index             # <<<<<<<<<<<<<<
  * 
  * 
@@ -2906,18 +2677,18 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   __pyx_r = __pyx_v_index;
   goto __pyx_L0;
 
-  /* "atpy/src/cython/constraints.pyx":81
+  /* "atpy/src/cython/optima.pyx":66
  * 
  *     @property
  *     def index(self):             # <<<<<<<<<<<<<<
  *         cdef int i, num_vars = self.index[0].size()
- *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[]
+ *         cdef list index, indx1=[], indx2=[], indx3=[], indx4=[], indx5=[]
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.Constraints.index.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.Optima.index.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_index);
@@ -2925,134 +2696,92 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_5index_
   __Pyx_XDECREF(__pyx_v_indx2);
   __Pyx_XDECREF(__pyx_v_indx3);
   __Pyx_XDECREF(__pyx_v_indx4);
+  __Pyx_XDECREF(__pyx_v_indx5);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "atpy/src/cython/constraints.pyx":93
+/* "atpy/src/cython/optima.pyx":79
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         cdef int i
- *         for i in range(2):
+ *         for i in range(5):
  */
 
 /* Python wrapper */
-static void __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_3__dealloc__(PyObject *__pyx_v_self) {
+static void __pyx_pw_4atpy_3src_6cython_6optima_6Optima_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
+static void __pyx_pw_4atpy_3src_6cython_6optima_6Optima_3__dealloc__(PyObject *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_2__dealloc__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self));
+  __pyx_pf_4atpy_3src_6cython_6optima_6Optima_2__dealloc__(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-static void __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_2__dealloc__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self) {
+static void __pyx_pf_4atpy_3src_6cython_6optima_6Optima_2__dealloc__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self) {
   int __pyx_v_i;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  std::vector<double>  __pyx_t_2;
-  std::vector<int>  __pyx_t_3;
-  std::vector<std::vector<double> >  __pyx_t_4;
-  std::vector<std::vector<int> >  __pyx_t_5;
+  std::vector<int>  __pyx_t_2;
+  std::vector<std::vector<int> >  __pyx_t_3;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "atpy/src/cython/constraints.pyx":95
+  /* "atpy/src/cython/optima.pyx":81
  *     def __dealloc__(self):
  *         cdef int i
- *         for i in range(2):             # <<<<<<<<<<<<<<
- *             vector[double]().swap(self.bounds[i])
- *         for i in range(4):
- */
-  for (__pyx_t_1 = 0; __pyx_t_1 < 2; __pyx_t_1+=1) {
-    __pyx_v_i = __pyx_t_1;
-
-    /* "atpy/src/cython/constraints.pyx":96
- *         cdef int i
- *         for i in range(2):
- *             vector[double]().swap(self.bounds[i])             # <<<<<<<<<<<<<<
- *         for i in range(4):
+ *         for i in range(5):             # <<<<<<<<<<<<<<
  *             vector[int]().swap(self.index[i])
- */
-    try {
-      __pyx_t_2 = std::vector<double> ();
-    } catch(...) {
-      __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 96, __pyx_L1_error)
-    }
-    __pyx_t_2.swap((__pyx_v_self->bounds[__pyx_v_i]));
-  }
-
-  /* "atpy/src/cython/constraints.pyx":97
- *         for i in range(2):
- *             vector[double]().swap(self.bounds[i])
- *         for i in range(4):             # <<<<<<<<<<<<<<
- *             vector[int]().swap(self.index[i])
- *         vector[vector[double]]().swap(self.bounds)
- */
-  for (__pyx_t_1 = 0; __pyx_t_1 < 4; __pyx_t_1+=1) {
-    __pyx_v_i = __pyx_t_1;
-
-    /* "atpy/src/cython/constraints.pyx":98
- *             vector[double]().swap(self.bounds[i])
- *         for i in range(4):
- *             vector[int]().swap(self.index[i])             # <<<<<<<<<<<<<<
- *         vector[vector[double]]().swap(self.bounds)
  *         vector[vector[int]]().swap(self.index)
  */
-    try {
-      __pyx_t_3 = std::vector<int> ();
-    } catch(...) {
-      __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 98, __pyx_L1_error)
-    }
-    __pyx_t_3.swap((__pyx_v_self->index[__pyx_v_i]));
-  }
+  for (__pyx_t_1 = 0; __pyx_t_1 < 5; __pyx_t_1+=1) {
+    __pyx_v_i = __pyx_t_1;
 
-  /* "atpy/src/cython/constraints.pyx":99
- *         for i in range(4):
- *             vector[int]().swap(self.index[i])
- *         vector[vector[double]]().swap(self.bounds)             # <<<<<<<<<<<<<<
+    /* "atpy/src/cython/optima.pyx":82
+ *         cdef int i
+ *         for i in range(5):
+ *             vector[int]().swap(self.index[i])             # <<<<<<<<<<<<<<
  *         vector[vector[int]]().swap(self.index)
  * 
  */
-  try {
-    __pyx_t_4 = std::vector<std::vector<double> > ();
-  } catch(...) {
-    __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 99, __pyx_L1_error)
+    try {
+      __pyx_t_2 = std::vector<int> ();
+    } catch(...) {
+      __Pyx_CppExn2PyErr();
+      __PYX_ERR(0, 82, __pyx_L1_error)
+    }
+    __pyx_t_2.swap((__pyx_v_self->index[__pyx_v_i]));
   }
-  __pyx_t_4.swap(__pyx_v_self->bounds);
 
-  /* "atpy/src/cython/constraints.pyx":100
+  /* "atpy/src/cython/optima.pyx":83
+ *         for i in range(5):
  *             vector[int]().swap(self.index[i])
- *         vector[vector[double]]().swap(self.bounds)
  *         vector[vector[int]]().swap(self.index)             # <<<<<<<<<<<<<<
  * 
  * 
  */
   try {
-    __pyx_t_5 = std::vector<std::vector<int> > ();
+    __pyx_t_3 = std::vector<std::vector<int> > ();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 83, __pyx_L1_error)
   }
-  __pyx_t_5.swap(__pyx_v_self->index);
+  __pyx_t_3.swap(__pyx_v_self->index);
 
-  /* "atpy/src/cython/constraints.pyx":93
+  /* "atpy/src/cython/optima.pyx":79
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         cdef int i
- *         for i in range(2):
+ *         for i in range(5):
  */
 
   /* function exit code */
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("atpy.src.cython.constraints.Constraints.__dealloc__", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("atpy.src.cython.optima.Optima.__dealloc__", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
 }
@@ -3064,19 +2793,19 @@ static void __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_2__dealloc__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__reduce_cython__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4atpy_3src_6cython_6optima_6Optima_4__reduce_cython__(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__reduce_cython__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self) {
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_4__reduce_cython__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -3084,62 +2813,57 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__redu
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
-  int __pyx_t_6;
+  PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("__reduce_cython__", 0);
 
   /* "(tree fragment)":5
  *     cdef object _dict
  *     cdef bint use_setstate
- *     state = (self.bounds, self.cst_parameters, self.index, self.twiss2index)             # <<<<<<<<<<<<<<
+ *     state = (self.index, self.opt_parameters, self.parameters2index)             # <<<<<<<<<<<<<<
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:
  */
-  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(__pyx_v_self->bounds); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(__pyx_v_self->index); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_convert_vector_to_py_std_3a__3a_vector_3c_int_3e___(__pyx_v_self->index); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
-  __Pyx_INCREF(__pyx_v_self->cst_parameters);
-  __Pyx_GIVEREF(__pyx_v_self->cst_parameters);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_self->cst_parameters);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_2);
-  __Pyx_INCREF(__pyx_v_self->twiss2index);
-  __Pyx_GIVEREF(__pyx_v_self->twiss2index);
-  PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_self->twiss2index);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __Pyx_INCREF(__pyx_v_self->opt_parameters);
+  __Pyx_GIVEREF(__pyx_v_self->opt_parameters);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_self->opt_parameters);
+  __Pyx_INCREF(__pyx_v_self->parameters2index);
+  __Pyx_GIVEREF(__pyx_v_self->parameters2index);
+  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_self->parameters2index);
   __pyx_t_1 = 0;
+  __pyx_v_state = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_v_state = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
 
   /* "(tree fragment)":6
  *     cdef bint use_setstate
- *     state = (self.bounds, self.cst_parameters, self.index, self.twiss2index)
+ *     state = (self.index, self.opt_parameters, self.parameters2index)
  *     _dict = getattr(self, '__dict__', None)             # <<<<<<<<<<<<<<
  *     if _dict is not None:
  *         state += (_dict,)
  */
-  __pyx_t_3 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_n_s_dict, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_v__dict = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_n_s_dict, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v__dict = __pyx_t_2;
+  __pyx_t_2 = 0;
 
   /* "(tree fragment)":7
- *     state = (self.bounds, self.cst_parameters, self.index, self.twiss2index)
+ *     state = (self.index, self.opt_parameters, self.parameters2index)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
  *         use_setstate = True
  */
-  __pyx_t_4 = (__pyx_v__dict != Py_None);
-  __pyx_t_5 = (__pyx_t_4 != 0);
-  if (__pyx_t_5) {
+  __pyx_t_3 = (__pyx_v__dict != Py_None);
+  __pyx_t_4 = (__pyx_t_3 != 0);
+  if (__pyx_t_4) {
 
     /* "(tree fragment)":8
  *     _dict = getattr(self, '__dict__', None)
@@ -3148,28 +2872,28 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__redu
  *         use_setstate = True
  *     else:
  */
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v__dict);
     __Pyx_GIVEREF(__pyx_v__dict);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v__dict);
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v__dict);
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_1));
+    __pyx_t_1 = 0;
 
     /* "(tree fragment)":9
  *     if _dict is not None:
  *         state += (_dict,)
  *         use_setstate = True             # <<<<<<<<<<<<<<
  *     else:
- *         use_setstate = self.cst_parameters is not None or self.twiss2index is not None
+ *         use_setstate = self.opt_parameters is not None or self.parameters2index is not None
  */
     __pyx_v_use_setstate = 1;
 
     /* "(tree fragment)":7
- *     state = (self.bounds, self.cst_parameters, self.index, self.twiss2index)
+ *     state = (self.index, self.opt_parameters, self.parameters2index)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
@@ -3181,113 +2905,113 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__redu
   /* "(tree fragment)":11
  *         use_setstate = True
  *     else:
- *         use_setstate = self.cst_parameters is not None or self.twiss2index is not None             # <<<<<<<<<<<<<<
+ *         use_setstate = self.opt_parameters is not None or self.parameters2index is not None             # <<<<<<<<<<<<<<
  *     if use_setstate:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, None), state
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, None), state
  */
   /*else*/ {
-    __pyx_t_4 = (__pyx_v_self->cst_parameters != ((PyObject*)Py_None));
-    __pyx_t_6 = (__pyx_t_4 != 0);
-    if (!__pyx_t_6) {
+    __pyx_t_3 = (__pyx_v_self->opt_parameters != ((PyObject*)Py_None));
+    __pyx_t_5 = (__pyx_t_3 != 0);
+    if (!__pyx_t_5) {
     } else {
-      __pyx_t_5 = __pyx_t_6;
+      __pyx_t_4 = __pyx_t_5;
       goto __pyx_L4_bool_binop_done;
     }
-    __pyx_t_6 = (__pyx_v_self->twiss2index != ((PyObject*)Py_None));
-    __pyx_t_4 = (__pyx_t_6 != 0);
-    __pyx_t_5 = __pyx_t_4;
+    __pyx_t_5 = (__pyx_v_self->parameters2index != ((PyObject*)Py_None));
+    __pyx_t_3 = (__pyx_t_5 != 0);
+    __pyx_t_4 = __pyx_t_3;
     __pyx_L4_bool_binop_done:;
-    __pyx_v_use_setstate = __pyx_t_5;
+    __pyx_v_use_setstate = __pyx_t_4;
   }
   __pyx_L3:;
 
   /* "(tree fragment)":12
  *     else:
- *         use_setstate = self.cst_parameters is not None or self.twiss2index is not None
+ *         use_setstate = self.opt_parameters is not None or self.parameters2index is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, None), state
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, None), state
  *     else:
  */
-  __pyx_t_5 = (__pyx_v_use_setstate != 0);
-  if (__pyx_t_5) {
+  __pyx_t_4 = (__pyx_v_use_setstate != 0);
+  if (__pyx_t_4) {
 
     /* "(tree fragment)":13
- *         use_setstate = self.cst_parameters is not None or self.twiss2index is not None
+ *         use_setstate = self.opt_parameters is not None or self.parameters2index is not None
  *     if use_setstate:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, None), state             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, None), state             # <<<<<<<<<<<<<<
  *     else:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, state)
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, state)
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_pyx_unpickle_Constraints); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pyx_unpickle_Optima); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 13, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_208011653);
-    __Pyx_GIVEREF(__pyx_int_208011653);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_208011653);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
+    __Pyx_INCREF(__pyx_int_86536868);
+    __Pyx_GIVEREF(__pyx_int_86536868);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_86536868);
     __Pyx_INCREF(Py_None);
     __Pyx_GIVEREF(Py_None);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, Py_None);
-    __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_2, 2, Py_None);
+    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_state);
-    __pyx_t_2 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_1;
+    PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_v_state);
     __pyx_t_1 = 0;
+    __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_6;
+    __pyx_t_6 = 0;
     goto __pyx_L0;
 
     /* "(tree fragment)":12
  *     else:
- *         use_setstate = self.cst_parameters is not None or self.twiss2index is not None
+ *         use_setstate = self.opt_parameters is not None or self.parameters2index is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, None), state
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, None), state
  *     else:
  */
   }
 
   /* "(tree fragment)":15
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, None), state
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, None), state
  *     else:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, state)             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, state)             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     __pyx_unpickle_Constraints__set_state(self, __pyx_state)
+ *     __pyx_unpickle_Optima__set_state(self, __pyx_state)
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pyx_unpickle_Constraints); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_pyx_unpickle_Optima); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_208011653);
-    __Pyx_GIVEREF(__pyx_int_208011653);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_208011653);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
+    __Pyx_INCREF(__pyx_int_86536868);
+    __Pyx_GIVEREF(__pyx_int_86536868);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_86536868);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_state);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-    __pyx_t_1 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_2;
+    PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_state);
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
+    __pyx_t_6 = 0;
     __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
@@ -3301,8 +3025,8 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__redu
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.Constraints.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_AddTraceback("atpy.src.cython.optima.Optima.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -3314,45 +3038,45 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_4__redu
 
 /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, state)
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_unpickle_Constraints__set_state(self, __pyx_state)
+ *     __pyx_unpickle_Optima__set_state(self, __pyx_state)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_6Optima_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6__setstate_cython__(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4atpy_3src_6cython_6optima_6Optima_6__setstate_cython__(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6__setstate_cython__(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima_6Optima_6__setstate_cython__(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":17
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, state)
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, state)
  * def __setstate_cython__(self, __pyx_state):
- *     __pyx_unpickle_Constraints__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_Optima__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v___pyx_state)->tp_name), 0))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4atpy_3src_6cython_6optima___pyx_unpickle_Optima__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_Constraints, (type(self), 0xc660185, state)
+ *         return __pyx_unpickle_Optima, (type(self), 0x52872a4, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_unpickle_Constraints__set_state(self, __pyx_state)
+ *     __pyx_unpickle_Optima__set_state(self, __pyx_state)
  */
 
   /* function exit code */
@@ -3360,7 +3084,7 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6__sets
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.Constraints.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.Optima.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3369,21 +3093,21 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints_11Constraints_6__sets
 }
 
 /* "(tree fragment)":1
- * def __pyx_unpickle_Constraints(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
+ * def __pyx_unpickle_Optima(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Constraints(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Constraints = {"__pyx_unpickle_Constraints", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Constraints, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Constraints(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_1__pyx_unpickle_Optima(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_4atpy_3src_6cython_6optima_1__pyx_unpickle_Optima = {"__pyx_unpickle_Optima", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4atpy_3src_6cython_6optima_1__pyx_unpickle_Optima, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4atpy_3src_6cython_6optima_1__pyx_unpickle_Optima(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v___pyx_type = 0;
   long __pyx_v___pyx_checksum;
   PyObject *__pyx_v___pyx_state = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__pyx_unpickle_Constraints (wrapper)", 0);
+  __Pyx_RefNannySetupContext("__pyx_unpickle_Optima (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_pyx_type,&__pyx_n_s_pyx_checksum,&__pyx_n_s_pyx_state,0};
     PyObject* values[3] = {0,0,0};
@@ -3409,17 +3133,17 @@ static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Const
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_pyx_checksum)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Constraints", 1, 3, 3, 1); __PYX_ERR(1, 1, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Optima", 1, 3, 3, 1); __PYX_ERR(1, 1, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_pyx_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Constraints", 1, 3, 3, 2); __PYX_ERR(1, 1, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Optima", 1, 3, 3, 2); __PYX_ERR(1, 1, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_unpickle_Constraints") < 0)) __PYX_ERR(1, 1, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_unpickle_Optima") < 0)) __PYX_ERR(1, 1, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3434,20 +3158,20 @@ static PyObject *__pyx_pw_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Const
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Constraints", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 1, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Optima", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("atpy.src.cython.constraints.__pyx_unpickle_Constraints", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.__pyx_unpickle_Optima", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_4atpy_3src_6cython_6optima___pyx_unpickle_Optima(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4atpy_3src_6cython_6optima___pyx_unpickle_Optima(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -3458,24 +3182,24 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   int __pyx_t_6;
-  __Pyx_RefNannySetupContext("__pyx_unpickle_Constraints", 0);
+  __Pyx_RefNannySetupContext("__pyx_unpickle_Optima", 0);
 
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum != 0xc660185:             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum != 0x52872a4:             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
  */
-  __pyx_t_1 = ((__pyx_v___pyx_checksum != 0xc660185) != 0);
+  __pyx_t_1 = ((__pyx_v___pyx_checksum != 0x52872a4) != 0);
   if (__pyx_t_1) {
 
     /* "(tree fragment)":5
  *     cdef object __pyx_result
- *     if __pyx_checksum != 0xc660185:
+ *     if __pyx_checksum != 0x52872a4:
  *         from pickle import PickleError as __pyx_PickleError             # <<<<<<<<<<<<<<
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
- *     __pyx_result = Constraints.__new__(__pyx_type)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
+ *     __pyx_result = Optima.__new__(__pyx_type)
  */
     __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -3493,15 +3217,15 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "(tree fragment)":6
- *     if __pyx_checksum != 0xc660185:
+ *     if __pyx_checksum != 0x52872a4:
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)             # <<<<<<<<<<<<<<
- *     __pyx_result = Constraints.__new__(__pyx_type)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)             # <<<<<<<<<<<<<<
+ *     __pyx_result = Optima.__new__(__pyx_type)
  *     if __pyx_state is not None:
  */
     __pyx_t_2 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 6, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Incompatible_checksums_s_vs_0xc6, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 6, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Incompatible_checksums_s_vs_0x52, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 6, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_INCREF(__pyx_v___pyx_PickleError);
@@ -3528,20 +3252,20 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
     /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum != 0xc660185:             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum != 0x52872a4:             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
  */
   }
 
   /* "(tree fragment)":7
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
- *     __pyx_result = Constraints.__new__(__pyx_type)             # <<<<<<<<<<<<<<
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
+ *     __pyx_result = Optima.__new__(__pyx_type)             # <<<<<<<<<<<<<<
  *     if __pyx_state is not None:
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_4atpy_3src_6cython_11constraints_Constraints), __pyx_n_s_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_4atpy_3src_6cython_6optima_Optima), __pyx_n_s_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3562,10 +3286,10 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
   __pyx_t_3 = 0;
 
   /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
- *     __pyx_result = Constraints.__new__(__pyx_type)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
+ *     __pyx_result = Optima.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  *     return __pyx_result
  */
   __pyx_t_1 = (__pyx_v___pyx_state != Py_None);
@@ -3573,32 +3297,32 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
   if (__pyx_t_6) {
 
     /* "(tree fragment)":9
- *     __pyx_result = Constraints.__new__(__pyx_type)
+ *     __pyx_result = Optima.__new__(__pyx_type)
  *     if __pyx_state is not None:
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)             # <<<<<<<<<<<<<<
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)             # <<<<<<<<<<<<<<
  *     return __pyx_result
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v___pyx_state)->tp_name), 0))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_3 = __pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints__set_state(((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_4atpy_3src_6cython_6optima___pyx_unpickle_Optima__set_state(((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0xc660185 = (bounds, cst_parameters, index, twiss2index))" % __pyx_checksum)
- *     __pyx_result = Constraints.__new__(__pyx_type)
+ *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x52872a4 = (index, opt_parameters, parameters2index))" % __pyx_checksum)
+ *     __pyx_result = Optima.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  *     return __pyx_result
  */
   }
 
   /* "(tree fragment)":10
  *     if __pyx_state is not None:
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  *     return __pyx_result             # <<<<<<<<<<<<<<
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v___pyx_result);
@@ -3606,7 +3330,7 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
   goto __pyx_L0;
 
   /* "(tree fragment)":1
- * def __pyx_unpickle_Constraints(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
+ * def __pyx_unpickle_Optima(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
@@ -3617,7 +3341,7 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.__pyx_unpickle_Constraints", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.__pyx_unpickle_Optima", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -3628,34 +3352,33 @@ static PyObject *__pyx_pf_4atpy_3src_6cython_11constraints___pyx_unpickle_Constr
 }
 
 /* "(tree fragment)":11
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  *     return __pyx_result
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constraints__set_state(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_4atpy_3src_6cython_6optima___pyx_unpickle_Optima__set_state(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  std::vector<std::vector<double> >  __pyx_t_2;
-  std::vector<std::vector<int> >  __pyx_t_3;
-  int __pyx_t_4;
-  Py_ssize_t __pyx_t_5;
+  std::vector<std::vector<int> >  __pyx_t_2;
+  int __pyx_t_3;
+  Py_ssize_t __pyx_t_4;
+  int __pyx_t_5;
   int __pyx_t_6;
-  int __pyx_t_7;
+  PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  __Pyx_RefNannySetupContext("__pyx_unpickle_Constraints__set_state", 0);
+  __Pyx_RefNannySetupContext("__pyx_unpickle_Optima__set_state", 0);
 
   /* "(tree fragment)":12
  *     return __pyx_result
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]             # <<<<<<<<<<<<<<
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]             # <<<<<<<<<<<<<<
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -3663,9 +3386,9 @@ static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constra
   }
   __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_vector_from_py_std_3a__3a_vector_3c_int_3e___(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v___pyx_result->bounds = __pyx_t_2;
+  __pyx_v___pyx_result->index = __pyx_t_2;
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(1, 12, __pyx_L1_error)
@@ -3674,9 +3397,9 @@ static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constra
   __Pyx_GOTREF(__pyx_t_1);
   if (!(likely(PyList_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v___pyx_result->cst_parameters);
-  __Pyx_DECREF(__pyx_v___pyx_result->cst_parameters);
-  __pyx_v___pyx_result->cst_parameters = ((PyObject*)__pyx_t_1);
+  __Pyx_GOTREF(__pyx_v___pyx_result->opt_parameters);
+  __Pyx_DECREF(__pyx_v___pyx_result->opt_parameters);
+  __pyx_v___pyx_result->opt_parameters = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -3684,93 +3407,84 @@ static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constra
   }
   __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __pyx_convert_vector_from_py_std_3a__3a_vector_3c_int_3e___(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v___pyx_result->index = __pyx_t_3;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
   if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v___pyx_result->twiss2index);
-  __Pyx_DECREF(__pyx_v___pyx_result->twiss2index);
-  __pyx_v___pyx_result->twiss2index = ((PyObject*)__pyx_t_1);
+  __Pyx_GOTREF(__pyx_v___pyx_result->parameters2index);
+  __Pyx_DECREF(__pyx_v___pyx_result->parameters2index);
+  __pyx_v___pyx_result->parameters2index = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "(tree fragment)":13
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(1, 13, __pyx_L1_error)
   }
-  __pyx_t_5 = PyTuple_GET_SIZE(__pyx_v___pyx_state); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_6 = ((__pyx_t_5 > 4) != 0);
-  if (__pyx_t_6) {
+  __pyx_t_4 = PyTuple_GET_SIZE(__pyx_v___pyx_state); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
+  __pyx_t_5 = ((__pyx_t_4 > 3) != 0);
+  if (__pyx_t_5) {
   } else {
-    __pyx_t_4 = __pyx_t_6;
+    __pyx_t_3 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_HasAttr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_7 = (__pyx_t_6 != 0);
-  __pyx_t_4 = __pyx_t_7;
+  __pyx_t_5 = __Pyx_HasAttr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
+  __pyx_t_6 = (__pyx_t_5 != 0);
+  __pyx_t_3 = __pyx_t_6;
   __pyx_L4_bool_binop_done:;
-  if (__pyx_t_4) {
+  if (__pyx_t_3) {
 
     /* "(tree fragment)":14
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])             # <<<<<<<<<<<<<<
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[3])             # <<<<<<<<<<<<<<
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 14, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 14, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_update); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 14, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_update); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (unlikely(__pyx_v___pyx_state == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
       __PYX_ERR(1, 14, __pyx_L1_error)
     }
-    __pyx_t_8 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_10 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
-      __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_9);
-      if (likely(__pyx_t_10)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-        __Pyx_INCREF(__pyx_t_10);
+    __pyx_t_7 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 14, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_9 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
+      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_8);
+      if (likely(__pyx_t_9)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+        __Pyx_INCREF(__pyx_t_9);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_9, function);
+        __Pyx_DECREF_SET(__pyx_t_8, function);
       }
     }
-    __pyx_t_1 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_10, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_8);
-    __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_1 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_9, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7);
+    __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 14, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
     /* "(tree fragment)":13
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   }
 
   /* "(tree fragment)":11
- *         __pyx_unpickle_Constraints__set_state(<Constraints> __pyx_result, __pyx_state)
+ *         __pyx_unpickle_Optima__set_state(<Optima> __pyx_result, __pyx_state)
  *     return __pyx_result
- * cdef __pyx_unpickle_Constraints__set_state(Constraints __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result.bounds = __pyx_state[0]; __pyx_result.cst_parameters = __pyx_state[1]; __pyx_result.index = __pyx_state[2]; __pyx_result.twiss2index = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
+ * cdef __pyx_unpickle_Optima__set_state(Optima __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_result.index = __pyx_state[0]; __pyx_result.opt_parameters = __pyx_state[1]; __pyx_result.parameters2index = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
   /* function exit code */
@@ -3778,359 +3492,13 @@ static PyObject *__pyx_f_4atpy_3src_6cython_11constraints___pyx_unpickle_Constra
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("atpy.src.cython.constraints.__pyx_unpickle_Constraints__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("atpy.src.cython.optima.__pyx_unpickle_Optima__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "vector.to_py":60
- * 
- * @cname("__pyx_convert_vector_to_py_double")
- * cdef object __pyx_convert_vector_to_py_double(vector[X]& v):             # <<<<<<<<<<<<<<
- *     return [v[i] for i in range(v.size())]
- * 
- */
-
-static PyObject *__pyx_convert_vector_to_py_double(const std::vector<double>  &__pyx_v_v) {
-  size_t __pyx_v_i;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  size_t __pyx_t_2;
-  size_t __pyx_t_3;
-  size_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  __Pyx_RefNannySetupContext("__pyx_convert_vector_to_py_double", 0);
-
-  /* "vector.to_py":61
- * @cname("__pyx_convert_vector_to_py_double")
- * cdef object __pyx_convert_vector_to_py_double(vector[X]& v):
- *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_v_v.size();
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_v[__pyx_v_i])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 61, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(1, 61, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  }
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "vector.to_py":60
- * 
- * @cname("__pyx_convert_vector_to_py_double")
- * cdef object __pyx_convert_vector_to_py_double(vector[X]& v):             # <<<<<<<<<<<<<<
- *     return [v[i] for i in range(v.size())]
- * 
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("vector.to_py.__pyx_convert_vector_to_py_double", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(const std::vector<std::vector<double> >  &__pyx_v_v) {
-  size_t __pyx_v_i;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  size_t __pyx_t_2;
-  size_t __pyx_t_3;
-  size_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  __Pyx_RefNannySetupContext("__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___", 0);
-
-  /* "vector.to_py":61
- * @cname("__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___")
- * cdef object __pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(vector[X]& v):
- *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_v_v.size();
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-    __pyx_t_5 = __pyx_convert_vector_to_py_double((__pyx_v_v[__pyx_v_i])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 61, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(1, 61, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  }
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "vector.to_py":60
- * 
- * @cname("__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___")
- * cdef object __pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___(vector[X]& v):             # <<<<<<<<<<<<<<
- *     return [v[i] for i in range(v.size())]
- * 
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("vector.to_py.__pyx_convert_vector_to_py_std_3a__3a_vector_3c_double_3e___", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "vector.from_py":45
- * 
- * @cname("__pyx_convert_vector_from_py_double")
- * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:             # <<<<<<<<<<<<<<
- *     cdef vector[X] v
- *     for item in o:
- */
-
-static std::vector<double>  __pyx_convert_vector_from_py_double(PyObject *__pyx_v_o) {
-  std::vector<double>  __pyx_v_v;
-  PyObject *__pyx_v_item = NULL;
-  std::vector<double>  __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  Py_ssize_t __pyx_t_2;
-  PyObject *(*__pyx_t_3)(PyObject *);
-  PyObject *__pyx_t_4 = NULL;
-  double __pyx_t_5;
-  __Pyx_RefNannySetupContext("__pyx_convert_vector_from_py_double", 0);
-
-  /* "vector.from_py":47
- * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:
- *     cdef vector[X] v
- *     for item in o:             # <<<<<<<<<<<<<<
- *         v.push_back(<X>item)
- *     return v
- */
-  if (likely(PyList_CheckExact(__pyx_v_o)) || PyTuple_CheckExact(__pyx_v_o)) {
-    __pyx_t_1 = __pyx_v_o; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
-    __pyx_t_3 = NULL;
-  } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 47, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 47, __pyx_L1_error)
-  }
-  for (;;) {
-    if (likely(!__pyx_t_3)) {
-      if (likely(PyList_CheckExact(__pyx_t_1))) {
-        if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(1, 47, __pyx_L1_error)
-        #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        #endif
-      } else {
-        if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(1, 47, __pyx_L1_error)
-        #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        #endif
-      }
-    } else {
-      __pyx_t_4 = __pyx_t_3(__pyx_t_1);
-      if (unlikely(!__pyx_t_4)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 47, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_4);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_4);
-    __pyx_t_4 = 0;
-
-    /* "vector.from_py":48
- *     cdef vector[X] v
- *     for item in o:
- *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
- *     return v
- * 
- */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_item); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
-    __pyx_v_v.push_back(((double)__pyx_t_5));
-
-    /* "vector.from_py":47
- * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:
- *     cdef vector[X] v
- *     for item in o:             # <<<<<<<<<<<<<<
- *         v.push_back(<X>item)
- *     return v
- */
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "vector.from_py":49
- *     for item in o:
- *         v.push_back(<X>item)
- *     return v             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_r = __pyx_v_v;
-  goto __pyx_L0;
-
-  /* "vector.from_py":45
- * 
- * @cname("__pyx_convert_vector_from_py_double")
- * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:             # <<<<<<<<<<<<<<
- *     cdef vector[X] v
- *     for item in o:
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("vector.from_py.__pyx_convert_vector_from_py_double", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_pretend_to_initialize(&__pyx_r);
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_item);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static std::vector<std::vector<double> >  __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(PyObject *__pyx_v_o) {
-  std::vector<std::vector<double> >  __pyx_v_v;
-  PyObject *__pyx_v_item = NULL;
-  std::vector<std::vector<double> >  __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  Py_ssize_t __pyx_t_2;
-  PyObject *(*__pyx_t_3)(PyObject *);
-  PyObject *__pyx_t_4 = NULL;
-  std::vector<double>  __pyx_t_5;
-  __Pyx_RefNannySetupContext("__pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___", 0);
-
-  /* "vector.from_py":47
- * cdef vector[X] __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(object o) except *:
- *     cdef vector[X] v
- *     for item in o:             # <<<<<<<<<<<<<<
- *         v.push_back(<X>item)
- *     return v
- */
-  if (likely(PyList_CheckExact(__pyx_v_o)) || PyTuple_CheckExact(__pyx_v_o)) {
-    __pyx_t_1 = __pyx_v_o; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
-    __pyx_t_3 = NULL;
-  } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 47, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 47, __pyx_L1_error)
-  }
-  for (;;) {
-    if (likely(!__pyx_t_3)) {
-      if (likely(PyList_CheckExact(__pyx_t_1))) {
-        if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(1, 47, __pyx_L1_error)
-        #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        #endif
-      } else {
-        if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(1, 47, __pyx_L1_error)
-        #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        #endif
-      }
-    } else {
-      __pyx_t_4 = __pyx_t_3(__pyx_t_1);
-      if (unlikely(!__pyx_t_4)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 47, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_4);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_4);
-    __pyx_t_4 = 0;
-
-    /* "vector.from_py":48
- *     cdef vector[X] v
- *     for item in o:
- *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
- *     return v
- * 
- */
-    __pyx_t_5 = __pyx_convert_vector_from_py_double(__pyx_v_item); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
-    __pyx_v_v.push_back(((std::vector<double> )__pyx_t_5));
-
-    /* "vector.from_py":47
- * cdef vector[X] __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(object o) except *:
- *     cdef vector[X] v
- *     for item in o:             # <<<<<<<<<<<<<<
- *         v.push_back(<X>item)
- *     return v
- */
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "vector.from_py":49
- *     for item in o:
- *         v.push_back(<X>item)
- *     return v             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_r = __pyx_v_v;
-  goto __pyx_L0;
-
-  /* "vector.from_py":45
- * 
- * @cname("__pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___")
- * cdef vector[X] __pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___(object o) except *:             # <<<<<<<<<<<<<<
- *     cdef vector[X] v
- *     for item in o:
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("vector.from_py.__pyx_convert_vector_from_py_std_3a__3a_vector_3c_double_3e___", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_pretend_to_initialize(&__pyx_r);
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_item);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -4480,10 +3848,10 @@ static std::vector<std::vector<int> >  __pyx_convert_vector_from_py_std_3a__3a_v
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_4atpy_3src_6cython_11constraints_Constraints __pyx_vtable_4atpy_3src_6cython_11constraints_Constraints;
+static struct __pyx_vtabstruct_4atpy_3src_6cython_6optima_Optima __pyx_vtable_4atpy_3src_6cython_6optima_Optima;
 
-static PyObject *__pyx_tp_new_4atpy_3src_6cython_11constraints_Constraints(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *p;
+static PyObject *__pyx_tp_new_4atpy_3src_6cython_6optima_Optima(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -4491,17 +3859,16 @@ static PyObject *__pyx_tp_new_4atpy_3src_6cython_11constraints_Constraints(PyTyp
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)o);
-  p->__pyx_vtab = __pyx_vtabptr_4atpy_3src_6cython_11constraints_Constraints;
+  p = ((struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)o);
+  p->__pyx_vtab = __pyx_vtabptr_4atpy_3src_6cython_6optima_Optima;
   new((void*)&(p->index)) std::vector<std::vector<int> > ();
-  new((void*)&(p->bounds)) std::vector<std::vector<double> > ();
-  p->cst_parameters = ((PyObject*)Py_None); Py_INCREF(Py_None);
-  p->twiss2index = ((PyObject*)Py_None); Py_INCREF(Py_None);
+  p->opt_parameters = ((PyObject*)Py_None); Py_INCREF(Py_None);
+  p->parameters2index = ((PyObject*)Py_None); Py_INCREF(Py_None);
   return o;
 }
 
-static void __pyx_tp_dealloc_4atpy_3src_6cython_11constraints_Constraints(PyObject *o) {
-  struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *p = (struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)o;
+static void __pyx_tp_dealloc_4atpy_3src_6cython_6optima_Optima(PyObject *o) {
+  struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *p = (struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && !_PyGC_FINALIZED(o)) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -4512,67 +3879,61 @@ static void __pyx_tp_dealloc_4atpy_3src_6cython_11constraints_Constraints(PyObje
     PyObject *etype, *eval, *etb;
     PyErr_Fetch(&etype, &eval, &etb);
     ++Py_REFCNT(o);
-    __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_3__dealloc__(o);
+    __pyx_pw_4atpy_3src_6cython_6optima_6Optima_3__dealloc__(o);
     --Py_REFCNT(o);
     PyErr_Restore(etype, eval, etb);
   }
   __Pyx_call_destructor(p->index);
-  __Pyx_call_destructor(p->bounds);
-  Py_CLEAR(p->cst_parameters);
-  Py_CLEAR(p->twiss2index);
+  Py_CLEAR(p->opt_parameters);
+  Py_CLEAR(p->parameters2index);
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static int __pyx_tp_traverse_4atpy_3src_6cython_11constraints_Constraints(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_4atpy_3src_6cython_6optima_Optima(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *p = (struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)o;
-  if (p->cst_parameters) {
-    e = (*v)(p->cst_parameters, a); if (e) return e;
+  struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *p = (struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)o;
+  if (p->opt_parameters) {
+    e = (*v)(p->opt_parameters, a); if (e) return e;
   }
-  if (p->twiss2index) {
-    e = (*v)(p->twiss2index, a); if (e) return e;
+  if (p->parameters2index) {
+    e = (*v)(p->parameters2index, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_4atpy_3src_6cython_11constraints_Constraints(PyObject *o) {
+static int __pyx_tp_clear_4atpy_3src_6cython_6optima_Optima(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *p = (struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *)o;
-  tmp = ((PyObject*)p->cst_parameters);
-  p->cst_parameters = ((PyObject*)Py_None); Py_INCREF(Py_None);
+  struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *p = (struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *)o;
+  tmp = ((PyObject*)p->opt_parameters);
+  p->opt_parameters = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->twiss2index);
-  p->twiss2index = ((PyObject*)Py_None); Py_INCREF(Py_None);
+  tmp = ((PyObject*)p->parameters2index);
+  p->parameters2index = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx_getprop_4atpy_3src_6cython_11constraints_11Constraints_bounds(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_6bounds_1__get__(o);
+static PyObject *__pyx_getprop_4atpy_3src_6cython_6optima_6Optima_index(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_4atpy_3src_6cython_6optima_6Optima_5index_1__get__(o);
 }
 
-static PyObject *__pyx_getprop_4atpy_3src_6cython_11constraints_11Constraints_index(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5index_1__get__(o);
-}
-
-static PyMethodDef __pyx_methods_4atpy_3src_6cython_11constraints_Constraints[] = {
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_5__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_7__setstate_cython__, METH_O, 0},
+static PyMethodDef __pyx_methods_4atpy_3src_6cython_6optima_Optima[] = {
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4atpy_3src_6cython_6optima_6Optima_5__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4atpy_3src_6cython_6optima_6Optima_7__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_4atpy_3src_6cython_11constraints_Constraints[] = {
-  {(char *)"bounds", __pyx_getprop_4atpy_3src_6cython_11constraints_11Constraints_bounds, 0, (char *)0, 0},
-  {(char *)"index", __pyx_getprop_4atpy_3src_6cython_11constraints_11Constraints_index, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_4atpy_3src_6cython_6optima_Optima[] = {
+  {(char *)"index", __pyx_getprop_4atpy_3src_6cython_6optima_6Optima_index, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_4atpy_3src_6cython_11constraints_Constraints = {
+static PyTypeObject __pyx_type_4atpy_3src_6cython_6optima_Optima = {
   PyVarObject_HEAD_INIT(0, 0)
-  "atpy.src.cython.constraints.Constraints", /*tp_name*/
-  sizeof(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints), /*tp_basicsize*/
+  "atpy.src.cython.optima.Optima", /*tp_name*/
+  sizeof(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_4atpy_3src_6cython_11constraints_Constraints, /*tp_dealloc*/
+  __pyx_tp_dealloc_4atpy_3src_6cython_6optima_Optima, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -4598,24 +3959,24 @@ static PyTypeObject __pyx_type_4atpy_3src_6cython_11constraints_Constraints = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  "\n    This class is to set constraints for a lattice\n    ", /*tp_doc*/
-  __pyx_tp_traverse_4atpy_3src_6cython_11constraints_Constraints, /*tp_traverse*/
-  __pyx_tp_clear_4atpy_3src_6cython_11constraints_Constraints, /*tp_clear*/
+  "\n    This class is to set optima for a lattice\n    ", /*tp_doc*/
+  __pyx_tp_traverse_4atpy_3src_6cython_6optima_Optima, /*tp_traverse*/
+  __pyx_tp_clear_4atpy_3src_6cython_6optima_Optima, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_4atpy_3src_6cython_11constraints_Constraints, /*tp_methods*/
+  __pyx_methods_4atpy_3src_6cython_6optima_Optima, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_4atpy_3src_6cython_11constraints_Constraints, /*tp_getset*/
+  __pyx_getsets_4atpy_3src_6cython_6optima_Optima, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   0, /*tp_dictoffset*/
-  __pyx_pw_4atpy_3src_6cython_11constraints_11Constraints_1__init__, /*tp_init*/
+  __pyx_pw_4atpy_3src_6cython_6optima_6Optima_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_4atpy_3src_6cython_11constraints_Constraints, /*tp_new*/
+  __pyx_tp_new_4atpy_3src_6cython_6optima_Optima, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -4643,17 +4004,17 @@ static PyMethodDef __pyx_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_constraints(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_optima(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_constraints},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_optima},
   {0, NULL}
 };
 #endif
 
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "constraints",
+    "optima",
     0, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
@@ -4682,26 +4043,28 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_u_Constraint_lower_is_not_smaller, __pyx_k_Constraint_lower_is_not_smaller, sizeof(__pyx_k_Constraint_lower_is_not_smaller), 0, 1, 0, 0},
-  {&__pyx_n_s_Constraints, __pyx_k_Constraints, sizeof(__pyx_k_Constraints), 0, 0, 1, 1},
-  {&__pyx_kp_s_Incompatible_checksums_s_vs_0xc6, __pyx_k_Incompatible_checksums_s_vs_0xc6, sizeof(__pyx_k_Incompatible_checksums_s_vs_0xc6), 0, 0, 1, 0},
+  {&__pyx_kp_s_Incompatible_checksums_s_vs_0x52, __pyx_k_Incompatible_checksums_s_vs_0x52, sizeof(__pyx_k_Incompatible_checksums_s_vs_0x52), 0, 0, 1, 0},
+  {&__pyx_kp_u_Minormax_can_only_be_value_1_or, __pyx_k_Minormax_can_only_be_value_1_or, sizeof(__pyx_k_Minormax_can_only_be_value_1_or), 0, 1, 0, 0},
+  {&__pyx_n_s_Optima, __pyx_k_Optima, sizeof(__pyx_k_Optima), 0, 0, 1, 1},
   {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
   {&__pyx_kp_u_Place_parameter_must_be_integer, __pyx_k_Place_parameter_must_be_integer, sizeof(__pyx_k_Place_parameter_must_be_integer), 0, 1, 0, 0},
   {&__pyx_kp_u_The_second_number_is_smaller_tha, __pyx_k_The_second_number_is_smaller_tha, sizeof(__pyx_k_The_second_number_is_smaller_tha), 0, 1, 0, 0},
-  {&__pyx_kp_u_Wrong_args_was_input_for_constra, __pyx_k_Wrong_args_was_input_for_constra, sizeof(__pyx_k_Wrong_args_was_input_for_constra), 0, 1, 0, 0},
+  {&__pyx_kp_u_Wrong_args_was_input_for_optima, __pyx_k_Wrong_args_was_input_for_optima, sizeof(__pyx_k_Wrong_args_was_input_for_optima), 0, 1, 0, 0},
   {&__pyx_kp_u_Wrong_args_was_input_please_chec, __pyx_k_Wrong_args_was_input_please_chec, sizeof(__pyx_k_Wrong_args_was_input_please_chec), 0, 1, 0, 0},
-  {&__pyx_kp_u_Wrong_parameter_as_constraint, __pyx_k_Wrong_parameter_as_constraint, sizeof(__pyx_k_Wrong_parameter_as_constraint), 0, 1, 0, 0},
+  {&__pyx_kp_u_Wrong_parameter_as_optima, __pyx_k_Wrong_parameter_as_optima, sizeof(__pyx_k_Wrong_parameter_as_optima), 0, 1, 0, 0},
   {&__pyx_n_s_all, __pyx_k_all, sizeof(__pyx_k_all), 0, 0, 1, 1},
   {&__pyx_n_u_alpha_x, __pyx_k_alpha_x, sizeof(__pyx_k_alpha_x), 0, 1, 0, 1},
   {&__pyx_n_u_alpha_y, __pyx_k_alpha_y, sizeof(__pyx_k_alpha_y), 0, 1, 0, 1},
   {&__pyx_n_u_alpha_z, __pyx_k_alpha_z, sizeof(__pyx_k_alpha_z), 0, 1, 0, 1},
-  {&__pyx_n_s_atpy_src_cython_constraints, __pyx_k_atpy_src_cython_constraints, sizeof(__pyx_k_atpy_src_cython_constraints), 0, 0, 1, 1},
+  {&__pyx_n_u_angle, __pyx_k_angle, sizeof(__pyx_k_angle), 0, 1, 0, 1},
+  {&__pyx_n_s_atpy_src_cython_optima, __pyx_k_atpy_src_cython_optima, sizeof(__pyx_k_atpy_src_cython_optima), 0, 0, 1, 1},
   {&__pyx_n_u_beta_x, __pyx_k_beta_x, sizeof(__pyx_k_beta_x), 0, 1, 0, 1},
   {&__pyx_n_u_beta_y, __pyx_k_beta_y, sizeof(__pyx_k_beta_y), 0, 1, 0, 1},
   {&__pyx_n_u_beta_z, __pyx_k_beta_z, sizeof(__pyx_k_beta_z), 0, 1, 0, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-  {&__pyx_n_u_constraints, __pyx_k_constraints, sizeof(__pyx_k_constraints), 0, 1, 0, 1},
   {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
+  {&__pyx_n_u_e1, __pyx_k_e1, sizeof(__pyx_k_e1), 0, 1, 0, 1},
+  {&__pyx_n_u_e2, __pyx_k_e2, sizeof(__pyx_k_e2), 0, 1, 0, 1},
   {&__pyx_n_u_eta_x, __pyx_k_eta_x, sizeof(__pyx_k_eta_x), 0, 1, 0, 1},
   {&__pyx_n_u_eta_y, __pyx_k_eta_y, sizeof(__pyx_k_eta_y), 0, 1, 0, 1},
   {&__pyx_n_u_eta_z, __pyx_k_eta_z, sizeof(__pyx_k_eta_z), 0, 1, 0, 1},
@@ -4714,13 +4077,17 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
+  {&__pyx_n_u_k1, __pyx_k_k1, sizeof(__pyx_k_k1), 0, 1, 0, 1},
+  {&__pyx_n_u_k2, __pyx_k_k2, sizeof(__pyx_k_k2), 0, 1, 0, 1},
   {&__pyx_n_s_keys, __pyx_k_keys, sizeof(__pyx_k_keys), 0, 0, 1, 1},
+  {&__pyx_n_u_l, __pyx_k_l, sizeof(__pyx_k_l), 0, 1, 0, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
   {&__pyx_n_u_nu_x, __pyx_k_nu_x, sizeof(__pyx_k_nu_x), 0, 1, 0, 1},
   {&__pyx_n_u_nu_y, __pyx_k_nu_y, sizeof(__pyx_k_nu_y), 0, 1, 0, 1},
   {&__pyx_n_u_nu_z, __pyx_k_nu_z, sizeof(__pyx_k_nu_z), 0, 1, 0, 1},
+  {&__pyx_n_u_optima, __pyx_k_optima, sizeof(__pyx_k_optima), 0, 1, 0, 1},
   {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
   {&__pyx_n_u_place, __pyx_k_place, sizeof(__pyx_k_place), 0, 1, 0, 1},
   {&__pyx_n_s_pop, __pyx_k_pop, sizeof(__pyx_k_pop), 0, 0, 1, 1},
@@ -4729,7 +4096,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pyx_result, __pyx_k_pyx_result, sizeof(__pyx_k_pyx_result), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_state, __pyx_k_pyx_state, sizeof(__pyx_k_pyx_state), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_type, __pyx_k_pyx_type, sizeof(__pyx_k_pyx_type), 0, 0, 1, 1},
-  {&__pyx_n_s_pyx_unpickle_Constraints, __pyx_k_pyx_unpickle_Constraints, sizeof(__pyx_k_pyx_unpickle_Constraints), 0, 0, 1, 1},
+  {&__pyx_n_s_pyx_unpickle_Optima, __pyx_k_pyx_unpickle_Optima, sizeof(__pyx_k_pyx_unpickle_Optima), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
@@ -4744,7 +4111,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_all = __Pyx_GetBuiltinName(__pyx_n_s_all); if (!__pyx_builtin_all) __PYX_ERR(0, 30, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 50, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -4755,14 +4122,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "(tree fragment)":1
- * def __pyx_unpickle_Constraints(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
+ * def __pyx_unpickle_Optima(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
   __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple_)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Constraints, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Optima, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4790,7 +4157,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_int_15 = PyInt_FromLong(15); if (unlikely(!__pyx_int_15)) __PYX_ERR(0, 2, __pyx_L1_error)
   __pyx_int_16 = PyInt_FromLong(16); if (unlikely(!__pyx_int_16)) __PYX_ERR(0, 2, __pyx_L1_error)
   __pyx_int_17 = PyInt_FromLong(17); if (unlikely(!__pyx_int_17)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_int_208011653 = PyInt_FromLong(208011653L); if (unlikely(!__pyx_int_208011653)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_int_86536868 = PyInt_FromLong(86536868L); if (unlikely(!__pyx_int_86536868)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -4832,29 +4200,29 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  __pyx_vtabptr_4atpy_3src_6cython_11constraints_Constraints = &__pyx_vtable_4atpy_3src_6cython_11constraints_Constraints;
-  __pyx_vtable_4atpy_3src_6cython_11constraints_Constraints.get_constraints = (void (*)(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *, PyObject *, PyObject *))__pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constraints;
-  if (PyType_Ready(&__pyx_type_4atpy_3src_6cython_11constraints_Constraints) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_vtabptr_4atpy_3src_6cython_6optima_Optima = &__pyx_vtable_4atpy_3src_6cython_6optima_Optima;
+  __pyx_vtable_4atpy_3src_6cython_6optima_Optima.get_optima = (void (*)(struct __pyx_obj_4atpy_3src_6cython_6optima_Optima *, PyObject *, PyObject *))__pyx_f_4atpy_3src_6cython_6optima_6Optima_get_optima;
+  if (PyType_Ready(&__pyx_type_4atpy_3src_6cython_6optima_Optima) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
-  __pyx_type_4atpy_3src_6cython_11constraints_Constraints.tp_print = 0;
+  __pyx_type_4atpy_3src_6cython_6optima_Optima.tp_print = 0;
   #endif
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_4atpy_3src_6cython_11constraints_Constraints.tp_dictoffset && __pyx_type_4atpy_3src_6cython_11constraints_Constraints.tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_type_4atpy_3src_6cython_11constraints_Constraints.tp_getattro = __Pyx_PyObject_GenericGetAttr;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_4atpy_3src_6cython_6optima_Optima.tp_dictoffset && __pyx_type_4atpy_3src_6cython_6optima_Optima.tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_type_4atpy_3src_6cython_6optima_Optima.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_4atpy_3src_6cython_11constraints_Constraints, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 2, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_4atpy_3src_6cython_6optima_Optima, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 2, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
-      __pyx_wrapperbase_4atpy_3src_6cython_11constraints_11Constraints___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
-      __pyx_wrapperbase_4atpy_3src_6cython_11constraints_11Constraints___init__.doc = __pyx_doc_4atpy_3src_6cython_11constraints_11Constraints___init__;
-      ((PyWrapperDescrObject *)wrapper)->d_base = &__pyx_wrapperbase_4atpy_3src_6cython_11constraints_11Constraints___init__;
+      __pyx_wrapperbase_4atpy_3src_6cython_6optima_6Optima___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
+      __pyx_wrapperbase_4atpy_3src_6cython_6optima_6Optima___init__.doc = __pyx_doc_4atpy_3src_6cython_6optima_6Optima___init__;
+      ((PyWrapperDescrObject *)wrapper)->d_base = &__pyx_wrapperbase_4atpy_3src_6cython_6optima_6Optima___init__;
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_4atpy_3src_6cython_11constraints_Constraints.tp_dict, __pyx_vtabptr_4atpy_3src_6cython_11constraints_Constraints) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Constraints, (PyObject *)&__pyx_type_4atpy_3src_6cython_11constraints_Constraints) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_4atpy_3src_6cython_11constraints_Constraints) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_ptype_4atpy_3src_6cython_11constraints_Constraints = &__pyx_type_4atpy_3src_6cython_11constraints_Constraints;
+  if (__Pyx_SetVtable(__pyx_type_4atpy_3src_6cython_6optima_Optima.tp_dict, __pyx_vtabptr_4atpy_3src_6cython_6optima_Optima) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Optima, (PyObject *)&__pyx_type_4atpy_3src_6cython_6optima_Optima) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_4atpy_3src_6cython_6optima_Optima) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_ptype_4atpy_3src_6cython_6optima_Optima = &__pyx_type_4atpy_3src_6cython_6optima_Optima;
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4903,11 +4271,11 @@ static int __Pyx_modinit_function_import_code(void) {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initconstraints(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initconstraints(void)
+__Pyx_PyMODINIT_FUNC initoptima(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initoptima(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_constraints(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_constraints(void)
+__Pyx_PyMODINIT_FUNC PyInit_optima(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_optima(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -4974,7 +4342,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_constraints(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_optima(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -4983,7 +4351,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_constraints(PyObject *__pyx_pyinit
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'constraints' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'optima' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -4998,7 +4366,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_constraints(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_optima(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -5037,7 +4405,7 @@ if (!__Pyx_RefNanny) {
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("constraints", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("optima", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -5055,14 +4423,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_atpy__src__cython__constraints) {
+  if (__pyx_module_is_main_atpy__src__cython__optima) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 2, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "atpy.src.cython.constraints")) {
-      if (unlikely(PyDict_SetItemString(modules, "atpy.src.cython.constraints", __pyx_m) < 0)) __PYX_ERR(0, 2, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "atpy.src.cython.optima")) {
+      if (unlikely(PyDict_SetItemString(modules, "atpy.src.cython.optima", __pyx_m) < 0)) __PYX_ERR(0, 2, __pyx_L1_error)
     }
   }
   #endif
@@ -5084,20 +4452,20 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "(tree fragment)":1
- * def __pyx_unpickle_Constraints(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
+ * def __pyx_unpickle_Optima(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4atpy_3src_6cython_11constraints_1__pyx_unpickle_Constraints, NULL, __pyx_n_s_atpy_src_cython_constraints); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4atpy_3src_6cython_6optima_1__pyx_unpickle_Optima, NULL, __pyx_n_s_atpy_src_cython_optima); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Constraints, __pyx_t_1) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Optima, __pyx_t_1) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "atpy/src/cython/constraints.pyx":2
+  /* "atpy/src/cython/optima.pyx":2
  * 
- * cdef class Constraints:             # <<<<<<<<<<<<<<
+ * cdef class Optima:             # <<<<<<<<<<<<<<
  *     '''
- *     This class is to set constraints for a lattice
+ *     This class is to set optima for a lattice
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5119,11 +4487,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init atpy.src.cython.constraints", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init atpy.src.cython.optima", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init atpy.src.cython.constraints");
+    PyErr_SetString(PyExc_ImportError, "init atpy.src.cython.optima");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -5933,6 +5301,73 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
     }
 #endif
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+
+/* PyIntCompare */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED long inplace) {
+    if (op1 == op2) {
+        Py_RETURN_TRUE;
+    }
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long a = PyInt_AS_LONG(op1);
+        if (a == b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        int unequal;
+        unsigned long uintval;
+        Py_ssize_t size = Py_SIZE(op1);
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        if (intval == 0) {
+            if (size == 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+        } else if (intval < 0) {
+            if (size >= 0)
+                Py_RETURN_FALSE;
+            intval = -intval;
+            size = -size;
+        } else {
+            if (size <= 0)
+                Py_RETURN_FALSE;
+        }
+        uintval = (unsigned long) intval;
+#if PyLong_SHIFT * 4 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 4)) {
+            unequal = (size != 5) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[4] != ((uintval >> (4 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 3 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 3)) {
+            unequal = (size != 4) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 2 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 2)) {
+            unequal = (size != 3) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 1 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 1)) {
+            unequal = (size != 2) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+            unequal = (size != 1) || (((unsigned long) digits[0]) != (uintval & (unsigned long) PyLong_MASK));
+        if (unequal == 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+        if ((double)a == (double)b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    return (
+        PyObject_RichCompare(op1, op2, Py_EQ));
 }
 
 /* DictGetItem */

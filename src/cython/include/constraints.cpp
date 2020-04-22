@@ -2049,7 +2049,7 @@ static int __pyx_pf_4atpy_3src_6cython_11constraints_11Constraints___init__(stru
  * 
  *     cdef void get_constraints(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
  *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=10e-8
+ *         cdef double lower, upper, tol=1e-4
  */
 
 static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constraints(struct __pyx_obj_4atpy_3src_6cython_11constraints_Constraints *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kargs) {
@@ -2090,7 +2090,7 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
  * 
  *     cdef void get_constraints(self, tuple args, dict kargs):
  *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss             # <<<<<<<<<<<<<<
- *         cdef double lower, upper, tol=10e-8
+ *         cdef double lower, upper, tol=1e-4
  * 
  */
   __pyx_v_k = 0;
@@ -2116,14 +2116,14 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
   /* "atpy/src/cython/constraints.pyx":42
  *     cdef void get_constraints(self, tuple args, dict kargs):
  *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=10e-8             # <<<<<<<<<<<<<<
+ *         cdef double lower, upper, tol=1e-4             # <<<<<<<<<<<<<<
  * 
  *         for key,value in kargs.items():
  */
-  __pyx_v_tol = 10e-8;
+  __pyx_v_tol = 1e-4;
 
   /* "atpy/src/cython/constraints.pyx":44
- *         cdef double lower, upper, tol=10e-8
+ *         cdef double lower, upper, tol=1e-4
  * 
  *         for key,value in kargs.items():             # <<<<<<<<<<<<<<
  *             if type(value) is not tuple:
@@ -2571,7 +2571,7 @@ static void __pyx_f_4atpy_3src_6cython_11constraints_11Constraints_get_constrain
  * 
  *     cdef void get_constraints(self, tuple args, dict kargs):             # <<<<<<<<<<<<<<
  *         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
- *         cdef double lower, upper, tol=10e-8
+ *         cdef double lower, upper, tol=1e-4
  */
 
   /* function exit code */
