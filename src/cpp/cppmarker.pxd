@@ -1,6 +1,6 @@
 from .cppelement cimport CppElement
 cdef cppclass CppMarker(CppElement):
-    __init__():
+    __init__()nogil:
         this.elem_type = 0
         this.l = 0.
         this.init_matrixM()

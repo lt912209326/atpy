@@ -1,7 +1,7 @@
 from .cppelement cimport CppElement
 from libc.math cimport sin,cos,sinh,cosh,tan,atan,exp,sqrt,pi
 cdef cppclass CppDipole(CppElement):
-    __init__(double* parms):
+    __init__(double* parms)nogil:
         this.elem_type = 2
         this.l = parms[0]
         this.angle = parms[1]
@@ -13,18 +13,19 @@ cdef cppclass CppDipole(CppElement):
     inline void update_matrixM()nogil:
         l = this.l
         angle = this.angle
+        halfangle = angle/2.0
         rho =this.l/angle
         
         this.M[0][1] = rho*sin(angle)
         this.M[0][5] = rho*(1-cos(angle))
         
-        this.M[1][5] = 2*tan(angle/2)
+        this.M[1][5] = 2*tan(halfangle)
         
-        this.M[2][2] = 1-angle*tan(angle/2)
+        this.M[2][2] = 1-angle*tan(halfangle)
         this.M[2][3] = 1
         
-        this.M[3][2] = -2*tan(angle/2)*(1-angle/2*tan(angle/2))/rho
-        this.M[3][3] = 1-angle*tan(angle/2)
+        this.M[3][2] = -2*tan(halfangle)*(1-halfangle*tan(halfangle))/rho
+        this.M[3][3] = 1-angle*tan(halfangle)
         
     
     inline void get_phase(double* parms0, double* parms)nogil:

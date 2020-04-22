@@ -9,19 +9,22 @@ cdef cppclass CppElement:
     double k2
     double e1
     double e2
+    double parameters[6]
     double M[6][6]
     double T[6][6]
     
-    __init__():
+    __init__()nogil:
         pass
     
-    inline void init_matrixM():
-        this.M = [[1., 0., 0., 0., 0., 0.],
-                  [0., 1., 0., 0., 0., 0.],
-                  [0., 0., 1., 0., 0., 0.],
-                  [0., 0., 0., 1., 0., 0.],
-                  [0., 0., 0., 0., 1., 0.],
-                  [0., 0., 0., 0., 0., 1.]]
+    inline double* get_parameters_ptr()nogil:
+        return &this.parameters[0]
+    
+    inline void init_matrixM()nogil:
+        cdef int i,j
+        for i in range(6):
+            for j in range(6):
+                    this.M[i][j] = 1.0 if i==j else 0.0
+                
     
     inline void update_matrixM()nogil:
         pass
@@ -52,7 +55,6 @@ cdef cppclass CppElement:
 #                   [0., 0., 0., M[3][2]**2, -2*M[3][2]*M[3][3], M[3][3]**2]]
     
     inline void get_twiss(double* parms0, double* parms)nogil:
-#         for i in range()
         parms[0] = this.T[0][0]*parms0[0] + this.T[0][1]*parms0[1] + this.T[0][2]*parms0[2]
         parms[1] = this.T[1][0]*parms0[0] + this.T[1][1]*parms0[1] + this.T[1][2]*parms0[2]
         parms[2] = this.T[2][0]*parms0[0] + this.T[2][1]*parms0[1] + this.T[2][2]*parms0[2]
@@ -66,8 +68,6 @@ cdef cppclass CppElement:
         pass
     
     inline void get_dispersion(double* parms0, double* parms)nogil:
-#         parms[6] = this.M[0][0]*parms0[6] + this.M[0][1]*parms0[7] + this.M[0][5]
-#         parms[7] = this.M[1][0]*parms0[6] + this.M[1][1]*parms0[7] + this.M[1][5]
         parms[12] = this.M[0][0]*parms0[12] + this.M[0][1]*parms0[13] + this.M[0][5]
         parms[13] = this.M[1][0]*parms0[12] + this.M[1][1]*parms0[13] + this.M[1][5]
     

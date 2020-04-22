@@ -1,7 +1,7 @@
 from .cppelement cimport CppElement
 from libc.math cimport pi,atan
 cdef cppclass CppDrift(CppElement):
-    __init__(double* parms):
+    __init__(double* parms)nogil:
         this.elem_type = 1
         this.l = parms[0]
         this.init_matrixM()
