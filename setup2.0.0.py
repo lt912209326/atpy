@@ -34,7 +34,7 @@ extension = [Extension("atpy.src.cython.elements",
 setup(name='atpy',
       packages=find_packages(),
       cmdclass = {'build_ext': build_ext},
-      ext_modules=cythonize(extension,compiler_directives={'language_level':3}),
+      ext_modules=cythonize(extension,compiler_directives={'profile':True,'language_level':3}),
       package_dir={'':'..'},
       # packages = ['atpy.src.cpp','atpy.src.cython']
       # package_data={'./include': ['cppelement.pxd']},

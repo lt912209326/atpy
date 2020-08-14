@@ -1,4 +1,4 @@
-from atpy.src import*
+from .src import*
 # from atpy.src import cDrift
 # from atpy.include cimport cDipole
 # from atpy.include cimport cQuadrupole

@@ -1,3 +1,4 @@
+
 from .cppelement cimport CppElement
 from libc.math cimport pi,cos,sin,cosh,sinh,tan,atan,sqrt,exp
 cdef cppclass CppQuadrupole(CppElement):
