@@ -82,3 +82,22 @@ optima = Optima(*opti)
 ARCFODO.set_variables(variables)
 ARCFODO.set_constraints(constraints)
 ARCFODO.set_optima(optima)
+
+
+
+
+
+from myproblem import MyProblem as Problem
+from main import main as main
+from cProfile import run
+%matplotlib 
+# inline
+match =False
+problem = Problem(ARCFODO,match=match, F=0.8, CR=0.8,drawing=2)
+# NDSet,finalpopulation
+if match:
+    finalpopulation,obj_trace,var_trace=main(problem,NIND=400,MAXGEN=800)
+else:
+    NDSet,finalpopulation = main(problem,NIND=300,MAXGEN=200)
+
+# run('main(problem)')
