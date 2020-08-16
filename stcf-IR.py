@@ -1,5 +1,5 @@
 # ARCFOFO lattice definition
-from atpy import Marker,Drift, Dipole, Quadrupole,Variables,Constraints,Optima
+from atpy import *
 #---ELEMENTS DIFINE---#
 MK0 = Marker(beta_x=0.04,alpha_x=0,gamma_x=25,beta_y=0.0008,alpha_y=0,gamma_y=1250)
 L1 = Drift(l=0.935)
@@ -90,8 +90,6 @@ ARCFODO.set_optima(optima)
 from myproblem import MyProblem as Problem
 from main import main as main
 from cProfile import run
-%matplotlib 
-# inline
 match =False
 problem = Problem(ARCFODO,match=match, F=0.8, CR=0.8,drawing=2)
 # NDSet,finalpopulation
