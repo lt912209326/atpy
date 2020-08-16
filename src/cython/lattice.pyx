@@ -1,6 +1,11 @@
-from atpy cimport CppElement,CppMarker,CppDrift,CppDipole,CppQuadrupole
-from atpy cimport Element,Marker,Drift, Dipole, Quadrupole
-from atpy cimport Variables, Constraints, Optima
+from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole
+from .variables cimport Variables
+from .constraints cimport Constraints
+
+
+from .optima cimport Optima
+
+from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
 
 from libc.math cimport fmax,fabs,pi
 from libc.string cimport memcpy
@@ -38,6 +43,8 @@ cdef class Lattice:
         self.twiss =<double**>self.mem.alloc(self.nseq,sizeof(double*))
         self.parms =<double**>self.mem.alloc(self.nseq,sizeof(double*))
         self.elems =<CppElement**>self.mem.alloc(self.nseq,sizeof(CppElement*))
+        
+        
         assert all([isinstance(arg,Element) for arg in args]), 'Args must be Element class or its subclasses'
         for index,elem in enumerate(args):
             temp_elem = elem if elem not in self.pyelems else elem.copy()
@@ -193,7 +200,8 @@ cdef class Lattice:
         
         assert num_variables == self.variable.index[0].size(), "Input numpy array doesn't match the variables!"
         assert num_optima == self.optimum.index[0].size(), "Input numpy array doesn't match the optima!"
-        assert num_constraints == self.constraint.index[0].size(), "Input numpy array: {} doesn't match the constraints:{}!".format(num_constraints,self.constraint.index[0].size())
+        assert num_constraints == self.constraint.index[0].size(), "Input numpy array: {} doesn't match the constraints\
+        :{}!".format(num_constraints,self.constraint.index[0].size())
         for i in range(num_pop):
             self.update_variables(variables[i,:], num_variables)
             self._evaluate_lattice()
@@ -204,4 +212,4 @@ cdef class Lattice:
     def evaluate_lattice(self):
         self._evaluate_lattice()
     
-    
+
