@@ -3,7 +3,7 @@
 import geatpy as ea # import geatpy
 # from myproblem import MyProblem # 导入自定义问题接口
 
-def main(problem, NIND=200,MAXGEN=200):
+def main(problem, NIND=200,MAXGEN=200, drawing=0):
     """==================================种群设置==============================="""
     Encoding = 'RI'           # 编码方式
     # NIND = 200                  # 种群规模
@@ -19,6 +19,7 @@ def main(problem, NIND=200,MAXGEN=200):
     else:
         myAlgorithm = ea.moea_NSGA3_DE_templet(problem, population) # 实例化一个算法模板对象
     myAlgorithm.MAXGEN = MAXGEN #200  # 最大进化代数
+    myAlgorithm.drawing= drawing
     """============================调用算法模板进行种群进化======================"""
     
 #     results = myAlgorithm.run() # 执行算法模板，得到帕累托最优解集NDSet
