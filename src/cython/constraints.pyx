@@ -4,7 +4,7 @@ cdef class Constraints:
     This class is to set constraints for a lattice
     '''
         
-    def __init__(self,*args):
+    def __init__(self,*args,tol = 1.0e-4):
         '''
         def __init__(self,*args):
         args:( {'place':(0,15),'constraints':{'alpha_x':(1,4) [,'beta_x':(0.5,1)]} },
@@ -13,12 +13,13 @@ cdef class Constraints:
         'place': n or (n1,n2)
         'constraints': {'alpha_x':1 or (1,4) [,'beta_x':1 or (0.5,1)]}
         '''
+        self.tolerance = tol
         self.cst_parameters = ['beta_x','alpha_x','beta_y','alpha_y','beta_z','alpha_z','eta_x',
-                                    'etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
+                                    'etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z','telescope_x','telescope_y']
         
         self.twiss2index = {'beta_x':0,'alpha_x':1,'gamma_x':2,'beta_y':3,'alpha_y':4,'gamma_y':5,
                                 'beta_z':6,'alpha_z':7,'gamma_z':8,'nu_x':9,'nu_y':10,'nu_z':11,
-                                'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
+                                'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17,'telescope_x':0,'telescope_y':2}
         self.index.resize(4)
         self.bounds.resize(2)
         for arg in args:
@@ -39,7 +40,7 @@ cdef class Constraints:
     
     cdef void get_constraints(self, tuple args, dict kargs):
         cdef int i, j, k=0, m,start = args[0], end = args[1], place1, place2, index4twiss
-        cdef double lower, upper, tol=1e-4
+        cdef double lower, upper, tol=self.tolerance
             
         for key,value in kargs.items():
             if type(value) is not tuple:
@@ -48,21 +49,22 @@ cdef class Constraints:
                 lower,upper = value
             assert lower < upper, 'Constraint lower is not smaller than upper!'
             index4twiss = self.twiss2index[key]
-            index = 0 if key in self.cst_parameters[12:] or (start != end and type(value) is not tuple) else 1
-            for i in range(start,end+1):
-                if key in self.cst_parameters[12:]:
-                    place1 = 0 if start == end else start
-                elif key in self.cst_parameters[:12]:
-                    place1 = i
-                place2 = end
-                self.bounds[0].push_back(lower)
-                self.bounds[1].push_back(upper)
-                self.index[0].push_back(index) # 0/1 mean difference/value
-                self.index[1].push_back(index4twiss) # specific parms/twiss
-                self.index[2].push_back(place1) # place1
-                self.index[3].push_back(place2) # place2
-                if key in self.cst_parameters[12:] or start != end and type(value) is not tuple:
-                    break #beta_x2-beta_x1 or nu_y2 - nu_y1 don't need loop
+            
+            index = 0 if key in self.cst_parameters[12:15] or (start != end and type(value) is not tuple) else 1
+            if key in self.cst_parameters[15:]:
+                index = 2
+                
+            place1 = start
+            if key in self.cst_parameters[12:15]:
+                place1 = 0 if start == end else start
+            
+            place2 = end
+            self.bounds[0].push_back(lower)
+            self.bounds[1].push_back(upper)
+            self.index[0].push_back(index) # 0/1 mean difference/value
+            self.index[1].push_back(index4twiss) # specific twiss
+            self.index[2].push_back(place1) # place1
+            self.index[3].push_back(place2) # place2
                     
     
     

@@ -1,3 +1,4 @@
+
 from .cppelement cimport CppElement
 from libc.math cimport sin,cos,sinh,cosh,tan,atan,exp,sqrt,pi
 cdef cppclass CppDipole(CppElement):
