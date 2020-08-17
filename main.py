@@ -2,7 +2,7 @@
 
 import geatpy as ea
 
-def main(problem, NIND=200,MAXGEN=200, drawing=0, F=0.8, CR=0.8, Parallel=False):
+def main(problem, NIND=200,MAXGEN=200, drawing=0, F=None, CR=0.8, Parallel=False):
     '''
     problem                     自定义问题类
     NIND = 200                  # 种群规模
@@ -21,11 +21,12 @@ def main(problem, NIND=200,MAXGEN=200, drawing=0, F=0.8, CR=0.8, Parallel=False)
     Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # 创建区域描述器
     population = ea.Population(Encoding, Field, NIND) # 实例化种群对象（此时种群还没被初始化，仅仅是完成种群对象的实例化）
     """=================================算法参数设置============================"""
-    myAlgorithm = ea.moea_NSGA3_DE(problem, population, F=F, CR=CR) # 实例化一个算法模板对象
+    myAlgorithm = ea.moea_NSGA3_DE(problem, population) # 实例化一个算法模板对象
     myAlgorithm.MAXGEN = MAXGEN   # 最大进化代数
     myAlgorithm.drawing= drawing
-    myAlgorithm.Parallel=Parallel
-    myAlgorithm.mutOper.rand = True if F is False else False
+    myAlgorithm.mutOper.F= F
+    myAlgorithm.mutOper.Parallel= Parallel
+    myAlgorithm.recOper.CR=CR
     
     """============================调用算法模板进行种群进化======================"""
     NDSet,finalpopulation=myAlgorithm.run()
