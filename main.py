@@ -25,7 +25,7 @@ def main(problem, NIND=200,MAXGEN=200, drawing=0, F=0.8, CR=0.8, Parallel=False)
     myAlgorithm.MAXGEN = MAXGEN   # 最大进化代数
     myAlgorithm.drawing= drawing
     myAlgorithm.Parallel=Parallel
-    myAlgorithm.mutOper.rand = not F
+    myAlgorithm.mutOper.rand = True if F is False else False
     
     """============================调用算法模板进行种群进化======================"""
     NDSet,finalpopulation=myAlgorithm.run()
