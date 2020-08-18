@@ -27,12 +27,13 @@ def main(problem, NIND=200,MAXGEN=200, drawing=0, F=None, CR=0.8, Parallel=False
     myAlgorithm.drawing= drawing
     myAlgorithm.mutOper.F= F
     myAlgorithm.mutOper.Parallel= Parallel
-    myAlgorithm.recOper.CR=CR
+    myAlgorithm.recOper.XOVR=CR
+    myAlgorithm.recOper.Parallel= Parallel
     
     """============================调用算法模板进行种群进化======================"""
-    NDSet,finalpopulation=myAlgorithm.run()
+    NDSet=myAlgorithm.run()
     NDSet.save()              # 把结果保存到文件中
     print('非支配个体数：%s 个'%(NDSet.sizes))
     print('单位时间找到帕累托前沿点个数：%s 个'%(int(NDSet.sizes // myAlgorithm.passTime)))
     print('用时：%s 秒'%(myAlgorithm.passTime))
-    return NDSet,finalpopulation,myAlgorithm.pop_trace
+    return NDSet,myAlgorithm.pop_trace
