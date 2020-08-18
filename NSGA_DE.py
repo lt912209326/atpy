@@ -2,12 +2,6 @@ import geatpy as ea
 from tqdm import tqdm
 
 class NSGA3_DE(ea.moea_NSGA3_DE_templet):
-    def __init__(self, problem, population, F=0.8, CR=0.8, drawing=0, trace=None):
-        ea.moea_NSGA3_DE_templet.__init__(self, problem, population)
-        self.F = F
-        self.CR = CR
-        self.drawing = drawing
-        self.pop_trace = trace
     def run(self, prophetPop = None): # prophetPop为先知种群（即包含先验知识的种群）
         #==========================初始化配置===========================
         population = self.population
@@ -20,7 +14,6 @@ class NSGA3_DE(ea.moea_NSGA3_DE_templet):
         if prophetPop is not None:
             population = (prophetPop + population)[:NIND] # 插入先知种群
         #===========================开始进化============================
-        pbar = tqdm(total=self.MAXGEN)
         while self.terminated(population) == False:
             # 进行差分进化操作
             offspring = population.copy() # 存储子代种群
@@ -30,8 +23,5 @@ class NSGA3_DE(ea.moea_NSGA3_DE_templet):
             self.call_aimFunc(offspring) # 计算目标函数值
             # 重插入生成新一代种群
             population = self.reinsertion(population, offspring, NIND, uniformPoint)
-            pbar.update(1)
-        pbar.close()
-        print()
             
         return self.finishing(population) # 调用finishing完成后续工作并返回结果
