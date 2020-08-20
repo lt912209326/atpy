@@ -2,8 +2,9 @@
 
 import geatpy as ea
 from NSGA3_DE import NSGA3_DE
+import time
 
-def main(problem, NIND=200,MAXGEN=200, drawing=0, F=None, CR=0.8, Parallel=False):
+def main(problem, NIND=200,MAXGEN=200, drawing=1, CVdrawing=None, F=None, CR=0.8, Parallel=False):
     '''
     problem                     自定义问题类
     NIND = 200                  # 种群规模
@@ -25,6 +26,7 @@ def main(problem, NIND=200,MAXGEN=200, drawing=0, F=None, CR=0.8, Parallel=False
     myAlgorithm = NSGA3_DE(problem, population) # 实例化一个算法模板对象
     myAlgorithm.MAXGEN = MAXGEN   # 最大进化代数
     myAlgorithm.drawing= drawing
+    myAlgorithm.CVdrawing= CVdrawing
     myAlgorithm.mutOper.F= F
     myAlgorithm.mutOper.Parallel= Parallel
     myAlgorithm.recOper.XOVR=CR
