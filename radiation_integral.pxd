@@ -1,23 +1,23 @@
 from libc.math cimport sqrt, cos, sin,tan, fabs,sinh,cosh
 cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,double betxi,double alfxi,double dxi,double dpxi,double* I):
-'''
-    !----------------------------------------------------------------------*
-    !     Purpose:                                                         *
-    !     Calculate synchrotron radiation integrals contribution of        *
-    !     single element with parameters passed as input.                  *
-    !                                                                      *
-    !     Input:                                                           *
-    !     rhoinv (double) inverse radius of curvature                      *
-    !     blen (double) length of element                                  *
-    !     k1 (double) gradient of element                                  *
-    !     e1, e2 (double) pole face rotations at entrance and exit         *
-    !     betxi, alfxi, dxi, dpxi (double) twiss parameters in x plane     *
-    !                                                                      *
-    !     Author: Ghislain Roy - June 2014                                 *
-    !----------------------------------------------------------------------*
-'''
-    cdef double rhoinv, blen, k1, e1, e2, betxi, alfxi, dxi, dpxi
-    cdef double  I(8)
+    '''
+        !----------------------------------------------------------------------*
+        !     Purpose:                                                         *
+        !     Calculate synchrotron radiation integrals contribution of        *
+        !     single element with parameters passed as input.                  *
+        !                                                                      *
+        !     Input:                                                           *
+        !     rhoinv (double) inverse radius of curvature                      *
+        !     blen (double) length of element                                  *
+        !     k1 (double) gradient of element                                  *
+        !     e1, e2 (double) pole face rotations at entrance and exit         *
+        !     betxi, alfxi, dxi, dpxi (double) twiss parameters in x plane     *
+        !     Output:                                                          *
+        !     I[8] synchrotron radiation integral                              *
+        !                                                                      *
+        !     Author: Ghislain Roy - June 2014                                 *
+        !----------------------------------------------------------------------*
+    '''
 
     # local variables
     cdef double  dx2, gamx, dispaverage, curlyhaverage, lq
@@ -53,25 +53,25 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
     curlyhaverage =  gamx*dx*dx + 2*alfx*dx*dpx + betx*dpx*dpx \
                 + 2*rhoinv*blen*( -(gamx*dx + alfx*dpx)*(kl-sin(kl))/(kl*kl*k) \
                                  + (alfx*dx + betx*dpx)*(1-cos(kl))/(kl*kl)) \
-                + blen*blen*-*rhoinv*( \
+                + blen*blen*rhoinv*rhoinv*( \
                        gamx*(3*kl - 4*sin(kl) + sin(kl)*cos(kl))/(2*k2*kl**3) \
                      - alfx*(1-cos(kl))**2/(k*kl**3) \
                      + betx*(kl-cos(kl)*sin(kl))/(2*kl**3))
 
     if (rhoinv != 0.0):
-        I[1-1] = dispaverage * rhoinv * blen
-        I[2-1] = rhoinv*rhoinv * blen
-        I[3-1] = fabs(rhoinv)**3 * blen
-        I[4-1] = dispaverage*rhoinv*(rhoinv**2 + 2*k1) * blen \
+        I[1-1] += dispaverage * rhoinv * blen
+        I[2-1] += rhoinv*rhoinv * blen
+        I[3-1] += fabs(rhoinv)**3 * blen
+        I[4-1] += dispaverage*rhoinv*(rhoinv**2 + 2*k1) * blen \
                - rhoinv*rhoinv*(dx*tan(e1) + dx2*tan(e2))
-        I[5-1] = curlyhaverage * fabs(rhoinv)**3 * blen
+        I[5-1] += curlyhaverage * fabs(rhoinv)**3 * blen
 
     if(k1 != 0.0):
-        lq = node_value('l ')
+        lq = blen
         gammai = (one+alfxi*alfxi)/betxi;
-        dx2 = real(dx*cos(kl) + dpx*sin(kl)/k)
-        dispaverage = real(dx * sin(kl)/kl \
-                 + dpxi * (1 - cos(kl))/(k*kl))
+        dx2 = dx*cos(kl) + dpx*sin(kl)/k
+        dispaverage = dx * sin(kl)/kl \
+                 + dpxi * (1 - cos(kl))/(k*kl)
         if(k1 > zero):
             k1n = k1
             u0x = (one + sin(two*sqrt(k1n)*lq)/(two*sqrt(k1n)*lq))/two
@@ -89,5 +89,5 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
 
         betxaverage = betxi*u0x - alfxi*u1x  + gammai*u2x
 
-        I[6-1] = (k1n**2)*betxaverage*lq
-        I[8-1] = (k1n**2)*dispaverage**2*lq
+        I[6-1] += (k1n**2)*betxaverage*lq
+        I[8-1] += (k1n**2)*dispaverage**2*lq
