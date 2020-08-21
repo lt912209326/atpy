@@ -1,3 +1,4 @@
+from libc.math cimport sqrt, cos, sin,tan, fabs,sinh,cosh
 cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,double betxi,double alfxi,double dxi,double dpxi,double* I):
 '''
     !----------------------------------------------------------------------*
@@ -23,10 +24,12 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
     cdef double  betx, alfx, dx, dpx, u0x, u1x, u2x
     cdef double  gammai, betxaverage, k1n
     cdef double k2, k, kl
+    cdef double zero, one, two
 
     betx = betxi
     dx = dxi
     k1 = 0
+    zero, one, two = 0.0, 1.0, 2.0
 
     # effect of poleface rotation
     alfx = alfxi - betxi*rhoinv*tan(e1)
@@ -58,37 +61,33 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
     if (rhoinv != 0.0):
         I[1-1] = dispaverage * rhoinv * blen
         I[2-1] = rhoinv*rhoinv * blen
-        I[3-1] = abs(rhoinv)**3 * blen
-        I[4-1] = dispaverage*rhoinv*(rhoinv**2 + 2*k1) * blen &
+        I[3-1] = fabs(rhoinv)**3 * blen
+        I[4-1] = dispaverage*rhoinv*(rhoinv**2 + 2*k1) * blen \
                - rhoinv*rhoinv*(dx*tan(e1) + dx2*tan(e2))
-        I[5-1] = curlyhaverage * abs(rhoinv)**3 * blen
-    end
+        I[5-1] = curlyhaverage * fabs(rhoinv)**3 * blen
 
     if(k1 != 0.0):
         lq = node_value('l ')
         gammai = (one+alfxi*alfxi)/betxi;
         dx2 = real(dx*cos(kl) + dpx*sin(kl)/k)
-        dispaverage = real(dx * sin(kl)/kl &
+        dispaverage = real(dx * sin(kl)/kl \
                  + dpxi * (1 - cos(kl))/(k*kl))
-        if(k1 .ge. zero) then
+        if(k1 > zero):
             k1n = k1
             u0x = (one + sin(two*sqrt(k1n)*lq)/(two*sqrt(k1n)*lq))/two
             u1x = sin(sqrt(k1n)*lq)**two/(k1n*lq)
             u2x = (one - sin(two*sqrt(k1n)*lq)/(two*sqrt(k1n)*lq))/(two*k1n)
             dx2 = cos(sqrt(k1n)*lq)*dxi + (one/sqrt(k1n))*sin(sqrt(k1n)*lq)*dpxi
             dispaverage = (dxi+dx2)/two
-            else
+        else:
             k1n = -k1
             u0x = (one + sinh(two*sqrt(k1n)*lq)/(two*sqrt(k1n)*lq))/two
             u1x = sinh(sqrt(k1n)*lq)**two/(k1n*lq)
             u2x = -(one - sinh(two*sqrt(k1n)*lq)/(two*sqrt(k1n)*lq))/(two*k1n)
             dx2 = cosh(sqrt(k1n)*lq)*dxi + (one/sqrt(k1n))*sinh(sqrt(k1n)*lq)*dpxi
             dispaverage = (dxi+dx2)/two
-        end
 
         betxaverage = betxi*u0x - alfxi*u1x  + gammai*u2x
 
         I[6-1] = (k1n**2)*betxaverage*lq
         I[8-1] = (k1n**2)*dispaverage**2*lq
-
-    end
