@@ -1,5 +1,6 @@
 
 # from libc.stdlib cimport free
+from radiation_integral cimport calc_sync_int
 
 cdef cppclass CppElement:
     int elem_type
@@ -73,3 +74,6 @@ cdef cppclass CppElement:
     
     inline void update(double* parms)nogil:
         pass
+    
+    inline void get_rad_integral(double* parms0, double* I)nogil:
+        calc_sync_int(this.angle/this.l, this.l, this.e1, this.e2, parms0[0], parms0[1], parms0[12], parms0[13], I)
