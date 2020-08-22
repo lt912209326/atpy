@@ -76,4 +76,5 @@ cdef cppclass CppElement:
         pass
     
     inline void get_rad_integral(double* parms0, double* I)nogil:
-        calc_sync_int(this.angle/this.l, this.l, this.e1, this.e2, parms0[0], parms0[1], parms0[12], parms0[13], I)
+        if this.l>0:
+            calc_sync_int(this.angle/this.l, this.l, this.e1, this.e2, parms0[0], parms0[1], parms0[12], parms0[13], I)
