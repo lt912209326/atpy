@@ -97,6 +97,7 @@ class NSGA3_DE(ea.MoeaAlgorithm):
             # 进行差分进化操作
             offspring = population.copy() # 存储子代种群
             offspring.Chrom = self.mutOper.do(offspring.Encoding, offspring.Chrom, offspring.Field, [offspring.Chrom,None,None,rbest.Chrom,offspring.Chrom]) # 变异
+
             tempPop = population + offspring # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             offspring.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             self.call_aimFunc(offspring) # 计算目标函数值
