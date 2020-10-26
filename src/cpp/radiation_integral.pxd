@@ -1,5 +1,5 @@
-from libc.math cimport sqrt, cos, sin,tan, fabs,sinh,cosh
-cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,double betxi,double alfxi,double dxi,double dpxi,double* I):
+from libc.math cimport sqrt, cos, sin,tan, fabs,sinh,cosh,pi
+cdef inline void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,double betxi,double alfxi,double dxi,double dpxi,double* I)nogil:
     '''
         !----------------------------------------------------------------------*
         !     Purpose:                                                         *
@@ -62,6 +62,7 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
         I[1-1] += dispaverage * rhoinv * blen
         I[2-1] += rhoinv*rhoinv * blen
         I[3-1] += fabs(rhoinv)**3 * blen
+        I[7-1] += rhoinv**3*blen
         I[4-1] += dispaverage*rhoinv*(rhoinv**2 + 2*k1) * blen \
                - rhoinv*rhoinv*(dx*tan(e1) + dx2*tan(e2))
         I[5-1] += curlyhaverage * fabs(rhoinv)**3 * blen
@@ -91,3 +92,21 @@ cdef void calc_sync_int(double rhoinv,double blen,double k1,double e1,double e2,
 
         I[6-1] += (k1n**2)*betxaverage*lq
         I[8-1] += (k1n**2)*dispaverage**2*lq
+
+cdef inline double calc_chrom(double l, double K1, double K2, double beta0, double alpha0, double eta0, double etap0)nogil:
+    cdef double chrom = 0.0
+    cdef double int_beta = 0
+    cdef double gamma0 = (1+alpha0*alpha0)/beta0
+    cdef double k1
+    if K1>0:
+        k1 = sqrt(K1)
+        chrom = -0.0625*( (beta0*k1 -gamma0/k1 )*sin(2*k1*l) + 2*alpha0*cos(2*k1*l) + 2*(beta0*K1 + gamma0)*l - 2*alpha0 )/pi
+    elif K1<0:
+        k1 = sqrt(-K1)
+        chrom = -0.0625*( (-beta0*k1 -gamma0/k1 )*sinh(2*k1*l) + 2*alpha0*cosh(2*k1*l) + 2*(beta0*K1 + gamma0)*l - 2*alpha0 )/pi
+    if K2 !=0.0:
+        chrom += 0.25*K2*(etap0*gamma0*l**3 + (eta0*gamma0 -2*etap0*alpha0 )*l*l + (etap0*beta0 -2*eta0*alpha0 )*l + eta0*beta0 )/pi
+    return chrom
+        
+        
+        

@@ -15,10 +15,11 @@ cdef class Optima:
         '''
         self.parameters2index = {'l':0, 'angle':1, 'k1':2, 'k2':3, 'e1':4, 'e2':5,
                             'beta_x':0,'alpha_x':1,'gamma_x':2,'beta_y':3,'alpha_y':4,'gamma_y':5,'beta_z':6,'alpha_z':7,'gamma_z':8,
-                            'nu_x':9,'nu_y':10,'nu_z':11,'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
+                            'nu_x':9,'nu_y':10,'nu_z':11,'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17,'emit':0,
+                            'chromx':6, 'chromy':7}
         
         self.opt_parameters = ['l','angle','k1','k2','e1','e2','beta_x','alpha_x','beta_y','alpha_y','beta_z','alpha_z',
-                                    'eta_x','etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z']
+                                    'eta_x','etap_x','eta_y','etap_y','eta_z','etap_z','nu_x','nu_y','nu_z','emit','chromx','chromy']
         self.index.resize(5)
         
         for arg in args:
@@ -45,7 +46,9 @@ cdef class Optima:
             assert value==-1 or value== 1,'Minormax can only be value 1 or -1'
             minormax = value
             index4parameters = self.parameters2index[key]
-            index = 0 if key in self.opt_parameters[18:] else 1
+            index = 0 if key in self.opt_parameters[18:21] else 1
+            index = 2 if key in self.opt_parameters[21:] else index
+            
             place2= 0 if key in self.opt_parameters[:6] else 1
             for i in range(start,end+1):
                 if key in self.opt_parameters[18:]:

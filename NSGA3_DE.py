@@ -1,4 +1,5 @@
 import geatpy as ea
+from tqdm import tqdm
 import numpy as np
 import time
 import warnings
@@ -28,7 +29,7 @@ class NSGA3_DE(ea.MoeaAlgorithm):
     
     
     def stat(self, population): # 分析记录，更新进化记录器，population为传入的种群对象
-        feasible = np.where(np.all(population.CV <= 0, 1))[0] if population.CV is not None else np.arange(population.sizes) # 找到可行解个体的下标
+        feasible = np.where(np.all(population.CV <= 1.0e-20, 1))[0] if population.CV is not None else np.arange(population.sizes) # 找到可行解个体的下标
         if len(feasible) > 0:
             tempPop = population[feasible] # 获取可行解个体
             self.pop_trace.append(tempPop) # 添加记录（只添加可行解个体到种群记录器中）
@@ -44,10 +45,10 @@ class NSGA3_DE(ea.MoeaAlgorithm):
         else:
             self.currentGen -= 1 # 忽略这一代
             self.forgetCount += 1 # “遗忘策略”计数器加1
-            if self.CVdrawing == 2:
+            if self.CVdrawing == 2 and self.forgetCount%5==0:
                 # 绘制目标空间动态图
                 self.ax = ea.moeaplot(population.CV, 'CV values', False, self.ax, self.forgetCount, gridFlag = True)
-            elif self.CVdrawing == 3:
+            elif self.CVdrawing == 3 and self.forgetCount%5==0:
                 # 绘制决策空间动态图
                 self.ax = ea.varplot(population.Phen, 'decision variables', False, self.ax, self.forgetCount, gridFlag = False)
         
@@ -70,7 +71,7 @@ class NSGA3_DE(ea.MoeaAlgorithm):
         
         selected_flag = np.all([levels<float('inf'), chooseFlag],axis=0) # chooseFlag中True并且levels中被NUM个进行非支配分层则为True，确保选择策略在非支配占优和被转中个体
         selected_id = np.where(selected_flag)[0] #将进行selecting的部分在种群中的索引
-        FitN = 1/levels[selected_id].reshape(len(selected_id),1)#**2 # 虚拟适应度 如：1/1^2 1/2^2, 1/3^2……
+        FitN = 1/levels[selected_id].reshape(len(selected_id),1)**2 # 虚拟适应度 如：1/1^2 1/2^2, 1/3^2……
         NewChrId = ea.selecting('rws',FitN,NUM) #返回被选择个体在FitN的索引 0-len(FitN)
         
         rbest = selected_id[NewChrId] # best solution在种群中的索引
@@ -93,14 +94,51 @@ class NSGA3_DE(ea.MoeaAlgorithm):
         r0_index = np.arange(NIND)
         rbest_index=np.random.randint(NIND,size=NIND)
         rbest = population[rbest_index]
+        
+        #lbounds=self.problem.ranges[0]
+        #ubounds=self.problem.ranges[1]
+        #kNIND = int(NIND/20)
+        #r0 = np.arange(NIND)
+        
         while self.terminated(population) == False:
             # 进行差分进化操作
+            #rrand = np.random.uniform(lbounds,ubounds,size=(kNIND,self.problem.Dim) )
+            #np.random.shuffle(r0)
+            #r0 = r0[:NIND-kNIND]
+            
             offspring = population.copy() # 存储子代种群
+            
+            #rrand = np.vstack(( offspring.Chrom[r0], rrand ))
+            
             offspring.Chrom = self.mutOper.do(offspring.Encoding, offspring.Chrom, offspring.Field, [offspring.Chrom,None,None,rbest.Chrom,offspring.Chrom]) # 变异
-
             tempPop = population + offspring # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             offspring.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             self.call_aimFunc(offspring) # 计算目标函数值
             # 重插入生成新一代种群
             population, rbest = self.reinsertion(population, offspring, NIND, uniformPoint)
         return self.finishing(population) # 调用finishing完成后续工作并返回结果
+    
+    
+    def finishing(self, population):
+        
+        """
+        进化完成后调用的函数。
+        
+        """
+        
+        # 得到非支配种群
+        [levels, criLevel] = ea.ndsortDED(population.ObjV, None, 1, population.CV, self.problem.maxormins) # 非支配分层
+        NDSet = population[np.where(levels == 1)[0]] # 只保留种群中的非支配个体，形成一个非支配种群
+        if NDSet.CV is not None: # CV不为None说明有设置约束条件
+            NDSet = NDSet[np.where(np.all(NDSet.CV <= 1.0e-20, 1))[0]] # 最后要彻底排除非可行解
+        self.passTime += time.time() - self.timeSlot # 更新用时记录
+        if NDSet.sizes == 0:
+            raise RuntimeError('error: No feasible solution. (没找到可行解。)')
+        # 绘图
+        if self.drawing != 0:
+            if NDSet.ObjV.shape[1] == 2 or NDSet.ObjV.shape[1] == 3:
+                ea.moeaplot(NDSet.ObjV, 'Pareto Front', saveFlag = True, gridFlag = True)
+            else:
+                ea.moeaplot(NDSet.ObjV, 'Value Path', saveFlag = True, gridFlag = False)
+        # 返回帕累托最优集
+        return NDSet

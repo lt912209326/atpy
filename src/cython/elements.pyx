@@ -1,13 +1,15 @@
 import numpy as np
 cdef class Element:
-    def __cinit__(self,**kargs):
+    def __cinit__(self,str name, **kargs):
         cdef dict type2index = {'beta_x':0,'alpha_x':1,'gamma_x':2,'beta_y':3,'alpha_y':4,'gamma_y':5,
                                 'beta_z':6,'alpha_z':7,'gamma_z':8,'nu_x':9,'nu_y':10,'nu_z':11,
                                 'eta_x':12,'etap_x':13,'eta_y':14,'etap_y':15,'eta_z':16,'etap_z':17}
         cdef dict parms2index ={'l':0, 'angle':1, 'k1':2, 'k2':3, 'e1':4, 'e2':5}
         
         cdef dict class2type ={Marker:'Marker', Drift:'Drift', Dipole:'Dipole', Quadrupole:'Quadrupole', Sextupole:'Sextupole', Octupole:'Octupole'}
-        
+        self.ntwiss = 20
+        self.name = name if name is not None else 'default'
+        self.eids = []
         self.mem = Pool()
         self.parms = <double*>self.mem.alloc(6,sizeof(double))
         if self.__class__ in class2type.keys():
@@ -21,7 +23,7 @@ cdef class Element:
                 print('Error arg was input!')
             
         
-    def __init__(self,**kargs):
+    def __init__(self,*arg, **kargs):
         self.elem = new CppElement()
         self.owner = True
     
@@ -32,9 +34,11 @@ cdef class Element:
     
     def copy(self):
         cls = self.__class__
-        cdef Element cp = cls.__new__(cls)
+        cdef Element cp = cls.__new__(cls,self.name)
         if cp.elem is not NULL:
             del cp.elem
+        cp.name = self.name
+        cp.eids = self.eids
         cp.elem = self.elem
         cp.parms= self.parms
         cp.owner = False
@@ -44,7 +48,7 @@ cdef class Element:
         cdef int[6] index = [1,4,7,13,15,17]
         cdef int i
         cls = self.__class__
-        cdef Element cp = cls.__new__(cls)
+        cdef Element cp = cls.__new__(cls,self.name)
         if cp.elem is not NULL:
             del cp.elem
         cp.elem = self.elem
@@ -53,6 +57,17 @@ cdef class Element:
             cp.twiss[index[i]] = -self.twiss[index[i]]
         cp.owner = False
         return cp
+    
+    
+    #def __eq__(self, Element other not None):
+    #    return True if self.name == other.name else False
+    
+        
+    def __getitem__(self,int index):
+        if index<len(self.eids):
+            return self.eids[index]
+        else:
+            raise ValueError('Index is too big!')
 
     cdef CppElement* bind2element(self):
         return self.elem
@@ -74,7 +89,7 @@ cdef class Element:
         elif parms in parms2index.keys():
             return self.parms[parms2index[parms]]
         elif parms == 'twiss':
-            return np.array([self.twiss[i] for i in range(18)])
+            return np.array([self.twiss[i] for i in range(self.ntwiss)])
         elif parms == 'parameters':
             return [self.element_type]+[self.parms[i] for i in range(6)]
         else:
@@ -84,30 +99,30 @@ cdef class Element:
 
 cdef class Marker(Element):
         
-    def __init__(self, **kargs):
+    def __init__(self, *args, **kargs):
         self.elem = new CppMarker()
         self.owner = True
 
 cdef class Drift(Element):
-    def __init__(self,**kargs):
+    def __init__(self, *args, **kargs):
         self.elem = new CppDrift(self.parms)
         self.owner = True
     
 
 cdef class Dipole(Element):
-    def __init__(self,**kargs):
+    def __init__(self, *args, **kargs):
         self.elem = new CppDipole(self.parms)
         self.owner = True
 
 cdef class Quadrupole(Element):
-    def __init__(self,**kargs):
+    def __init__(self, *args, **kargs):
         self.elem = new CppQuadrupole(self.parms)
         self.owner = True
 
 cdef class Sextupole(Element):
-    def __init__(self,**kargs):
+    def __init__(self, *args, **kargs):
         pass
     
 cdef class Octupole(Element):
-    def __init__(self,**kargs):
+    def __init__(self, *args, **kargs):
         pass

@@ -3,7 +3,7 @@ from .cppelement cimport CppElement
 from libc.math cimport pi,cos,sin,cosh,sinh,tan,atan,sqrt,exp
 cdef cppclass CppQuadrupole(CppElement):
     __init__(double* parms)nogil:
-        this.elem_type = 3
+        this.elem_type = 4
         this.l = parms[0]
         this.k1 = parms[2]
         this.init_matrixM()
