@@ -1,6 +1,9 @@
 
 # from libc.stdlib cimport free
-from radiation_integral cimport calc_sync_int
+from .radiation_integral cimport calc_sync_int,calc_chrom
+from .constants cimport eye
+from libc.math cimport fabs
+from libc.string cimport memcpy
 
 cdef cppclass CppElement:
     int elem_type
@@ -21,10 +24,7 @@ cdef cppclass CppElement:
         return &this.parameters[0]
     
     inline void init_matrixM()nogil:
-        cdef int i,j
-        for i in range(6):
-            for j in range(6):
-                    this.M[i][j] = 1.0 if i==j else 0.0
+        memcpy(&this.M[0][0], &eye[0][0],sizeof(eye))
                 
     
     inline void update_matrixM()nogil:
@@ -76,5 +76,16 @@ cdef cppclass CppElement:
         pass
     
     inline void get_rad_integral(double* parms0, double* I)nogil:
-        if this.l>0:
-            calc_sync_int(this.angle/this.l, this.l, this.e1, this.e2, parms0[0], parms0[1], parms0[12], parms0[13], I)
+        if this.l>1.0e-6 and fabs(this.angle) >1.0e-6:
+            calc_sync_int(this.angle/this.l, this.l, this.k1, this.e1, this.e2, parms0[0], parms0[1], parms0[12], parms0[13], I)
+        #else:
+        #    memcpy(I,0,8*sizeof(double) )
+    
+    inline void get_chrom(double* parms0, double* parms)nogil:
+        if (this.elem_type==4 or this.elem_type==6) and this.l>1.0e-6:
+        #fabs(this.k1 )>1.0e-6 or fabs(this.k2)>1.0e-6:
+            parms[18] = calc_chrom(this.l, this.k1, this.k2, parms0[0], parms0[1], parms0[12], parms0[13])
+            parms[19] = calc_chrom(this.l, -this.k1, -this.k2, parms0[3], parms0[4], parms0[12], parms0[13])
+        else:
+            parms[18] = 0.0
+            parms[19] = 0.0

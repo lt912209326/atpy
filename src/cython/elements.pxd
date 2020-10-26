@@ -1,6 +1,6 @@
 from cymem.cymem cimport Pool
 from libc.stdlib cimport free
-from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
+from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole,eye
 
 cdef class Element:
     cdef CppElement*  elem
@@ -9,7 +9,9 @@ cdef class Element:
     cdef bint owner
     cdef str element_type
     cdef double* parms
-    cdef double[18] twiss
+    cdef double[20] twiss
+    cdef int    ntwiss
+    cdef list  eids
 
 
 

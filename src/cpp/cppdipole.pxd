@@ -23,10 +23,11 @@ cdef cppclass CppDipole(CppElement):
         this.M[1][5] = 2*tan(halfangle)
         
         this.M[2][2] = 1-angle*tan(halfangle)
-        this.M[2][3] = 1
+        this.M[2][3] = this.l
         
         this.M[3][2] = -2*tan(halfangle)*(1-halfangle*tan(halfangle))/rho
         this.M[3][3] = 1-angle*tan(halfangle)
+        #this.M[4][1] =-rho*(1-cos(angle))
         
     
     inline void get_phase(double* parms0, double* parms)nogil:
