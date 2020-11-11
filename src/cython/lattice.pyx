@@ -515,11 +515,11 @@ cdef class Lattice(BeamLine):
         with open(filename,'w+') as fn:
             fn.write('from atpy import *\n')
             for index,elem in enumerate(self.pyelems):
-                elemstr= '{0:<10} = {1:>10}({2:<10},'.format(elem.name, elem.__class__.__name__, f"'{elem.name}'")
-                for i in range(nparms):
+                elemstr= '{0:<10} = {1:>10}({2:<10},'.format(elem.name, elem.elem_kind, f"'{elem.name}'")
+                for i in range(KWD_NUM):
                     if fabs(elem.parms[i]) > tol:
                         value =  elem.parms[i]
-                        elemstr = elemstr + '{:<5}={:.6e}  ,'.format(index2parms[i], value)
+                        elemstr = elemstr + f'{index2parms[i]:<5}={value:.6e}  ,'
                 elemstr = elemstr[:-1] + ')\n' if elemstr[-1]==',' else elemstr + ')\n'
                 fn.write(elemstr)
             clsname = self.__class__.__name__
