@@ -1,7 +1,7 @@
 # atpy change log
-#### emittance calculate function added        /2020/08/22
+### emittance calculate function added        /2020/08/22
 
-#### parser to deal with complex variable, constraints and optimize is done 2020/11/11
+### parser to deal with complex variable, constraints and optimize is done 2020/11/11
 
 user can use python re module for element name in variables setting .
 
