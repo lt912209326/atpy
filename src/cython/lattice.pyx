@@ -489,10 +489,10 @@ cdef class Lattice(BeamLine):
             for index,elem in enumerate(self.pyelems):
                 code = elem.elem.elem_type
                 elemstr= code2kind[ code ] + '    {:<8} = ('.format(elem.name)
-                for i in range(nparms):
+                for i in range(KWD_NUM):
                     if fabs(elem.parms[i]) > tol:
-                        value = elem.parms[i]*elem.parms[0] if i==2 or i==3 else elem.parms[i]
-                        elemstr = elemstr + '{:<5}={:.6e}  '.format(index2parms[i], value)
+                        value = elem.parms[i]*elem.parms[0] if i==K1 or i==K2 else elem.parms[i]
+                        elemstr = elemstr + f'{index2parms[i]:<5}={value:.6e}  '
                 elemstr = elemstr + ');\n'
                 fn.write(elemstr)
             
@@ -504,11 +504,10 @@ cdef class Lattice(BeamLine):
             fn.write(elemstr)
     
     def write2py(self, str filename):
-        cdef dict code2kind = {0:'Marker', 1:'Drift', 2:'Dipole', 4:'Quadruple', 6:'Sextupole', 8:'Octupole'}
         cdef dict namehead = {0:'M', 1:'L', 2:'B', 4:'Q', 6:'S', 8:'O'}
         cdef dict index2parms={value:key for key,value in KWD_INDEX.items()}
         cdef double tol = 1.0e-8,value
-        cdef int i, index, code, nparms=6
+        cdef int i, index, code
         cdef str elemstr
         cdef Element elem
         print('File name is : ', filename)
