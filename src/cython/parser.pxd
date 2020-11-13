@@ -29,7 +29,7 @@ cdef class Lexer:
     
     cdef int check_next_token(self)
     
-    cdef void tokenize(self, str code)
+    cdef int tokenize(self, str code)except -1
 
     
 cdef class Parser:  # 定义语法分析器的类
@@ -46,23 +46,23 @@ cdef class Parser:  # 定义语法分析器的类
     
     cdef void set_database(self, double** kwd_properties, double** tws_properties, double** loc_properties, double* glb_properties)nogil
         
-    cdef void error(self,int input, int current)
+    cdef void error(self,int input, int current)except *
 
-    cdef void eat(self, int kind)
+    cdef void eat(self, int kind)except *
 
-    cdef AST* property(self)
+    cdef AST* property(self)except NULL
     
-    cdef AST* function(self, int func)
+    cdef AST* function(self, int func)except NULL
     
-    cdef AST* slice(self,int func, int start, int end, int data_kind, int index)
+    cdef AST* slice(self,int func, int start, int end, int data_kind, int index)except NULL
         
-    cdef AST* factor(self)
+    cdef AST* factor(self)except NULL
     
-    cdef AST* term(self)
+    cdef AST* term(self)except NULL
     
-    cdef AST* expr(self)
+    cdef AST* expr(self)except NULL
 
-    cdef AST* parse(self, str code)
+    cdef AST* parse(self, str code)except NULL
 
     
     

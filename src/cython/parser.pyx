@@ -44,7 +44,7 @@ cdef class Lexer:
             raise ValueError('Token error, out of memmory when indexing tokens !')
            
     
-    cdef void tokenize(self, str code):
+    cdef int tokenize(self, str code)except -1:
         keywords = ['ABS', 'MIN', 'MAX', 'SQRT', '+', '-', '*', '/', '//', '%', '**', '(', ')', '[', ']', ':', 'DIM', ',',
                     'l', 'angle', 'k1', 'k2', 'k3', 'k4', 
                     'betax', 'alphax', 'gammax', 'betay', 'alphay', 'gammay', 'etax', 'etapx', 'nux', 'nuy', 'chromx', 'chromy',
@@ -98,22 +98,26 @@ cdef class Lexer:
                     raise ValueError('Element name is not found!')
                 eid = int(mo.group('EID'))
                 value = str(self.elems_index[name][eid])
-            elif kind in token_enum.keys() and value in KWD_INDEX.keys():
-                ikind = token_enum[ mo.lastgroup ]
-                value = str(KWD_INDEX[value])
-                data_kind = KWD
-            elif kind in token_enum.keys() and value in TWS_INDEX.keys():
-                ikind = token_enum[ mo.lastgroup ]
-                value = str(TWS_INDEX[value])
-                data_kind = TWS
-            elif kind in token_enum.keys() and value in LOC_INDEX.keys():
-                ikind = token_enum[ mo.lastgroup ]
-                value = str(LOC_INDEX[value])
-                data_kind = LOC
-            elif kind in token_enum.keys() and value in GLB_INDEX.keys():
-                ikind = token_enum[ mo.lastgroup ]
-                value = str(GLB_INDEX[value])
-                data_kind = GLB
+            elif kind == 'PROPERTY':
+                if value in KWD_INDEX.keys():
+                    ikind = token_enum[ mo.lastgroup ]
+                    value = str(KWD_INDEX[value])
+                    data_kind = KWD
+                elif value in TWS_INDEX.keys():
+                    ikind = token_enum[ mo.lastgroup ]
+                    value = str(TWS_INDEX[value])
+                    data_kind = TWS
+                elif value in LOC_INDEX.keys():
+                    ikind = token_enum[ mo.lastgroup ]
+                    value = str(LOC_INDEX[value])
+                    data_kind = LOC
+                elif value in GLB_INDEX.keys():
+                    ikind = token_enum[ mo.lastgroup ]
+                    value = str(GLB_INDEX[value])
+                    data_kind = GLB
+                else:
+                    # assert value in TOTAL_INDEX.keys(), f'Unrecognized property {value}!'
+                    raise ValueError(f'Unrecognized property {value}!')
             elif kind in token_enum.keys():
                 ikind = token_enum[ mo.lastgroup ]
             elif kind == 'SKIP':
@@ -145,18 +149,18 @@ cdef class Parser:  # 定义语法分析器的类
         self.isdatabase = True
         
         
-    cdef void error(self,int input, int current):  # 增加语法分析器的错误方法
+    cdef void error(self,int input, int current)except *:  # 增加语法分析器的错误方法
         raise ValueError(f'Error input:token {enum_token[input]} does not match input token {enum_token[current] }！')
 
         
-    cdef void eat(self, int kind):
+    cdef void eat(self, int kind)except *:
         if self.current_token.kind == kind:
             self.current_token = self.lexer.get_next_token()
         else:
             self.error(kind,self.current_token.kind)
         
 
-    cdef AST* function(self, int func):
+    cdef AST* function(self, int func)except NULL:
         cdef:
             int start,end, data_kind, index
             AST* node
@@ -195,7 +199,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node
     
     
-    cdef AST* slice(self, int func, int start, int end, int data_kind, int index):
+    cdef AST* slice(self, int func, int start, int end, int data_kind, int index)except NULL:
         cdef:
             AST* node
         if data_kind==KWD:
@@ -209,7 +213,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node
     
     
-    cdef AST* property(self):
+    cdef AST* property(self)except NULL:
         cdef: 
             AST*    node
             int     position=0, index, parameter,data_kind
@@ -246,7 +250,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node
         
         
-    cdef AST* factor(self):
+    cdef AST* factor(self)except NULL:
         cdef: 
             AST* node
             Token token,current_token
@@ -285,7 +289,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node  # 返回运算符节点对象
     
     
-    cdef AST* term(self):
+    cdef AST* term(self)except NULL:
         cdef: 
             AST* node
             Token token
@@ -300,7 +304,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node  # 返回节点对象
 
 
-    cdef AST* expr(self):
+    cdef AST* expr(self)except NULL:
         cdef: 
             AST* node
             Token token
@@ -315,7 +319,7 @@ cdef class Parser:  # 定义语法分析器的类
         return node  # 返回运算符节点对象
 
 
-    cdef AST* parse(self, str code):
+    cdef AST* parse(self, str code)except NULL:
         if not self.isdatabase:
             raise RuntimeError('Parser is not linked to database!')
         self.lexer.tokenize(code)

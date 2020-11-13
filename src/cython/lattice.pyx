@@ -6,14 +6,10 @@ Created on Sun Sep 13 10:11:19 2020
 """
 
 from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole
-# from .variables cimport Variables
-# from .constraints cimport Constraints
 
 from ..cython.parser cimport*
 from ..cython.structures cimport*
 from ..cython.constants cimport*
-
-# from .optima cimport Optima
 
 from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
 from .beamline cimport BeamLine
@@ -44,7 +40,7 @@ cdef class Lattice(BeamLine):
             self.begin_match =False
     
     
-    cdef void set_constraints(self, dict constraints):
+    cdef void set_constraints(self, dict constraints)except *:
         cdef: 
             int i = 0
        
@@ -81,7 +77,7 @@ cdef class Lattice(BeamLine):
             self.constraints[self.constraints_num-1].upper= 0
     
     
-    cdef void set_variables(self, dict variables):
+    cdef void set_variables(self, dict variables)except *:
         cdef:
             int i, position, eid, index, data_kind=-1
             str name,index_name
@@ -218,7 +214,7 @@ cdef class Lattice(BeamLine):
             # pvar=pvar.next
     
     
-    cdef void set_optima(self, dict optima):
+    cdef void set_optima(self, dict optima)except *:
         cdef: 
             int i = 0
         self.init_optima =True
@@ -290,16 +286,6 @@ cdef class Lattice(BeamLine):
             self._evaluate_lattice()
             collect(self.constraints, self.constraints_num, &CV[i,0])
             # parameters = self.constraints[3].expr.calc()
-            # value2 = (fdim(fabs(self.loc_properties[self.nseq-1][R11]+self.loc_properties[self.nseq-1][R11]),2.0)+
-                     # fdim(fabs(self.loc_properties[self.nseq-1][R33]+self.loc_properties[self.nseq-1][R44]),2.0))
-            # print('betax:',self.tws_properties[0][BETAX],self.constraints[0].expr.calc(),'cell: ',parameters,'R11+R22',value2)
-            # print(' max OR min token:', self.constraints[0].expr.token)
-            # print('range number: ',self.constraints[0].expr.item(0))
-            # print(' range.token :',self.constraints[0].expr.item(1))
-            # print(parameters[0][0],parameters[1][0],parameters[2][0],parameters[3][0])
-            # print('QA1E.k1:',self.kwd_properties[2][K1],' Phen[0]:',variables[i,0])
-            # print('optima[0]:',self.optima[0].expr.calc(),'optima[1]:',self.optima[1].expr.calc())
-            # print('constraints[0]:',self.constraints[3].expr.calc())
             self.update_optima(&objectives[i,0])
              
     
