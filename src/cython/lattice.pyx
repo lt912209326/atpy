@@ -18,7 +18,7 @@ from ..cython.constants cimport*
 from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
 from .beamline cimport BeamLine
 
-from libc.math cimport fmax,fabs,pi
+from libc.math cimport fmax,fabs,pi,fdim
 from libc.string cimport memcpy
 cimport cython
 import numpy as np
@@ -166,7 +166,7 @@ cdef class Lattice(BeamLine):
                 else:
                     raise ValueError(f'{index_name} is not a valid keyword!')
                     
-                name_token = re.compile(elem_name+'$')
+                name_token = re.compile('^'+elem_name+'$')
                 for elem_name in self.elems_index.keys():
                     name_match = name_token.search(elem_name)
                     if name_match is None:
@@ -273,7 +273,7 @@ cdef class Lattice(BeamLine):
         '''
         cdef:
             int i, num_variables= variables.shape[1], num_optima = objectives.shape[1], num_constraints=CV.shape[1], num_pop = variables.shape[0]
-            double** parameters
+            double parameters,value2
         if self.begin_match is False:
             if self.init_constraints and self.init_variables and self.init_optima:
                 self.begin_match = True
@@ -289,7 +289,10 @@ cdef class Lattice(BeamLine):
             self.update_variables(&variables[i,0])
             self._evaluate_lattice()
             collect(self.constraints, self.constraints_num, &CV[i,0])
-            # parameters = self.constraints[0].expr.database()
+            # parameters = self.constraints[3].expr.calc()
+            # value2 = (fdim(fabs(self.loc_properties[self.nseq-1][R11]+self.loc_properties[self.nseq-1][R11]),2.0)+
+                     # fdim(fabs(self.loc_properties[self.nseq-1][R33]+self.loc_properties[self.nseq-1][R44]),2.0))
+            # print('betax:',self.tws_properties[0][BETAX],self.constraints[0].expr.calc(),'cell: ',parameters,'R11+R22',value2)
             # print(' max OR min token:', self.constraints[0].expr.token)
             # print('range number: ',self.constraints[0].expr.item(0))
             # print(' range.token :',self.constraints[0].expr.item(1))
@@ -489,10 +492,10 @@ cdef class Lattice(BeamLine):
             for index,elem in enumerate(self.pyelems):
                 code = elem.elem.elem_type
                 elemstr= code2kind[ code ] + '    {:<8} = ('.format(elem.name)
-                for i in range(KWD_NUM):
+                for i in range(nparms):
                     if fabs(elem.parms[i]) > tol:
-                        value = elem.parms[i]*elem.parms[0] if i==K1 or i==K2 else elem.parms[i]
-                        elemstr = elemstr + f'{index2parms[i]:<5}={value:.6e}  '
+                        value = elem.parms[i]*elem.parms[0] if i==2 or i==3 else elem.parms[i]
+                        elemstr = elemstr + '{:<5}={:.6e}  '.format(index2parms[i], value)
                 elemstr = elemstr + ');\n'
                 fn.write(elemstr)
             
@@ -504,21 +507,22 @@ cdef class Lattice(BeamLine):
             fn.write(elemstr)
     
     def write2py(self, str filename):
+        cdef dict code2kind = {0:'Marker', 1:'Drift', 2:'Dipole', 4:'Quadruple', 6:'Sextupole', 8:'Octupole'}
         cdef dict namehead = {0:'M', 1:'L', 2:'B', 4:'Q', 6:'S', 8:'O'}
         cdef dict index2parms={value:key for key,value in KWD_INDEX.items()}
         cdef double tol = 1.0e-8,value
-        cdef int i, index, code
+        cdef int i, index, code, nparms=6
         cdef str elemstr
         cdef Element elem
         print('File name is : ', filename)
         with open(filename,'w+') as fn:
             fn.write('from atpy import *\n')
             for index,elem in enumerate(self.pyelems):
-                elemstr= '{0:<10} = {1:>10}({2:<10},'.format(elem.name, elem.elem_kind, f"'{elem.name}'")
-                for i in range(KWD_NUM):
+                elemstr= '{0:<10} = {1:>10}({2:<10},'.format(elem.name, elem.__class__.__name__, f"'{elem.name}'")
+                for i in range(nparms):
                     if fabs(elem.parms[i]) > tol:
                         value =  elem.parms[i]
-                        elemstr = elemstr + f'{index2parms[i]:<5}={value:.6e}  ,'
+                        elemstr = elemstr + '{:<5}={:.6e}  ,'.format(index2parms[i], value)
                 elemstr = elemstr[:-1] + ')\n' if elemstr[-1]==',' else elemstr + ')\n'
                 fn.write(elemstr)
             clsname = self.__class__.__name__

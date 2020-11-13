@@ -31,7 +31,6 @@ cdef class BeamLine:
         self.glb_properties[ENERGY] = kargs['energy'] if 'energy' in kargs.keys() else 2500
         self.glb_properties[MASS0]  = kargs['mass0'] if 'mass0' in kargs.keys() else 0.511
         self.glb_properties[GAMMA] = self.glb_properties[ENERGY]/self.glb_properties[MASS0]
-        print(self.glb_properties[ENERGY],self.glb_properties[MASS0],self.glb_properties[GAMMA])
         
         cdef Element elem
         assert all([isinstance(arg,Element) for arg in args]), 'Args must be Element class or its subclasses'
