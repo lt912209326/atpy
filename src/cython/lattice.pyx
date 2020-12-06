@@ -5,7 +5,7 @@ Created on Sun Sep 13 10:11:19 2020
 @author: LT
 """
 
-from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole
+from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole,Sextupole
 
 from ..cython.parser cimport*
 from ..cython.structures cimport*
@@ -13,22 +13,65 @@ from ..cython.constants cimport*
 
 from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
 from .beamline cimport BeamLine
+from ..cython.simplex cimport Simplex
 
 from libc.math cimport fmax,fabs,pi,fdim
 from libc.string cimport memcpy
+from libcpp.vector cimport vector
 cimport cython
 import numpy as np
 import re
+
+
+
+
+
+cdef Lattice global_lattice
+
+cdef double simplex_match(vector[double] x):
+    cdef:
+        int i
+        double* variables=&x[0]
+        double value=0.0
+    global global_lattice
+    for i in range(global_lattice.vary_num):
+        variables[i] = fmin( fmax(x[i],global_lattice.var_bounds[0][i]) ,global_lattice.var_bounds[1][i] )
+        # value += fdim(variables[i],global_lattice.var_bounds[1][i])**2 + fdim(global_lattice.var_bounds[0][i],variables[i])**2
+    global_lattice.update_variables(variables)
+    global_lattice._evaluate_lattice()
+    return collect(global_lattice.constraints,global_lattice.constraints_num, global_lattice.CV)#+value
+
+
+cdef double simplex_optimize(vector[double] x):
+    cdef:
+        double* variables=&x[0]
+        double value=0.0
+    global global_lattice
+    for i in range(global_lattice.vary_num):
+        variables[i] = fmin( fmax(x[i],global_lattice.var_bounds[0][i]) ,global_lattice.var_bounds[1][i] )
+        # value += fdim(variables[i],global_lattice.var_bounds[1][i])**2 + fdim(global_lattice.var_bounds[0][i],variables[i])**2
+    global_lattice.update_variables(variables)
+    global_lattice._evaluate_lattice()
+    value = collect(global_lattice.constraints,global_lattice.constraints_num, global_lattice.CV)
+    return global_lattice.update_optima(global_lattice.ObjV)+value
+
 
 
 cdef class Lattice(BeamLine):
     cdef:
         int             constraints_num, vary_num,covary_num,optima_num
         bint            init_constraints, init_variables, init_optima, begin_match
+        bint            simplex
+        int             simplex_iter
+        double          simplex_tol,simplex_start
+        double*         CV
+        double*         ObjV
+        vector[double]  xvars
         Parser          parser
         Variable*        variables
         Optimize*       optima
         Constraint*     constraints
+        double**         var_bounds
     def __init__(self,*args,**kargs):
         if 'cell' in kargs.keys():
             self.cell=<bint?>kargs['cell']
@@ -38,6 +81,16 @@ cdef class Lattice(BeamLine):
             self.init_variables =False
             self.init_optima =False
             self.begin_match =False
+        
+        self.simplex = kargs['simplex'] if 'simplex' in kargs.keys() else False
+    
+        self.simplex_tol = kargs['simplex_tol'] if 'simplex_tol' in kargs.keys() else 1.0e-8
+   
+        self.simplex_iter = kargs['simplex_iter']  if 'simplex_iter' in kargs.keys() else 2e3
+    
+        self.simplex_start = kargs['simplex_start'] if 'simplex_start' in kargs.keys() else 0.0
+        global global_lattice
+        global_lattice = self
     
     
     cdef void set_constraints(self, dict constraints)except *:
@@ -75,7 +128,7 @@ cdef class Lattice(BeamLine):
             self.constraints[self.constraints_num-1].expr = self.parser.parse(cell_token)
             self.constraints[self.constraints_num-1].type = UPPER
             self.constraints[self.constraints_num-1].upper= 0
-    
+        self.CV = <double*>self.mem.alloc(self.constraints_num,sizeof(double))
     
     cdef void set_variables(self, dict variables)except *:
         cdef:
@@ -208,6 +261,15 @@ cdef class Lattice(BeamLine):
                 ptail = ptmp
                 ptmp.next=NULL
         self.variables = phead
+        self.xvars = vector[double](self.vary_num)
+        self.var_bounds=<double**>self.mem.alloc(2,sizeof(double*))
+        self.var_bounds[0]=<double*>self.mem.alloc(self.vary_num,sizeof(double))
+        self.var_bounds[1]=<double*>self.mem.alloc(self.vary_num,sizeof(double))
+        pvar=phead
+        for i in range(self.vary_num):
+            self.var_bounds[0][i]=pvar.lower
+            self.var_bounds[1][i]=pvar.upper
+            pvar=pvar.next
         # pvar=phead 
         # while pvar is not NULL:
             # print(f'name: {(<Element?>self.pyseq[pvar.position]).name} {pvar.prev is not NULL}' )
@@ -230,11 +292,11 @@ cdef class Lattice(BeamLine):
             else:
                 raise ValueError(f'Wrong minor max was input in {key}:{value} !')
             i+=1
-        
+        self.ObjV = <double*>self.mem.alloc(self.optima_num,sizeof(double))
 
     
     
-    cdef inline void update_variables(self, double* variables):
+    cdef void update_variables(self, double* variables):
         cdef: 
             int i
             Variable* pvar=self.variables
@@ -253,23 +315,96 @@ cdef class Lattice(BeamLine):
         return collect(self.constraints, self.constraints_num, &CV[0])
 
 
-    cdef void update_optima(self, double* optima):
+    cdef double update_optima(self, double* optima):
         cdef: 
             int i
-            double  value
+            double  value,fsum=0.0
         for i in range(self.optima_num):
             value = self.optima[i].minormax*self.optima[i].expr.calc()
             optima[i] = value
+            fsum+=value*value
+        return fsum
     
     
+    # cdef optimize(self):
+        # memcpy(&self.xvars[0], &variables[0], self.vary_num*sizeof(double) )
+        # Simplex(simplex_func, self.xvars,)
     
     def get_results(self,double[:,:] variables, double[:,:] objectives, double[:,:] CV):
         '''
         get_results(variables, objectives, CV)
         '''
         cdef:
-            int i, num_variables= variables.shape[1], num_optima = objectives.shape[1], num_constraints=CV.shape[1], num_pop = variables.shape[0]
-            double parameters,value2
+            int i,i_cv_best,i_objv_best, num_variables= variables.shape[1], num_optima = objectives.shape[1], num_constraints=CV.shape[1], num_pop = variables.shape[0]
+            double cv_tmp,value,objv_value
+        if self.begin_match is False:
+            if self.init_constraints and self.init_variables and self.init_optima:
+                self.begin_match = True
+            else:
+                raise RuntimeError('Match conndition was not OK !')
+        if num_variables != self.vary_num:
+            raise ValueError("Input numpy array doesn't match the variables!")
+        if num_optima != self.optima_num:
+            raise ValueError("Input numpy array doesn't match the optima!")
+        if num_constraints != self.constraints_num :
+            raise ValueError("Input numpy array: {num_constraints} doesn't match the constraints:{self.constraints_num}!")
+        
+        self.update_variables(&variables[i,0])
+        self._evaluate_lattice()
+        value = collect(self.constraints, self.constraints_num, &CV[0,0])
+        objv_value = self.update_optima(&objectives[0,0])
+        i_cv_best=i_objv_best=0
+        for i in range(num_pop):
+            self.update_variables(&variables[i,0])
+            self._evaluate_lattice()
+            tmp = collect(self.constraints, self.constraints_num, &CV[i,0])
+            if tmp<value:
+                value=tmp
+                i_cv_best=i
+                
+            tmp = self.update_optima(&objectives[i,0])
+            
+            if tmp<objv_value:
+                objv_value=tmp
+                i_objv_best=i
+                
+        if self.simplex and value<self.simplex_start and value>1.0e-9:
+            
+            memcpy(&self.xvars[0], &variables[i_cv_best,0], self.vary_num*sizeof(double) )
+            
+            self.xvars = Simplex(simplex_match, self.xvars, self.simplex_tol, self.simplex_iter)  
+            simplex_match(self.xvars)
+            
+            self.update_variables(&variables[i_cv_best,0])
+            self._evaluate_lattice()
+            memcpy(&variables[i_cv_best,0], &self.xvars[0], self.vary_num*sizeof(double) )
+            memcpy(&CV[i_cv_best,0], self.CV,self.constraints_num*sizeof(double) )
+            self.update_optima(&objectives[i_cv_best,0])
+            
+        elif self.simplex and value < 1.0e-20:
+            memcpy(&self.xvars[0], &variables[i_objv_best,0], self.vary_num*sizeof(double) )
+            
+            self.xvars = Simplex(simplex_optimize, self.xvars, self.simplex_tol, self.simplex_iter)  
+            simplex_optimize(self.xvars)
+            
+            memcpy(&variables[i_objv_best,0], &self.xvars[0], self.vary_num*sizeof(double) )
+            
+            self.update_variables(&variables[i_objv_best,0])
+            self._evaluate_lattice()
+            
+            memcpy(&CV[i_objv_best,0], self.CV,self.constraints_num*sizeof(double) )
+            self.update_optima(&objectives[i_objv_best,0])
+             
+             
+    
+    
+    def calculate(self,double[:,:] variables, double[:,:] objectives, double[:,:] CV):
+        '''
+        get_results(variables, objectives, CV)
+        '''
+        cdef:
+            int i,i_cv_best,i_objv_best, num_variables= variables.shape[1], num_optima = objectives.shape[1], num_constraints=CV.shape[1], num_pop = variables.shape[0]
+            double cv_tmp,value,objv_value
         if self.begin_match is False:
             if self.init_constraints and self.init_variables and self.init_optima:
                 self.begin_match = True
@@ -285,9 +420,17 @@ cdef class Lattice(BeamLine):
             self.update_variables(&variables[i,0])
             self._evaluate_lattice()
             collect(self.constraints, self.constraints_num, &CV[i,0])
-            # parameters = self.constraints[3].expr.calc()
             self.update_optima(&objectives[i,0])
-             
+    
+    def match(self):
+        cdef: 
+            int i
+            Variable* pvar=self.variables
+        for i in range(self.vary_num):
+            self.xvars[i] = pvar.vary[0]
+            pvar=pvar.next
+        self.xvars = Simplex(simplex_match, self.xvars, self.simplex_tol, self.simplex_iter)
+    
     
     def evaluate_lattice(self):
         self._evaluate_lattice()

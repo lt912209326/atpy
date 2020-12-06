@@ -16,8 +16,8 @@ LOC_INDEX = {'R11': R11, 'R12': R12, 'R13': R13, 'R14': R14, 'R15': R15, 'R16': 
             'R61': R61, 'R62': R62, 'R63': R63, 'R64': R64, 'R65': R65, 'R66': R66, 
             's': S, 'x': X, 'y': Y, 'z': Z, 'theta': THETA, 'phi': PHI, 'psi': PSI }
 
-GLB_INDEX = {'mass0':MASS0, 'energy': ENERGY, 'gamma':GAMMA, 'emitx': EMITX, 'NAT_CHROMX': NAT_CHROMX, 'NAT_CHROMY': NAT_CHROMY, 'TOTAL_K2X': TOTAL_K2X, 
-             'TOTAL_K2Y': TOTAL_K2Y, 'totalchromx': TOTALCHROMX, 'totalchromy': TOTALCHROMY, 'circumference': CIRCUMFERENCE, 
+GLB_INDEX = {'mass0':MASS0, 'energy': ENERGY, 'gamma':GAMMA, 'emitx': EMITX, 'nat_chromx': NAT_CHROMX, 'nat_chromy': NAT_CHROMY, 'total_k2x': TOTAL_K2X, 
+             'total_k2y': TOTAL_K2Y, 'totalchromx': TOTALCHROMX, 'totalchromy': TOTALCHROMY, 'circumference': CIRCUMFERENCE, 
              'u0': U0, 'momentum_compact_factor': MOMENTUM_COMPACT_FACTOR, 'damp_factor': DAMP_FACTOR, 'energy_disp2': ENERGY_DISP2, 'spin': SPIN,
              'RI1': RI1, 'RI2': RI2, 'RI3': RI3, 'RI3A': RI3A, 'RI4': RI4, 'RI5': RI5, 'RI6': RI6, 'RI7': RI7 }
 

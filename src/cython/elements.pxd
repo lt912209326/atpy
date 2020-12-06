@@ -1,6 +1,6 @@
 from cymem.cymem cimport Pool
 from libc.stdlib cimport free
-from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole,eye
+from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole,CppSextupole,eye
 from ..cython.constants cimport*
 
 cdef class Element:

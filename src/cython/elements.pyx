@@ -5,6 +5,9 @@ cdef class Element:
         self.name = name if name is not None else 'default'
         self.eids = []
         self.parms = <double*>self.mem.alloc(KWD_NUM, sizeof(double))
+        cdef int i
+        for i in range(KWD_NUM):
+            self.parms[i]=0.0
         self.elem_kind = self.__class__.__name__
         for key,value in kargs.items():
             if key in KWD_INDEX.keys():
@@ -87,7 +90,8 @@ cdef class Quadrupole(Element):
 
 cdef class Sextupole(Element):
     def __init__(self, *args, **kargs):
-        pass
+        self.elem = new CppSextupole(self.parms)
+        self.owner = True
     
 cdef class Octupole(Element):
     def __init__(self, *args, **kargs):

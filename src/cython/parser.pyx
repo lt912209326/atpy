@@ -4,7 +4,7 @@ import re
 token_enum = {'ADD':ADD, 'SUB':SUB, 'MUL':MUL, 'DIV':DIV, 'POW':POW, 'MOD':MOD, 
               "FLOOR":FLOOR, "NUMBER":NUMBER, "PROPERTY":PROPERTY, "ABS":ABS, "SQRT":SQRT, 
               "MAX":MAX, "MIN":MIN, "LPAREN":LPAREN, "RPAREN":RPAREN, "LBRA":LBRA, "RBRA":RBRA, 
-              "POSITION":POSITION, "INDEX":INDEX, 'SLICE':SLICE,'DIM':DIM,'COMMA':COMMA, 'DOT':DOT}
+              "POSITION":POSITION, "INDEX":INDEX, 'SLICE':SLICE,'DIM':DIM,'COMMA':COMMA, 'DOT':DOT,'END':END}
 enum_token = {value:key for key,value in token_enum.items()}
 
 cdef class Token:
@@ -320,11 +320,15 @@ cdef class Parser:  # 定义语法分析器的类
 
 
     cdef AST* parse(self, str code)except NULL:
+        cdef AST*   node
         if not self.isdatabase:
             raise RuntimeError('Parser is not linked to database!')
         self.lexer.tokenize(code)
         self.current_token = self.lexer.get_current_token()
-        return self.expr()
+        node = self.expr()
+        if self.current_token.kind != END:
+            raise ValueError(f'Error in parse function: expression should ended with END rather than {enum_token[self.current_token.kind]}!')
+        return node
 
     
     

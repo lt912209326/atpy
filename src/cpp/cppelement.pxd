@@ -98,7 +98,7 @@ cdef cppclass CppElement:
         #fabs(this.k1 )>1.0e-6 or fabs(this.k2)>1.0e-6:
             tws[CHROMX] = calc_chrom(this.l, this.k1, this.k2, tws0[BETAX], tws0[ALPHAX], tws0[ETAX], tws0[ETAPX])
             tws[CHROMY] = calc_chrom(this.l, -this.k1, -this.k2, tws0[BETAY], tws0[ALPHAY], tws0[ETAX], tws0[ETAPX])
-        else:
-            tws[CHROMX] = 0.0
-            tws[CHROMY] = 0.0
+        elif this.elem_type==DIPOLE and fabs(this.k1)>1.0e-6:
+            tws[CHROMX] = calc_chrom(this.l, this.k1, this.k2, tws0[BETAX], tws0[ALPHAX], tws0[ETAX], tws0[ETAPX])
+            tws[CHROMY] = calc_chrom(this.l, -this.k1, -this.k2, tws0[BETAY], tws0[ALPHAY], tws0[ETAX], tws0[ETAPX])
     

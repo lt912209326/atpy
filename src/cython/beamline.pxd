@@ -12,8 +12,9 @@ from cymem.cymem cimport Pool
 cimport cython
 
 from ..cython.constants cimport*
-from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole
-from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole
+from ..cython cimport Element,Marker,Drift, Dipole, Quadrupole,Sextupole,Octupole
+from ..cpp cimport CppElement, CppMarker, CppDrift, CppDipole, CppQuadrupole,CppSextupole
+#,CppOctupole
 
 
 

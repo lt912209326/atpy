@@ -83,6 +83,7 @@ cdef class BeamLine:
     cdef void _evaluate_lattice(self)nogil:
         cdef: 
             int i,j,k,p
+            double k2
         
         for i in range(ENERGY+1, GLB_NUM):
             self.glb_properties[i] = 0.0
@@ -110,8 +111,9 @@ cdef class BeamLine:
                 self.glb_properties[NAT_CHROMX] += self.tws_properties[i][CHROMX]
                 self.glb_properties[NAT_CHROMY] += self.tws_properties[i][CHROMY]
             elif self.elems[i].elem_type ==SEXTUPOLE:
-                self.glb_properties[TOTAL_K2X] += self.tws_properties[i][CHROMX]
-                self.glb_properties[TOTAL_K2Y] += self.tws_properties[i][CHROMY]
+                k2 = self.kwd_properties[i][K2]*self.kwd_properties[i][L]
+                self.glb_properties[TOTAL_K2X] += k2 if k2>0 else 0.0
+                self.glb_properties[TOTAL_K2Y] += k2 if k2<0 else 0.0
             self.glb_properties[TOTALCHROMX] += self.tws_properties[i][CHROMX]
             self.glb_properties[TOTALCHROMY] += self.tws_properties[i][CHROMY]
         

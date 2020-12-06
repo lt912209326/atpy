@@ -7,6 +7,7 @@ cdef cppclass CppDipole(CppElement):
         this.elem_type = DIPOLE
         this.l = kwd[L]
         this.angle = kwd[ANGLE]
+        this.k1 = kwd[K1]
 #         this.rho = this.l/this.angle
         this.init_matrixM()
         this.update_matrixM()
@@ -17,8 +18,34 @@ cdef cppclass CppDipole(CppElement):
         angle = this.angle
         halfangle = angle/2.0
         rho =this.l/angle
+        K = 1/rho**2-this.k1
+        tanhalfangle = tan(halfangle)
+        if K>0.0:
+            k1 = sqrt(K)
+            C=cos(k1*l)
+            S=sin(k1*l)
+            this.M[0][0]=C+S*tanhalfangle/(rho*k1)
+            this.M[0][1]=S/k1
+            this.M[1][0]=2.0*C*tanhalfangle/rho + tanhalfangle**2*S/(rho*rho*k1) - k1*S
+            this.M[1][1]=C+S*tanhalfangle/(rho*k1)
+        elif K<0.0:
+            k1 = sqrt(-K)
+            C=cosh(k1*l)
+            S=sinh(k1*l)
+            this.M[0][0]=C+S*tanhalfangle/(rho*k1)
+            this.M[0][1]=S/k1
+            this.M[1][0]=2.0*C*tanhalfangle/rho + tanhalfangle**2*S/(rho*rho*k1) + k1*S
+            this.M[1][1]=C+S*tanhalfangle/(rho*k1)
+        else:
+            this.M[0][0]=1+angle*tanhalfangle
+            this.M[0][1]=l
+            this.M[1][0]=2*tan(halfangle)*(1+halfangle*tan(halfangle))/rho
+            this.M[1][1]=1+angle*tanhalfangle
+            
         
-        this.M[0][1] = rho*sin(angle)
+        
+        # this.M[0][1] = rho*sin(angle)
+        
         this.M[0][5] = rho*(1-cos(angle))
         
         this.M[1][5] = 2*tan(halfangle)
@@ -41,5 +68,6 @@ cdef cppclass CppDipole(CppElement):
     inline void update(double* kwd)nogil:
         this.l = kwd[L]
         this.angle=kwd[ANGLE]
+        this.k1 = kwd[K1]
         this.update_matrixM()
         this.update_matrixT()

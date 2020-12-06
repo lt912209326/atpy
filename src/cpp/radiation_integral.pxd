@@ -106,7 +106,7 @@ cdef inline double calc_chrom(double l, double K1, double K2, double beta0, doub
         k1 = sqrt(-K1)
         chrom = -0.0625*( (-beta0*k1 -gamma0/k1 )*sinh(2*k1*l) + 2*alpha0*cosh(2*k1*l) + 2*(beta0*K1 + gamma0)*l - 2*alpha0 )/pi
     if K2 !=0.0:
-        chrom += 0.25*K2*(etap0*gamma0*l**3 + (eta0*gamma0 -2*etap0*alpha0 )*l*l + (etap0*beta0 -2*eta0*alpha0 )*l + eta0*beta0 )/pi
+        chrom += 0.25*K2*(0.25*etap0*gamma0*l**4 + (eta0*gamma0 -2*etap0*alpha0 )/3*l**3 + 0.5*(etap0*beta0 -2*eta0*alpha0 )*l*l + eta0*beta0*l )/pi
     return chrom
         
         
