@@ -12,7 +12,7 @@ link_args = ['-static-libgcc',
 
 #Extension args
 language ='c++'
-include_dirs=[".",'atpy/src/','atpy/src/cpp', 'tpsa/include']
+include_dirs=[".",'atpy/src']
 
 extra_compile_args = ["-O3", "-Wall"]
 
@@ -38,62 +38,21 @@ def set_extension():
                         )
     return extension
 
-
-# extension = [
-            # Extension("atpy.src.cython.constants",
-                    # ['src/cython/constants.pyx'],
-                    # include_dirs = [".",'../cython','src/cpp'],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # Extension("atpy.src.tpsa.pytpsa",
-                    # ['src/tpsa/pytpsa.pyx','src/tpsa/src/da.cpp','src/tpsa/src/tpsa_extend.cpp'],#,'src/tpsa/src/tpsa.cpp'
-                    # include_dirs = ['../tpsa/include'],
-                    # # language="c++",
-                    # link_args=link_args,
-                    # extra_compile_args = ["-O3", "-Wall","-std=c++11"]),
-            # Extension("atpy.src.cython.elements",
-                    # ['src/cython/elements.pyx'],
-                    # include_dirs = ["./cython",'src/cpp'],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # Extension("atpy.src.cython.structures",
-                    # ['src/cython/structures.pyx'],
-                    # include_dirs = [".",'../cython','src/cpp'],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # Extension("atpy.src.cython.beamline",
-                    # ['src/cython/beamline.pyx'],
-                    # include_dirs = ["./cython",'src/cpp'],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # Extension("atpy.src.cython.parser",
-                    # ['src/cython/parser.pyx'],
-                    # include_dirs = ["./cython"],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # Extension("atpy.src.cython.lattice",
-                    # ['src/cython/lattice.pyx'],
-                    # include_dirs = ["./cython",'src/cpp'],
-                    # # language="c++",
-                    # extra_compile_args = ["-O3", "-Wall"]),
-            # ]
-
+#Setup config
 setup(name='atpy',
       version='1.0.0',
       author='LiuTao',
       packages=find_packages(),
       cmdclass = {'build_ext': build_ext},
       ext_modules=cythonize(set_extension(),
-                            annotate=True,
+                            annotate=False,
                             force=True,
                             compiler_directives={'profile':True, 'language_level':3,
                                                 'boundscheck':False, 'cdivision':True, 
                                                 'initializedcheck':False,'linetrace':True}),
       package_dir={'':'.'},
-      # data_files=['*.pxd','*.h','*.py'],
-      # include_package_data = False,
       package_data = {
-            "": ["*.pxd","*.in"],
+            "atpy": ["*.pxd","*.py"],
             "atpy.src":["*.pxd"],
             "atpy.src.beamline":["*.pxd","*.pyx"],
             "atpy.src.parser":["*.pxd","*.pyx"],
@@ -104,10 +63,9 @@ setup(name='atpy',
       zip_safe = False,
       
       install_requires=[
-            'cython',
-            'cymem',
-            'matplotlib',
-            'numpy',
+            'cython>=3.0.0',
+            'cymem>=2.0.2',
+            'matplotlib>=3.1.0',
+            'numpy>=1.19.1',
         ],
      )
-print(find_packages())
